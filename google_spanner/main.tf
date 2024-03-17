@@ -5,7 +5,7 @@ resource "google_spanner_instance" "sac_spanner_instance" {
   config        = "regional-us-east1"
   display_name  = "test-instance"
   num_nodes     = 1
-  project       = var.project_id
+  project       = "test-projectID"
   force_destroy = true # SaC Testing - Severity: Low - set force_destroy to true 
   # SaC Testing - Severity: Moderate - set labels to undefined
   # labels = {
@@ -30,11 +30,11 @@ resource "google_spanner_instance_iam_member" "sac_spanner_instance_member" {
 resource "google_spanner_database" "sac_spanner_db" {
   instance            = google_spanner_instance.sac_spanner_instance.name
   name                = "test-database"
-  project             = var.project_id
+  project             = "test-projectID"
   deletion_protection = false
-  encryption_config {
-    #kms_key_name = "projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}" # SaC Testing - Severity: Moderate - set kms_key_name to undefined 
-  }
+  # encryption_config {
+  #   #kms_key_name = "projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}" # SaC Testing - Severity: Moderate - set kms_key_name to undefined 
+  # }
 }
 
 resource "google_spanner_database_iam_binding" "sac_spanner_db_binding" {
