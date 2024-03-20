@@ -17,9 +17,9 @@ resource "aws_lb" "elbv2_sac" {
   subnet_mapping {
     subnet_id = aws_subnet.elbv2_subnet_1.id
   }
-  subnet_mapping {
-    subnet_id = aws_subnet.elbv2_subnet_2.id
-  }
+  # subnet_mapping {  # SaC Testing - Severity: Moderate - Set subnets < 2
+  #   subnet_id = aws_subnet.elbv2_subnet_2.id
+  # }
   access_logs {
     bucket  = aws_s3_bucket.elbv2_bucket.bucket
     enabled = false # SaC Testing - Severity: High - Set enabled to false
