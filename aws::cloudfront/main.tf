@@ -14,17 +14,20 @@ resource "aws_cloudfront_distribution" "sac_cloudfront_distribution" {
       restriction_type = "blacklist"
     }
   }
-  logging_config { # SaC Testing - Severity: High - set logging_config to undefined
-    bucket = "sac-cloudfront-bucket.s3.amazonaws.com"
-  }
+  # logging_config { # SaC Testing - Severity: High - set logging_config to undefined
+  #   bucket = "sac-cloudfront-bucket.s3.amazonaws.com"
+  # }
+
   origin_group { # SaC Testing - Severity: Moderate - set origin_group to undefined
     origin_id = "FailoverGroup"
-
     failover_criteria {
       status_codes = [403, 404, 500, 502]
     }
     member {
       origin_id = "failoverS3"
+    }
+    member {
+      origin_id = "primaryS3"
     }
   }
   default_cache_behavior {
