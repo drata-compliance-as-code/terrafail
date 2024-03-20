@@ -15,7 +15,7 @@ resource "azurerm_iothub" "sac_iothub" {
     capacity = "1"
   }
   public_network_access_enabled = true # SaC Testing - Severity: Critical - Set public_network_access_enabled to true
-  min_tls_version               = 1.2  # SaC Testing - Severity: Critical - Set min_tls_version != 1.2
+  min_tls_version               = 1.1  # SaC Testing - Severity: Critical - Set min_tls_version != 1.2
   network_rule_set {
     default_action = "Allow"
     ip_rule { # SaC Testing - Severity: High - Set ip_rule to undefined
