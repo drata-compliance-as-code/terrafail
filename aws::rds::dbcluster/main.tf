@@ -6,7 +6,7 @@
 resource "aws_rds_cluster" "sac_rds_cluster" {
   cluster_identifier        = "sac-testing-rds-cluster"
   database_name             = "sacrdsdatabase"
-  engine                    = "aurora-mysql"
+  engine                    = "postgres"
   master_username           = "sacMasterUsername"
   master_password           = "randomlydecidedpassword41characters"
   final_snapshot_identifier = "DELETE"
