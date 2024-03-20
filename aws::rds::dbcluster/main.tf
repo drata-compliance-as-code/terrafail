@@ -14,7 +14,7 @@ resource "aws_rds_cluster" "sac_rds_cluster" {
   deletion_protection       = false
   db_subnet_group_name      = aws_db_subnet_group.sac_rds_subnet_group.name
   backup_retention_period   = 7                         # SaC Testing - Severity: Moderate - Set backup_retention_period to default [0, 7]
-  engine_version            = "8.0.mysql_aurora.3.03.0" # SaC Testing - Severity: High - Set engine to unsupported version
+  engine_version            = "9.6.postgres.16.2-r2" # SaC Testing - Severity: High - Set engine to unsupported version
   #availability_zones = ["us-east-2c", "us-east-2b"]  # SaC Testing - Severity: High - Set availability_zones to []
   storage_encrypted                   = false # SaC Testing - Severity: Moderate - Set storage_encrypted to false
   iam_database_authentication_enabled = false # SaC Testing - Severity: High - Set iam_database_authentication_enabled to false
@@ -29,8 +29,8 @@ resource "aws_rds_cluster" "sac_rds_cluster" {
 resource "aws_db_option_group" "sac_rds_option_group" {
   name                     = "sac-rds-option-group"
   option_group_description = "Terraform Option Group"
-  engine_name              = "mysql"
-  major_engine_version     = "8.0"
+  engine_name              = "postgres"
+  major_engine_version     = "9.6"
   # SaC Testing - Severity: Moderate - Set tags to undefined
   # tags = {
   #   Name = "rds_option_group"
@@ -39,7 +39,7 @@ resource "aws_db_option_group" "sac_rds_option_group" {
 
 resource "aws_db_parameter_group" "sac_rds_parameter_group" {
   name   = "sac-rds-param-group"
-  family = "mysql5.6"
+  family = "postgres16.1"
   parameter {
     name  = "character_set_server"
     value = "utf8"
