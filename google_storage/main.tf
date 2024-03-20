@@ -8,9 +8,9 @@ resource "google_storage_bucket" "sac_storage_bucket" {
   versioning {
     enabled = false # condition: SaC Testing - Severity: Moderate - set enabled to False
   }
-  retention_policy {
-    retention_period = 267840 # SaC Testing - Severity: Moderate - set retention_period to < 2678400
-  }
+  # retention_policy {
+  #   retention_period = 267840 # SaC Testing - Severity: Moderate - set retention_period to < 2678400
+  # }
   # encryption {  # condition: SaC Testing - Severity: Moderate - set encryption to undefined
   #   kms_key_name = "projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}"
   # }
