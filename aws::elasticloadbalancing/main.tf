@@ -9,10 +9,10 @@ resource "aws_elb" "sac_elbv1" {
   subnets = [aws_subnet.elbv1_subnet1.id] # SaC Testing - Severity: Moderate - Set subnets to < 2
   # security_groups = [ aws_security_group.elbv1_security_group.id ]  # SaC Testing - Severity: Moderate - Set security groups to undefined
   internal = false # SaC Testing - Severity: Critical - Set internal to false
-  # access_logs { # SaC Testing - Severity: High - Set access_logs to undefined
-  #   bucket        = aws_s3_bucket.s3_access_logs_bucket.bucket
-  #   enabled = true
-  # }
+  access_logs { # SaC Testing - Severity: High - Set access_logs to undefined or enabled = false
+    bucket        = aws_s3_bucket.s3_access_logs_bucket.bucket
+    enabled = false
+  }
   listener {
     instance_port     = 8000
     instance_protocol = "HTTP" # SaC Testing - Severity: Critical - Set instance protocol to HTTP
