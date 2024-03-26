@@ -46,10 +46,3 @@ resource "google_compute_firewall_policy_rule" "sac_compute_firewall_rule" {
   }
   target_service_accounts = ["my@service-account.com"]
 }
-
-# ---------------------------------------------------------------------
-# Network
-# ---------------------------------------------------------------------
-resource "google_compute_network" "compute_network" {
-  name = "test-network"
-}
