@@ -17,6 +17,7 @@ resource "azurerm_container_app" "sac_container_app" {
     allow_insecure_connections = true # SaC Testing - Severity: Critical - Set allow_insecure_connections to true
     transport                  = "auto"
     target_port                = 6784
+    external_enabled = true # SaC Testing - Severity: High - Set external_enabled to false
     traffic_weight {
       percentage = 100
     }

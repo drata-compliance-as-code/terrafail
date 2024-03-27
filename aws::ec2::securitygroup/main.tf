@@ -8,7 +8,7 @@ resource "aws_security_group" "sac_security_group" {
   description            = "Allow TLS inbound traffic"
   vpc_id                 = aws_vpc.security_group_vpc.id
   revoke_rules_on_delete = false
-  
+
   # ingress { # SaC Testing - Severity: Low - Set ingress to undefined
   #   description      = "TLS from VPC"
   #   from_port        = 80

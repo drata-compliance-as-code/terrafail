@@ -17,8 +17,8 @@ resource "aws_network_acl_rule" "sac_network_acl_ingress" {
   protocol       = "tcp"
   rule_action    = "allow"
   cidr_block     = "0.0.0.0/0"
-  from_port      = 443
-  to_port        = 443
+  from_port      = 22
+  to_port        = 22
 }
 resource "aws_network_acl_rule" "sac_network_acl_egress" {
   network_acl_id = aws_network_acl.sac_network_acl.id

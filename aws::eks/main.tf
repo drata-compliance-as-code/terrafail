@@ -7,18 +7,11 @@ resource "aws_eks_cluster" "sac_eks_cluster" {
   name     = "sac-testing-eks-cluster"
   role_arn = aws_iam_role.eks_cluster_role.arn
 
-  encryption_config { # SaC Testing - Severity: High - Set encryption_config to undefined
-    resources = ["secrets"]
-    provider {
-      key_arn = aws_kms_key.eks_kms_key.arn
-    }
-  }
-
   vpc_config {
     security_group_ids     = [aws_security_group.eks_security_group.id]
     subnet_ids             = [aws_subnet.eks_subnet_1.id, aws_subnet.eks_subnet_2.id]
-    endpoint_public_access = false            # SaC Testing - Severity: Critical - Set endpoint_public_access to true
-    public_access_cidrs    = ["127.0.1.0/16"] # SaC Testing - Severity: Critical - Set public_access_cidrs to *
+    endpoint_public_access = true            # SaC Testing - Severity: Critical - Set endpoint_public_access to true
+    public_access_cidrs    = ["0.0.0.0/0"] # SaC Testing - Severity: Critical - Set public_access_cidrs to *
   }
 
   encryption_config { # SaC Testing - Severity: High - Set encryption_config to undefined
