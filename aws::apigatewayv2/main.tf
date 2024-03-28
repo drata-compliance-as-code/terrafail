@@ -41,7 +41,7 @@ resource "aws_apigatewayv2_integration" "sac_apigwv2_integration" {
   api_id             = aws_apigatewayv2_api.sac_apigwv2_api.id
   integration_type   = "HTTP"
   integration_method = "PATCH"    # SaC Testing - Severity: Moderate - set integration_method != ['get', 'put', 'post']
-  connection_type    = "VPC_LINK" # SaC Testing - Severity: Moderate - set connection_type != vpc_link
+  connection_type    = "INTEGRATION" # SaC Testing - Severity: Moderate - set connection_type != vpc_link
   integration_uri    = aws_lb_listener.elbv2_listener.arn
   # tls_config { # SaC Testing - Severity: Critical - set tls_config to undefined
   #   server_name_to_verify = "thisisthedarkside.com"
