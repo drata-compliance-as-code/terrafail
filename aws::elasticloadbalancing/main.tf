@@ -35,3 +35,14 @@ resource "aws_elb" "sac_elbv1" {
   #   Name = "sac-test-elbv1"
   # }
 }
+
+resource "aws_load_balancer_policy" "elbv1-listener-policy" {
+  load_balancer_name = aws_elb.sac_elbv1.name
+  policy_name        = "elbv1-ssl-policy"
+  policy_type_name   = "SSLNegotiationPolicyType"
+
+  policy_attribute {
+    name  = "Reference-Security-Policy"
+    value = "ELBSecurityPolicy-TLS-1-1-2017-01" # SaC Testing - Severity: Critical - Set valye != predefined TLS policy
+  }
+}

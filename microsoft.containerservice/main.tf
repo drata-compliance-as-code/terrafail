@@ -37,7 +37,7 @@ resource "azurerm_kubernetes_cluster" "sac_aks_cluster" {
   # tags = {
   #   Environment = "Production"
   # }
-  automatic_channel_upgrade = "stable" # SaC Testing - Severity: Low - Set automatic_channel_upgrade to one of ['stable', 'rapid', 'patch']
+  # automatic_channel_upgrade = "stable" # SaC Testing - Severity: Low - Set automatic_channel_upgrade to one of ['stable', 'rapid', 'patch']
 }
 
 resource "azurerm_kubernetes_cluster_node_pool" "sac_aks_node_pool" {
