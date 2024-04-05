@@ -20,7 +20,7 @@ resource "azurerm_key_vault" "sac_key_vault" {
   public_network_access_enabled = true       # SaC Testing - Severity: High - set public_network_access_enabled to true
   network_acls {
     bypass         = "AzureServices"
-    default_action = "Allow" # SaC Testing - Severity: Critical - set defualt_action != deny
+    default_action = "Deny"
   }
   # SaC Testing - Severity: Moderate - Set tags to undefined
   # tags = {
