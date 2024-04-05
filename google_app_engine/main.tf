@@ -60,4 +60,5 @@ resource "google_app_engine_firewall_rule" "sac_app_firewall_rule" {
   project      = "tfcloud-testing"
   action       = "ALLOW" # SaC Testing - Severity: High/Critical - set action == "allow"
   source_range = "*"     # SaC Testing - Severity: High/Critical - set source_range == "*"
+  # Drata: Ensure that [google_app_engine_firewall_rule.source_range] is explicitly defined and narrowly scoped to only allow traffic from trusted sources
 }
