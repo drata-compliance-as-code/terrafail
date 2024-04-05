@@ -29,7 +29,7 @@ resource "azurerm_mssql_elasticpool" "elasticpool" {
   location            = azurerm_resource_group.server_resource_group.location
   server_name         = azurerm_mssql_server.sac_mssql_server.name
   max_size_gb         = 10
-  zone_redundant      = false # SaC Testing - Severity: Moderate - Set zone_redundant to false
+  zone_redundant      = true
   sku {
     name     = "BC_Gen5"
     tier     = "BusinessCritical"
