@@ -28,7 +28,7 @@ resource "aws_dynamodb_table" "dynamo-db-table" {
     enabled        = true
   }
   point_in_time_recovery {
-    enabled = false # SaC Testing - Severity: Critical - Set enabled to false
+    enabled = true
   }
   timeouts {
     create = "10m"
