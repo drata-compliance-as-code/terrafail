@@ -51,7 +51,7 @@ resource "aws_ecs_task_definition" "sac_ecs_task_definition" {
   }])
   cpu          = 1024
   memory       = 2048
-  network_mode = "none" # SaC Testing - Severity: Moderate - Set network_mode != awsvpc
+  network_mode = "awsvpc"
   volume {
     name = "myEfsVolume"
     efs_volume_configuration {
