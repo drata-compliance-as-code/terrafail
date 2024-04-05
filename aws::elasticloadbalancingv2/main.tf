@@ -3,6 +3,7 @@
 # ELBv2
 # ---------------------------------------------------------------------
 resource "aws_lb" "elbv2_sac" {
+  # Drata: Default network security groups allow broader access than required. Specify [aws_lb.security_groups] to configure more granular access control
   name                       = "elbv2-sac"
   load_balancer_type         = "application"
   drop_invalid_header_fields = true      # SaC Testing - Severity:  - Set drop_invalid_header_fields to true
