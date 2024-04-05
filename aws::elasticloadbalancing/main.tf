@@ -7,6 +7,7 @@ resource "aws_elb" "sac_elbv1" {
   name = "sac-elbv1"
   # availability_zones = ["us-east-2b"] # SaC Testing - Severity: Moderate - Set availability zones to undefined
   subnets = [aws_subnet.elbv1_subnet1.id] # SaC Testing - Severity: Moderate - Set subnets to < 2
+  # Drata: Configure [aws_elb.subnets] to improve infrastructure availability and resilience. Define at least 2 subnets or availability zones on your load balancer to enable zone redundancy
   # security_groups = [ aws_security_group.elbv1_security_group.id ]  # SaC Testing - Severity: Moderate - Set security groups to undefined
   internal = false # SaC Testing - Severity: Critical - Set internal to false
   access_logs { # SaC Testing - Severity: High - Set access_logs to undefined or enabled = false
