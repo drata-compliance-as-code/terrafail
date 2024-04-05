@@ -9,6 +9,7 @@ resource "azurerm_resource_group" "apim_resource_group" {
 # ApiManagement
 # ---------------------------------------------------------------------
 resource "azurerm_api_management" "sac_api_management" {
+  # Drata: Configure [azurerm_api_management.zones] to improve infrastructure availability and resilience
   name                       = "sac-testing-api-management"
   location                   = azurerm_resource_group.apim_resource_group.location
   resource_group_name        = azurerm_resource_group.apim_resource_group.name
