@@ -16,6 +16,7 @@ resource "aws_ecs_cluster" "sac_ecs_cluster" {
 }
 
 resource "aws_ecs_service" "sac_ecs_service" {
+  # Drata: Default network security groups allow broader access than required. Specify [aws_ecs_service.network_configuration.security_groups] to configure more granular access control
   name            = "sac-testing-ecs-service"
   cluster         = aws_ecs_cluster.sac_ecs_cluster.arn
   task_definition = aws_ecs_task_definition.sac_ecs_task_definition.arn
