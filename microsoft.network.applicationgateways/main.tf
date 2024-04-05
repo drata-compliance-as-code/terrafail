@@ -46,7 +46,7 @@ resource "azurerm_application_gateway" "sac_application_gateway_standardv2_prede
     protocol                       = "Http" # SaC Testing - Severity: Critical - Set protocol != https
   }
   ssl_policy {
-    min_protocol_version = "TLSv1_1" # SaC Testing - Severity: Critical - Set min_protocol_version != tlsv1.2
+    min_protocol_version = "TLSv1_2"
     #disabled_protocols = ["TLSv1_0", "TLSv1_1"]  # SaC Testing - Severity: Critical - Set disabled_protocols != [TLSv1_0, TLSv1_1]
   }
   frontend_port {
