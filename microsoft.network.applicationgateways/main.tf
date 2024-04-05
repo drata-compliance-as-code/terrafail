@@ -17,7 +17,7 @@ resource "azurerm_application_gateway" "sac_application_gateway_standardv2_prede
     tier = "Standard_v2"
   }
   autoscale_configuration { # SaC Testing - Severity: Moderate - Set autoscale_configuration to undefined
-    min_capacity = 1        # SaC Testing - Severity: Moderate - Set min_capacity < 2
+    min_capacity = 2
     max_capacity = 25
   }
   frontend_ip_configuration {
