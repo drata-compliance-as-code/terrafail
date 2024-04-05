@@ -71,7 +71,7 @@ resource "aws_db_proxy" "sac_rds_db_proxy" {
   vpc_subnet_ids = [aws_subnet.rds_subnet_1.id, aws_subnet.rds_subnet_2.id]
   engine_family  = "MYSQL"
   debug_logging  = true  # SaC Testing - Severity: Moderate - Set debug_logging to true
-  require_tls    = false # SaC Testing - Severity: Moderate - Set require_tls to false
+  require_tls    = true
   auth {
     secret_arn = aws_secretsmanager_secret.sac_secrets_manager.arn
     #auth_scheme = "SECRETS"  # SaC Testing - Severity: High - Set auth_scheme != secrets
