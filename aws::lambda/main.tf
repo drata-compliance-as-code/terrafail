@@ -33,6 +33,7 @@ resource "aws_lambda_event_source_mapping" "example" {
 }
 
 resource "aws_lambda_function" "insecure_lambda_SAC" {
+  # Drata: Configure [aws_lambda_function.vpc_config] to improve network monitoring capabilities and ensure network communication is restricted to trusted sources. If there is a need for your Lambda Function to access external endpoints this finding can be ignored
   function_name                  = "insecure_lambda_function"
   role                           = aws_iam_role.lambda_role.arn
   filename                       = "my-deployment-package.zip"
