@@ -72,7 +72,7 @@ resource "aws_s3_bucket_public_access_block" "s3_public_access_block_sac" { # Sa
 resource "aws_s3_bucket_versioning" "s3_bucket_versioning_sac" { #SaC Testing - Severity: High - Set aws_bucket_versioning to undefined
   bucket = aws_s3_bucket.s3_bucket_sac.id
   versioning_configuration {
-    status = "Disabled" # SaC Testing - Severity: High - Set status to false
+    status = "Enabled"
   }
 }
 
