@@ -21,6 +21,7 @@ resource "aws_elasticache_cluster" "sac_memcached_cluster" {
 }
 
 resource "aws_elasticache_cluster" "sac_redis_cluster" {
+  # Drata: Default network security groups allow broader access than required. Specify [aws_elasticache_cluster.security_group_ids] to configure more granular access control
   cluster_id               = "sac-testing-redis-cluster"
   engine                   = "redis"
   node_type                = "cache.t3.small"
