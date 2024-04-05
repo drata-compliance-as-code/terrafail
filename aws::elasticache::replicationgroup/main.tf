@@ -4,6 +4,7 @@
 # ElastiCache
 # ---------------------------------------------------------------------
 resource "aws_elasticache_replication_group" "sac_replication_group_redis" {
+  # Drata: Specify [aws_elasticache_replication_group.snapshot_retention_limit] to ensure sensitive data is only available when necessary. Setting snapshot retention to 0 will disable automatic backups
   preferred_cache_cluster_azs = ["us-east-2b", "us-east-2c"]
   replication_group_id        = "sac-testing-replication-group-redis"
   description                 = "sac testing replication group"
