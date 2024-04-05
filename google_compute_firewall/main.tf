@@ -2,6 +2,7 @@
 # Compute Firewall
 # ---------------------------------------------------------------------
 resource "google_compute_firewall" "sac_compute_firewall" {
+  # Drata: Configure [google_compute_firewall.log_config] to ensure that security-relevant events are logged to detect malicious activity
   name      = "test-firewall"
   network   = google_compute_network.compute_network.name
   direction = "ingress"
