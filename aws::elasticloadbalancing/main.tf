@@ -12,6 +12,7 @@ resource "aws_elb" "sac_elbv1" {
   access_logs { # SaC Testing - Severity: High - Set access_logs to undefined or enabled = false
     bucket        = aws_s3_bucket.s3_access_logs_bucket.bucket
     enabled = false
+  # Drata: Configure [aws_elb.access_logs.enabled] to ensure that security-relevant events are logged to detect malicious activity
   }
   listener {
     instance_port     = 8000
