@@ -21,6 +21,7 @@ resource "google_sql_database_instance" "sac_sql_db_instance" {
     }
     backup_configuration {
       enabled                        = false # SaC Testing - Severity: Moderate - set enabled to False
+      # Drata: Ensure that SQL database instance is not publicly accessible by giving it a private IP. Define [google_sql.sql_database_instance.settings.ip_configuration.private_network] to use private IPs while connecting to SQL database instance
       point_in_time_recovery_enabled = false # SaC Testing - Severity: Moderate - set point_in_time_recovery_enabled to False
     }
   }
