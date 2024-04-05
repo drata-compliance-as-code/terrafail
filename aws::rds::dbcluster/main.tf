@@ -14,6 +14,7 @@ resource "aws_rds_cluster" "sac_rds_cluster" {
   deletion_protection       = false
   db_subnet_group_name      = aws_db_subnet_group.sac_rds_subnet_group.name
   backup_retention_period   = 7                         # SaC Testing - Severity: Moderate - Set backup_retention_period to default [0, 7]
+  # Drata: Specify [aws_rds_cluster.backup_retention_period] to ensure sensitive data is only available when necessary. It is recommended to configure a non-default value appropriate for your specific use-case. AWS defaults to 7 days
   engine_version            = "9.6.postgres.16.2-r2" # SaC Testing - Severity: High - Set engine to unsupported version
   #availability_zones = ["us-east-2c", "us-east-2b"]  # SaC Testing - Severity: High - Set availability_zones to []
   storage_encrypted                   = false # SaC Testing - Severity: Moderate - Set storage_encrypted to false
