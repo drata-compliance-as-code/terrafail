@@ -9,6 +9,7 @@ resource "azurerm_resource_group" "cache_resource_group" {
 # Cache
 # ---------------------------------------------------------------------
 resource "azurerm_redis_cache" "sac_redis_cache" {
+  # Drata: Configure [azurerm_redis_cache.zones] to improve infrastructure availability and resilience
   name                = "sac-cache"
   location            = azurerm_resource_group.cache_resource_group.location
   resource_group_name = azurerm_resource_group.cache_resource_group.name
