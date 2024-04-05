@@ -17,7 +17,7 @@ resource "azurerm_cosmosdb_account" "sac_cosmosdb_account" {
   is_virtual_network_filter_enabled = true
   enable_automatic_failover         = false
   analytical_storage_enabled        = true
-  public_network_access_enabled     = true # SaC Testing - Severity: High - Set public_network_access_enabled to true
+  public_network_access_enabled     = false
   #ip_range_filter = "0.0.0.0,203.0.113.0/16"  # SaC Testing - Severity: High - Set ip_range_filter to undefined
   #   virtual_network_rule {  # SaC Testing - Severity: High - Set virtual_network_rule to undefined
   #     id = azurerm_subnet.sac_dynamodb_subnet.id
