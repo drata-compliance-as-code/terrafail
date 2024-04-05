@@ -11,7 +11,7 @@ resource "google_container_cluster" "sac_container_cluster" {
     evaluation_mode = "DISABLED" # SaC Testing - Severity: Low - set evaluation_mode to 'DISABLED'
   }
   database_encryption {
-    state    = "DECRYPTED" # SaC Testing - Severity: High - set state to 'DECRYPTED'
+    state    = "ENCRYPTED"
     key_name = "projects/my-project/locations/global/keyRings/my-ring/cryptoKeys/my-key"
   }
   node_config {
