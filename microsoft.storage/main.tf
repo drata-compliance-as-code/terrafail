@@ -15,7 +15,7 @@ resource "azurerm_storage_account" "sac_storage_account" {
   public_network_access_enabled     = true     # SaC Testing - Severity: High - Set public_network_access_enabled to true
   account_replication_type          = "ZRS"    # SaC Testing - Severity: Moderate - Set account_replication_type
   infrastructure_encryption_enabled = false    # SaC Testing - Severity: Low - Set infrastructure_encryption_enabled to false
-  enable_https_traffic_only         = false    # SaC Testing - Severity: Critical - Set enable_https_traffic_only to false
+  enable_https_traffic_only         = true
   min_tls_version                   = "TLS1_0" # SaC Testing - Severity: Critical - Set min_tls_version != "TLS1_2"
   # customer_managed_key {  # SaC Testing - Severity: Moderate - Set customer_managed_key to undefined
   #   key_vault_key_id = azurerm_key_vault_key.sac_storage_key_vault_key.id
