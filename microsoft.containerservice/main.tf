@@ -46,7 +46,7 @@ resource "azurerm_kubernetes_cluster_node_pool" "sac_aks_node_pool" {
   vm_size               = "Standard_DS2_v2"
   enable_node_public_ip = true # SaC Testing - Severity: Critical - Set enable_node_public_ip to true
   #zones = [2,1]  # SaC Testing - Severity: High - Set zones to []
-  enable_auto_scaling = false # SaC Testing - Severity: High - Set enable_auto_scaling to false
+  enable_auto_scaling = true
   max_count           = 100
   min_count           = 0
 }
