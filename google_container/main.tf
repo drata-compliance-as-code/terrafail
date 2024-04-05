@@ -43,6 +43,6 @@ resource "google_container_node_pool" "test_nodepool" {
   }
   management {
     auto_repair  = false # SaC Testing - Severity: Low - set auto_repair to False
-    auto_upgrade = false # SaC Testing - Severity: Low - set auto_upgrade to False
+    auto_upgrade = true
   }
 }
