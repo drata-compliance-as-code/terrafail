@@ -66,7 +66,7 @@ resource "aws_lb_listener_rule" "elbv2-listener-rule" {
 resource "aws_lb_listener" "elbv2_listener" {
   load_balancer_arn = aws_lb.elbv2_sac.arn
   port              = 99
-  protocol          = "HTTP" # SaC Testing - Severity: Critical - Set protocol != ['https', 'tls']
+  protocol          = "HTTPS"
   default_action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.elbv2_target_group.arn
