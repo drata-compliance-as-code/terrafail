@@ -56,7 +56,7 @@ resource "aws_ecs_task_definition" "sac_ecs_task_definition" {
     name = "myEfsVolume"
     efs_volume_configuration {
       file_system_id     = aws_efs_file_system.sac_ecs_efs.id
-      transit_encryption = "DISABLED" # SaC Testing - Severity: Critical - Set transit_encryption to disabled
+      transit_encryption = "ENABLED"
 
       authorization_config {
         iam = "DISABLED"
