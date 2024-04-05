@@ -22,7 +22,7 @@ resource "azurerm_mssql_database" "sac_mssql_database" {
 
 resource "azurerm_mssql_database_extended_auditing_policy" "mssql_database_auditing_policy" { # SaC Testing - Severity: Critical - set auditing policy to undefined
   database_id = azurerm_mssql_database.sac_mssql_database.id
-  enabled     = false # SaC Testing - Severity: Moderate - Set enabled to false
+  enabled     = true
   #storage_endpoint = azurerm_storage_account.example.primary_blob_endpoint # SaC Testing - Severity: Moderate - set storage_endpoint to undefined
   #log_monitoring_enabled = true  # SaC Testing - Severity: Critical - Set log_monitoring_enabled  == false
   retention_in_days = 10 # SaC Testing - Severity: Moderate - Set retention_in_days to < 90
