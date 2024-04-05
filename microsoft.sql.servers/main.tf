@@ -16,7 +16,7 @@ resource "azurerm_mssql_server" "sac_mssql_server" {
   administrator_login           = "msuch-oak9"
   administrator_login_password  = "$uPer$ecure$ecret!234"
   minimum_tls_version           = "1.1" # SaC Testing - Severity: Critical - Set minimum_tls_version != 1.2
-  public_network_access_enabled = true  # SaC Testing - Severity: High - Set public_network_access_enabled to true
+  public_network_access_enabled = false
   # SaC Testing - Severity: Moderate - Set tags to undefined
   # tags = {
   #   environment = "production"
