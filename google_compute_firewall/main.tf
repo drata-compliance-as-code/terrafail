@@ -23,7 +23,7 @@ resource "google_compute_firewall_policy_rule" "sac_compute_firewall_rule" {
   firewall_policy = google_compute_firewall_policy.default.name
   description     = "Resource created for Terraform acceptance testing"
   priority        = 9000
-  enable_logging  = false   # SaC Testing - Severity: Moderate - set enable_logging to False
+  enable_logging  = true
   action          = "allow" # condition: SaC Testing - Severity: High - set to 'allow'
   direction       = "EGRESS"
   disabled        = false
