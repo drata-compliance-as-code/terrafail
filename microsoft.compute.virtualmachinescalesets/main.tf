@@ -14,7 +14,7 @@ resource "azurerm_windows_virtual_machine_scale_set" "sac_windows_vmss" {
   instances                  = 1
   admin_username             = "adminuser"
   admin_password             = "P@55w0rd1234!" # SaC Testing - Severity: High - Set admin_password != ""
-  encryption_at_host_enabled = false           # SaC Testing - Severity: Critical - Set encryption_at_host_enabled to false
+  encryption_at_host_enabled = true
   #health_probe_id = azurerm_lb_probe.vmss_lb_probe.id  # SaC Testing - Severity: Moderate - Set health_probe_id to undefined
   upgrade_mode = "Automatic"
   #zones = ["2"]  # SaC Testing - Severity: Moderate - Set zones == ""
