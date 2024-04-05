@@ -24,7 +24,7 @@ resource "aws_instance" "aws_ec2_instance_sac" {
   ebs_block_device {
     delete_on_termination = false
     device_name           = "/dev/sdf"
-    encrypted             = false # SaC Testing - Severity: Critical - Set ebs_block_device.encrypted to false
+    encrypted             = true
     #kms_key_id = ""  # SaC Testing - Severity: High - Set ebs_block_device.kms_key_id to ""
     volume_size = 5
     tags = {
