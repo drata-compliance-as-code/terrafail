@@ -9,6 +9,7 @@ resource "azurerm_resource_group" "sac_nsg_resource_group" {
 # Network
 # ---------------------------------------------------------------------
 resource "azurerm_network_security_group" "sac_network_security_group" {
+  # Drata: Ensure that [azurerm_network_security_group.security_rule.destination_address_prefix] is explicitly defined and narrowly scoped to only allow traffic to trusted sources
   name                = "sac-testing-network-security-group"
   location            = azurerm_resource_group.sac_nsg_resource_group.location
   resource_group_name = azurerm_resource_group.sac_nsg_resource_group.name
