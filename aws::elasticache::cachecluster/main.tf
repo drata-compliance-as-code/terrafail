@@ -30,6 +30,7 @@ resource "aws_elasticache_cluster" "sac_redis_cluster" {
   port                     = 6379 # SaC Testing - Severity: Low - set port to default (6379)
   subnet_group_name        = aws_elasticache_subnet_group.elasticache_subnet_group.name
   snapshot_retention_limit = 0 # SaC Testing - Severity: Moderate - set snapshot_retention_limit = 0
+  # Drata: Specify [aws_elasticache_cluster.snapshot_retention_limit] to ensure sensitive data is only available when necessary. Setting snapshot retention to 0 will disable automatic backups
   #security_group_ids = [aws_security_group.cluster_security_group.id]  # SaC Testing - Severity: Moderate - set security_group_ids to undefined
   # SaC Testing - Severity: Moderate - set tags to undefined
   # tags = {
