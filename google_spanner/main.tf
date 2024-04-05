@@ -6,7 +6,7 @@ resource "google_spanner_instance" "sac_spanner_instance" {
   display_name  = "test-instance"
   num_nodes     = 1
   project       = "test-projectID"
-  force_destroy = true # SaC Testing - Severity: Low - set force_destroy to true 
+  force_destroy = false
   # SaC Testing - Severity: Moderate - set labels to undefined
   # labels = {
   #   env = "test"
