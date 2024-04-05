@@ -118,6 +118,7 @@ resource "aws_api_gateway_usage_plan" "sac_api_gateway_usage_plan" {
 }
 
 resource "aws_api_gateway_stage" "sac_api_gateway_stage" {
+  # Drata: Configure [aws_api_gateway_stage.access_log_settings] to ensure that security-relevant events are logged to detect malicious activity
   deployment_id = aws_api_gateway_deployment.sac_api_gateway_deployment.id
   rest_api_id   = aws_api_gateway_rest_api.sac_api_gateway_rest_api.id
   stage_name    = "sac-testing-apigw-stage"
