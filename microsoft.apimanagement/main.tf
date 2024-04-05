@@ -18,7 +18,7 @@ resource "azurerm_api_management" "sac_api_management" {
   client_certificate_enabled = false # SaC Testing - Severity: High - Set client_certificate_enabled to false
   #min_api_version = "2014-02-14" # SaC Testing - Severity: Moderate - Set min_api_version to undefined
   #zones = ["East US 2"] # SaC Testing - Severity: Low - Set zones to undefined
-  public_network_access_enabled = true # SaC Testing - Severity: Moderate - Set public_network_access_enabled to undefined
+  public_network_access_enabled = false
   #virtual_network_type = "Internal"  # SaC Testing - Severity: Moderate - Set virtual_network_type to undefined
   # SaC Testing - Severity: Moderate - Set tags to undefined
   # tags = {
