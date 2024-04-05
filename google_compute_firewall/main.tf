@@ -12,6 +12,7 @@ resource "google_compute_firewall" "sac_compute_firewall" {
     protocol = "icmp"
   }
   source_ranges = ["*"] # SaC Testing - Severity: High - set source_ranges to ['*', '0.0.0.0/0']
+  # Drata: Ensure that [google_compute_firewall.source_ranges] is explicitly defined and narrowly scoped to only allow traffic from trusted sources
   allow {
     protocol = "tcp"
     ports    = ["80", "8080", "1000-2000"]
