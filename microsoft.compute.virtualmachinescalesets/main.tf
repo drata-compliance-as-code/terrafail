@@ -57,7 +57,7 @@ resource "azurerm_windows_virtual_machine_scale_set" "sac_windows_vmss" {
     }
   }
   winrm_listener {
-    protocol = "Http" # SaC Testing - Severity: Critical - set protocol to https
+    protocol = "Https"
   }
   # SaC Testing - Severity: Moderate - set tags to undefined
   # tags = {
