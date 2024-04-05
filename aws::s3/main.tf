@@ -42,6 +42,7 @@ resource "aws_s3_bucket_policy" "s3_bucket_policy_sac" { # SaC Testing - Severit
   # SaC Testing - Severity: Critical - Set action/principal to *
   # SaC Testing - Severity: Critical - Set effect to "allow"
   policy = <<EOF
+  # Drata: Configure [aws_s3_bucket_policy.policy] to ensure secure protocols are being used to encrypt resource traffic
 {
 "Version": "2012-10-17",
 "Id": "PutObjPolicy",
