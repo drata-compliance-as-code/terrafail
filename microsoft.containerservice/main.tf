@@ -41,6 +41,7 @@ resource "azurerm_kubernetes_cluster" "sac_aks_cluster" {
 }
 
 resource "azurerm_kubernetes_cluster_node_pool" "sac_aks_node_pool" {
+  # Drata: Configure [azurerm_kubernetes_cluster_node_pool.zones] to improve infrastructure availability and resilience
   name                  = "sacakspool"
   kubernetes_cluster_id = azurerm_kubernetes_cluster.sac_aks_cluster.id
   vm_size               = "Standard_DS2_v2"
