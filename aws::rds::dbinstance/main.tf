@@ -22,7 +22,7 @@ resource "aws_db_instance" "sac_db_instance" {
   #monitoring_role_arn = aws_iam_role.sac_instance_monitoring_role.arn
   iam_database_authentication_enabled = false # SaC Testing - Severity: High - Set iam_database_authentication_enabled to false
   #kms_key_id = aws_kms_key.sac_kms_key.arn # SaC Testing - Severity: High - Set kms_key_id to false
-  multi_az            = false # SaC Testing - Severity: Moderate - Set multi_az to false
+  multi_az            = true
   publicly_accessible = true  # SaC Testing - Severity: Critical - Set publicly_accessible to true
   storage_encrypted   = false # SaC Testing - Severity: Moderate - Set storage_encrypted to false
   # SaC Testing - Severity: Moderate - Set tags to undefined
