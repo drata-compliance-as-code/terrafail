@@ -4,6 +4,7 @@
 # Application Gateway
 # ---------------------------------------------------------------------
 resource "azurerm_application_gateway" "sac_application_gateway_standardv2_predefined" {
+  # Drata: Configure [azurerm_application_gateway.zones] to improve infrastructure availability and resilience
   name                = "sac-application-gateway"
   resource_group_name = azurerm_resource_group.app_gateway_resource_group.name
   location            = azurerm_resource_group.app_gateway_resource_group.location
