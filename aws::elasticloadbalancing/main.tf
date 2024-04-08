@@ -4,6 +4,7 @@
 # ELBv1
 # ---------------------------------------------------------------------
 resource "aws_elb" "sac_elbv1" {
+  # Drata: Default network security groups allow broader access than required. Specify [aws_elb.security_groups] to configure more granular access control
   name = "sac-elbv1"
   # availability_zones = ["us-east-2b"] # SaC Testing - Severity: Moderate - Set availability zones to undefined
   subnets = [aws_subnet.elbv1_subnet1.id] # SaC Testing - Severity: Moderate - Set subnets to < 2
