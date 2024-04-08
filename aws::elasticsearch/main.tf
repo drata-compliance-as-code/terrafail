@@ -6,7 +6,7 @@ resource "aws_elasticsearch_domain" "sac_elasticsearch_domain" {
   domain_name           = "sac-testing-elasticsearch"
   elasticsearch_version = "7.10"
   advanced_security_options {
-    enabled                        = false # SaC Testing - Severity: Moderate - Set enabled to false
+    enabled                        = true
     internal_user_database_enabled = true
     master_user_options {
       master_user_name     = "master"
