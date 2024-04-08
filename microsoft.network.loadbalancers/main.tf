@@ -9,6 +9,7 @@ resource "azurerm_resource_group" "sac_lb_resource_group" {
 # LoadBalancer
 # ---------------------------------------------------------------------
 resource "azurerm_lb" "sac_load_balancer" {
+  # Drata: Configure [azurerm_lb.frontend_ip_configuration.zones] to improve infrastructure availability and resilience
   name                = "sac-testing-load-balancer"
   location            = azurerm_resource_group.sac_aks_resource_group.location
   resource_group_name = azurerm_resource_group.sac_aks_resource_group.name
