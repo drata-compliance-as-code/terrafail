@@ -12,6 +12,7 @@ resource "aws_eks_cluster" "sac_eks_cluster" {
     subnet_ids             = [aws_subnet.eks_subnet_1.id, aws_subnet.eks_subnet_2.id]
     endpoint_public_access = true            # SaC Testing - Severity: Critical - Set endpoint_public_access to true
     public_access_cidrs    = ["0.0.0.0/0"] # SaC Testing - Severity: Critical - Set public_access_cidrs to *
+  # Drata: Ensure that [aws_eks_cluster.vpc_config.public_access_cidrs] is explicitly defined and narrowly scoped to only allow trusted sources to access public EKS API server endpoint
   }
 
   encryption_config { # SaC Testing - Severity: High - Set encryption_config to undefined
