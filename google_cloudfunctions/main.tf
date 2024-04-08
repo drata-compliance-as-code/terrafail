@@ -8,7 +8,7 @@ resource "google_cloudfunctions_function" "sac_function" {
   available_memory_mb = 128
   trigger_http        = true
   entry_point         = "helloGET"
-  ingress_settings    = "ALLOW_ALL" # SaC Testing - Severity: High - set ingress_settings to ['ALLOW_ALL', '']
+  ingress_settings    = "ALLOW_INTERNAL_AND_GCLB"
   #service_account_email = "test@oak9.io" # SaC Testing - Severity: High - set service_account_email to undefined
   #kms_key_name = "projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}" # SaC Testing - Severity: Critical - set kms_key_name to undefined
   vpc_connector_egress_settings = "ALL_TRAFFIC"
