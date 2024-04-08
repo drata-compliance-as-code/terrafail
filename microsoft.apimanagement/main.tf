@@ -35,7 +35,7 @@ resource "azurerm_api_management_api" "sac_api_management_api" {
   api_management_name = azurerm_api_management.sac_api_management.name
   revision            = "1"
   display_name        = "ac-testing-apim-api"
-  protocols           = ["http"] # SaC Testing - Severity: Critical - Set protocols to "http"
+  protocols           = "https"
 }
 
 resource "azurerm_api_management_backend" "sac_api_management_backend" {
