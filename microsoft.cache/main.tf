@@ -15,7 +15,7 @@ resource "azurerm_redis_cache" "sac_redis_cache" {
   capacity            = 1
   family              = "P"
   sku_name            = "Premium"
-  enable_non_ssl_port = true  # SaC Testing - Severity: Critical/High - set enable_non_ssl_port to true
+  enable_non_ssl_port = false
   minimum_tls_version = "1.0" # SaC Testing - Severity: Critical - set minimum_tls_version to 1.0 or 1.1 
   # replicas_per_master       = 2 # SaC Testing - Severity: Moderate - set replicas_per_master to undefined
   # zones = ["2"] # SaC Testing - Severity: Moderate - set zones to undefined
