@@ -38,6 +38,7 @@ resource "aws_security_group" "sac_security_group" {
     to_port          = 4
     protocol         = "tcp"         # SaC Testing - Severity: Low - Set protocol to -1
     cidr_blocks      = ["0.0.0.0/0"] # SaC Testing - Severity: Low - Set cidr_blocks to undefined
+    # Drata: Ensure that [aws_security_group.egress.ipv6_cidr_blocks] is explicitly defined and narrowly scoped to only allow traffic to trusted sources
     # Drata: Ensure that [aws_security_group.egress.cidr_blocks] is explicitly defined and narrowly scoped to only allow traffic to trusted sources
     ipv6_cidr_blocks = ["::/0"]      # SaC Testing - Severity: Low - Set ipv6_cidr_blocks to undefined
   }
