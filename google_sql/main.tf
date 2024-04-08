@@ -15,6 +15,7 @@ resource "google_sql_database_instance" "sac_sql_db_instance" {
     ip_configuration {
       authorized_networks {
         value = "*" # SaC Testing - Severity: High - set value to '*'
+      # Drata: Ensure that [google_sql_database_instance.settings.ip_configuration.authorized_networks.value] is explicitly defined and narrowly scoped to only allow trusted sources to access SQL Database
       }
       ipv4_enabled = true  # SaC Testing - Severity: Moderate - set ipv4_enabled to True
       require_ssl  = false # SaC Testing - Severity: High - set require_ssl to False
