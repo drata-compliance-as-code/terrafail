@@ -2,6 +2,7 @@
 # Cloud Functions
 # ---------------------------------------------------------------------
 resource "google_cloudfunctions_function" "sac_function" {
+  # Drata: Specify a Service Account in [google_cloudfunctions_function.service_account_email] to avoid using default Service Accounts
   name                = "function-test"
   description         = "My function"
   runtime             = "nodejs16" # SaC Testing - Severity: High - set runtime to non-preferred value
