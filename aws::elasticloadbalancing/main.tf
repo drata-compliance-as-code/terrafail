@@ -4,7 +4,7 @@
 # ELBv1
 # ---------------------------------------------------------------------
 resource "aws_elb" "sac_elbv1" {
-  name = "sac-elbv1"
+  name = "ELBSecurityPolicy-TLS-1-2-2017-01"
   # availability_zones = ["us-east-2b"] # SaC Testing - Severity: Moderate - Set availability zones to undefined
   subnets = [aws_subnet.elbv1_subnet1.id] # SaC Testing - Severity: Moderate - Set subnets to < 2
   # security_groups = [ aws_security_group.elbv1_security_group.id ]  # SaC Testing - Severity: Moderate - Set security groups to undefined
