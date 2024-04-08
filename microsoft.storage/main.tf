@@ -14,6 +14,7 @@ resource "azurerm_storage_account" "sac_storage_account" {
   account_kind                      = "StorageV2"
   public_network_access_enabled     = true     # SaC Testing - Severity: High - Set public_network_access_enabled to true
   account_replication_type          = "ZRS"    # SaC Testing - Severity: Moderate - Set account_replication_type
+  # Drata: Configure [azurerm_storage_account.account_replication_type] to improve infrastructure availability and resilience. To create highly available Storage Accounts, set azurerm_storage_account.account_replication_type to a geo-redundant storage option by selecting one of the following SKUs: ['standard_grs', 'standard_gzrs', 'standard_ragrs', 'standard_ragzrs', 'grs', 'gzrs', 'ragrs', 'ragzrs']
   infrastructure_encryption_enabled = false    # SaC Testing - Severity: Low - Set infrastructure_encryption_enabled to false
   enable_https_traffic_only         = false    # SaC Testing - Severity: Critical - Set enable_https_traffic_only to false
   min_tls_version                   = "TLS1_0" # SaC Testing - Severity: Critical - Set min_tls_version != "TLS1_2"
