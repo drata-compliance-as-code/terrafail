@@ -7,7 +7,7 @@ resource "aws_lb" "elbv2_sac" {
   load_balancer_type         = "application"
   drop_invalid_header_fields = true      # SaC Testing - Severity:  - Set drop_invalid_header_fields to true
   desync_mitigation_mode     = "monitor" # SaC Testing - Severity:  - Set desync_mitigation_mode != ['defensive', 'strictest']
-  internal                   = false     # SaC Testing - Severity: Critical - Set internal to false/undefined
+  internal                   = true
   enable_deletion_protection = false     # SaC Testing - Severity: Moderate - Set enable_deletion_protection to undefined
   #security_groups = [aws_security_group.ec2_instance_security_group_default.id]  # SaC Testing - Severity: Moderate - Set security_groups to undefined
   # SaC Testing - Severity: Moderate - Set tags to undefined
