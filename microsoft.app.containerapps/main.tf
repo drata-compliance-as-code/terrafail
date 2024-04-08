@@ -14,7 +14,7 @@ resource "azurerm_container_app" "sac_container_app" {
   resource_group_name          = azurerm_resource_group.container_app_resource_group.name
   revision_mode                = "Single"
   ingress {                           # SaC Testing - Severity: High - Set ingress to undefined
-    allow_insecure_connections = true # SaC Testing - Severity: Critical - Set allow_insecure_connections to true
+    allow_insecure_connections = false
     transport                  = "auto"
     target_port                = 6784
     external_enabled = true # SaC Testing - Severity: High - Set external_enabled to false
