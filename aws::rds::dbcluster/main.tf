@@ -4,6 +4,7 @@
 # RDS
 # ---------------------------------------------------------------------
 resource "aws_rds_cluster" "sac_rds_cluster" {
+  # Drata: Configure [aws_rds_cluster.availability_zones] to improve infrastructure availability and resilience
   cluster_identifier        = "sac-testing-rds-cluster"
   database_name             = "sacrdsdatabase"
   engine                    = "postgres"
