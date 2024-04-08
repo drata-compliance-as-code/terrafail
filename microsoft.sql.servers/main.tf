@@ -50,7 +50,7 @@ resource "azurerm_mssql_server_extended_auditing_policy" "sac_mssql_server_audit
   enabled   = false # SaC Testing - Severity: Moderate - Set enabled to false
   #storage_endpoint = azurerm_storage_account.example.primary_blob_endpoint # SaC Testing - Severity: Moderate - Set storage_endpoint to undefined
   #log_monitoring_enabled = true  # SaC Testing - Severity: Critical - Set log_monitoring_enabled  == false
-  retention_in_days = 20 # SaC Testing - Severity: Moderate - Set retention_in_days to < 90
+  retention_in_days = 365
 }
 
 resource "azurerm_mssql_server_transparent_data_encryption" "data-encryption" {
