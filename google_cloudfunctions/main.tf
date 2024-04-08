@@ -11,7 +11,7 @@ resource "google_cloudfunctions_function" "sac_function" {
   ingress_settings    = "ALLOW_ALL" # SaC Testing - Severity: High - set ingress_settings to ['ALLOW_ALL', '']
   #service_account_email = "test@oak9.io" # SaC Testing - Severity: High - set service_account_email to undefined
   #kms_key_name = "projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}" # SaC Testing - Severity: Critical - set kms_key_name to undefined
-  vpc_connector_egress_settings = "PRIVATE_RANGES_ONLY" # SaC Testing - Severity: High - set vpc_connector_egress_settings == 'ALL_TRAFFIC'
+  vpc_connector_egress_settings = "ALL_TRAFFIC"
   # SaC Testing - Severity: Moderate - set labels to undefined
   # labels = {
   #   env = "test"
