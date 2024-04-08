@@ -7,6 +7,7 @@ resource "azurerm_resource_group" "vmss_resource_group" {
 # Virtual Machine Scale Set
 # ---------------------------------------------------------------------
 resource "azurerm_windows_virtual_machine_scale_set" "sac_windows_vmss" {
+  # Drata: Configure [azurerm_windows_virtual_machine_scale_set.zones] to improve infrastructure availability and resilience
   name                       = "sac-windo"
   resource_group_name        = azurerm_resource_group.vmss_resource_group.name
   location                   = azurerm_resource_group.vmss_resource_group.location
