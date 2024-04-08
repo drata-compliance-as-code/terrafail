@@ -29,7 +29,7 @@ resource "aws_elasticsearch_domain" "sac_elasticsearch_domain" {
   }
   domain_endpoint_options {
     enforce_https       = false                        # SaC Testing - Severity: Critical - Set enforce_https to false
-    tls_security_policy = "Policy-Min-TLS-1-0-2019-07" # SaC Testing - Severity: Critical - Set tls_security_policy != "Policy-Min-TLS-1-2-2019-07"
+    tls_security_policy = "Policy-Min-TLS-1-2-2019-07"
   }
   node_to_node_encryption {
     enabled = false # SaC Testing - Severity: High - Set enabled to false
