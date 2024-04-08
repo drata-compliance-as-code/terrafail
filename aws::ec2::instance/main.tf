@@ -57,7 +57,7 @@ resource "aws_launch_template" "aws_ec2_launch_template_sac" {
     "key" = "value"
   }
   network_interfaces {
-    associate_public_ip_address = true  # SaC Testing - Severity: High - Set associate_public_ip_address to 'true'
+    associate_public_ip_address = false
   }
   metadata_options {
     http_endpoint               = "optional"
