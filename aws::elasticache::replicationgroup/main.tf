@@ -15,7 +15,7 @@ resource "aws_elasticache_replication_group" "sac_replication_group_redis" {
   automatic_failover_enabled  = true
   #snapshot_retention_limit = 0 # SaC Testing - Severity: Moderate - set snapshot_retention_limit to 0
   at_rest_encryption_enabled = false # SaC Testing - Severity: Critical - set at_rest_encryption_enabled to false
-  transit_encryption_enabled = false # SaC Testing - Severity: Critical - set transit_encryption_enabled to false
+  transit_encryption_enabled = true
   #kms_key_id = aws_kms_key.replication_group_key.id  # SaC Testing - Severity: Moderate - set kms_key_id to undefined
   #security_group_ids = [aws_security_group.cluster_security_group.id]  # SaC Testing - Severity: Moderate - set security_group_ids to undefined
   # SaC Testing - Severity: Moderate - set tags to undefined
