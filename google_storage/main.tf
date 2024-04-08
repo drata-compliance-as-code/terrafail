@@ -6,7 +6,7 @@ resource "google_storage_bucket" "sac_storage_bucket" {
   location                    = "US-EAST1"
   uniform_bucket_level_access = true
   versioning {
-    enabled = false # condition: SaC Testing - Severity: Moderate - set enabled to False
+    enabled = true
   }
   # retention_policy {
   #   retention_period = 267840 # SaC Testing - Severity: Moderate - set retention_period to < 2678400
