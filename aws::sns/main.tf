@@ -54,6 +54,6 @@ EOF
 
 resource "aws_sns_topic_subscription" "sac_sns_topic_subscription" {
   topic_arn = aws_sns_topic.sac_sns_topic.arn
-  protocol  = "http" # SaC Testing - Severity: Low - Set protocol to non-preferred value
+  protocol  = "https"
   endpoint  = "http://devapi.oak9.cloud/console/"
 }
