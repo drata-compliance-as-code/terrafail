@@ -12,7 +12,7 @@ resource "azurerm_storage_account" "sac_storage_account" {
   location                          = azurerm_resource_group.sac_storage_account_resource_group.location
   account_tier                      = "Standard"
   account_kind                      = "StorageV2"
-  public_network_access_enabled     = true     # SaC Testing - Severity: High - Set public_network_access_enabled to true
+  public_network_access_enabled     = false
   account_replication_type          = "ZRS"    # SaC Testing - Severity: Moderate - Set account_replication_type
   infrastructure_encryption_enabled = false    # SaC Testing - Severity: Low - Set infrastructure_encryption_enabled to false
   enable_https_traffic_only         = false    # SaC Testing - Severity: Critical - Set enable_https_traffic_only to false
