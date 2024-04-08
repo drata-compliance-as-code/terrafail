@@ -30,7 +30,7 @@ resource "azurerm_windows_virtual_machine_scale_set" "sac_windows_vmss" {
   enable_automatic_updates = false
   automatic_os_upgrade_policy {
     # SaC Testing - Severity: High - Set enable_automatic_os_upgrade to false
-    enable_automatic_os_upgrade = false
+    enable_automatic_os_upgrade = true
     disable_automatic_rollback  = false
   }
   os_disk {
