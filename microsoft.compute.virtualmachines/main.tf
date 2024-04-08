@@ -22,7 +22,7 @@ resource "azurerm_windows_virtual_machine" "sac_windows_vm" {
   #availability_set_id = azurerm_availability_set.sac_vm_availability_set.id  # SaC Testing - Serverity: High - Set availability_set_id to undefined
   encryption_at_host_enabled = false # SaC Testing - Serverity: Moderate - Set encryption_at_host_enabled to undefined
   winrm_listener {
-    protocol = "Http" # SaC Testing - Serverity: Critical - Set protocol != 'https'
+    protocol = "Https"
   }
   os_disk {
     caching              = "ReadWrite"
