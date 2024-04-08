@@ -11,7 +11,7 @@ resource "aws_elasticache_replication_group" "sac_replication_group_redis" {
   num_cache_clusters          = 2
   parameter_group_name        = "default.redis7"
   port                        = 6379
-  multi_az_enabled            = false # SaC Testing - Severity: Moderate - set multi_az_enabled to false
+  multi_az_enabled            = true
   automatic_failover_enabled  = true
   #snapshot_retention_limit = 0 # SaC Testing - Severity: Moderate - set snapshot_retention_limit to 0
   at_rest_encryption_enabled = false # SaC Testing - Severity: Critical - set at_rest_encryption_enabled to false
