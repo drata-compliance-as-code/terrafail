@@ -3,6 +3,7 @@
 # ELBv2
 # ---------------------------------------------------------------------
 resource "aws_lb" "elbv2_sac" {
+  # Drata: Configure [aws_lb.subnet_mapping] to improve infrastructure availability and resilience. Define at least 2 subnets or availability zones on your load balancer to enable zone redundancy
   name                       = "elbv2-sac"
   load_balancer_type         = "application"
   drop_invalid_header_fields = true      # SaC Testing - Severity:  - Set drop_invalid_header_fields to true
