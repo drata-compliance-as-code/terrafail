@@ -20,7 +20,7 @@ resource "google_sql_database_instance" "sac_sql_db_instance" {
       require_ssl  = false # SaC Testing - Severity: High - set require_ssl to False
     }
     backup_configuration {
-      enabled                        = false # SaC Testing - Severity: Moderate - set enabled to False
+      enabled                        = true
       point_in_time_recovery_enabled = false # SaC Testing - Severity: Moderate - set point_in_time_recovery_enabled to False
     }
   }
