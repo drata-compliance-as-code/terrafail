@@ -4,6 +4,7 @@
 # CloudFront
 # ---------------------------------------------------------------------
 resource "aws_cloudfront_distribution" "sac_cloudfront_distribution" {
+  # Drata: Configure [aws_cloudfront_distribution.logging_config.bucket] to ensure that security-relevant events are logged to detect malicious activity
   enabled = true
   aliases = ["www.thisisthedarkside.com", "thisisthedarkside.com"]
   #web_acl_id = aws_wafv2_web_acl.sac_cloudfront_web_acl_.id  # SaC Testing - Severity: High - set web_acl_id to undefined
