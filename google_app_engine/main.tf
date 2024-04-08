@@ -30,7 +30,7 @@ resource "google_app_engine_flexible_app_version" "sac_flexible_app" {
     path = "/"
   }
   api_config {
-    security_level = "SECURE_DEFAULT" # SaC Testing - Severity: Critical - set security_level != 'secure_always'
+    security_level = "SECURE_ALWAYS"
     script         = "path/to/script.py"
   }
   handlers {
