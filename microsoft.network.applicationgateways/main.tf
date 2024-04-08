@@ -9,6 +9,7 @@ resource "azurerm_application_gateway" "sac_application_gateway_standardv2_prede
   location            = azurerm_resource_group.app_gateway_resource_group.location
   identity {
     type         = "UserAssigned"
+    # Drata: Configure [azurerm_application_gateway.ssl_policy.policy_type] to use latest or secure ciphers for data in transit encryption. It is recommended to select either a predefined or custom policy type. For most use-cases predefined policy types will suffice, if more specific cipher suite requirements are needed, define a custom policy
     identity_ids = [azurerm_user_assigned_identity.app_gateway_identity.id]
   }
   #zones = ["2"]  # SaC Testing - Severity: Moderate - Set zones to undefined
