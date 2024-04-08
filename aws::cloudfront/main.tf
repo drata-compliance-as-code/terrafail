@@ -4,6 +4,7 @@
 # CloudFront
 # ---------------------------------------------------------------------
 resource "aws_cloudfront_distribution" "sac_cloudfront_distribution" {
+  # Drata: Ensure that [aws_cloudfront_distribution.web_acl_id] is defined to inspect incoming requests and protect against common web application attacks. Ignore this finding if custom Web ACL policies are attached through AWS WAF resource
   enabled = true
   aliases = ["www.thisisthedarkside.com", "thisisthedarkside.com"]
   #web_acl_id = aws_wafv2_web_acl.sac_cloudfront_web_acl_.id  # SaC Testing - Severity: High - set web_acl_id to undefined
