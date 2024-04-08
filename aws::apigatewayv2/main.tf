@@ -49,6 +49,7 @@ resource "aws_apigatewayv2_integration" "sac_apigwv2_integration" {
 }
 
 resource "aws_apigatewayv2_stage" "sac_apigwv2_stage" {
+  # Drata: Configure [aws_apigatewayv2_stage.access_log_settings] to ensure that security-relevant events are logged to detect malicious activity
   api_id = aws_apigatewayv2_api.sac_apigwv2_api.id
   name   = "sac-testing-apigwv2-stage"
   # access_log_settings { # SaC Testing - Severity: High - Set access_log_settings to undefined
