@@ -6,7 +6,7 @@ resource "azurerm_resource_group" "sac_aks_resource_group" {
 # ---------------------------------------------------------------------
 # AKS
 # ---------------------------------------------------------------------
-resource "azurerm_kubernetes_cluster" "sac_aks_cluster" {
+resource "azurerm_kubernetes_cluster" "sac_aks_cluster" { # Drata:  should be set to any of stable, rapid, patch
   name                = "sac-testing-aks-cluster"
   location            = azurerm_resource_group.sac_aks_resource_group.location
   resource_group_name = azurerm_resource_group.sac_aks_resource_group.name
