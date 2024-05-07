@@ -7,6 +7,7 @@ resource "azurerm_resource_group" "sac_aks_resource_group" {
 # AKS
 # ---------------------------------------------------------------------
 resource "azurerm_kubernetes_cluster" "sac_aks_cluster" {
+  # Drata: Ensure that [azurerm_kubernetes_cluster.api_server_authorized_ip_ranges] is explicitly defined and narrowly scoped to only allow trusted sources to access AKS Control Plane
   name                = "sac-testing-aks-cluster"
   location            = azurerm_resource_group.sac_aks_resource_group.location
   resource_group_name = azurerm_resource_group.sac_aks_resource_group.name
