@@ -2,6 +2,7 @@
 # SNS
 # ---------------------------------------------------------------------
 resource "aws_sns_topic" "sac_sns_topic" {
+  # Drata: Explicitly scope [aws_sns_topic.policy] action to ensure minimum necessary access. Avoid using insecure allow-all (*) access patterns
   name         = "sac-testing-sns"
   display_name = "sac-test-sns"
   #kms_master_key_id =  aws_kms_key.sns_key.id  # SaC Testing - Severity: Low - Set kms_master_key_id to ""
