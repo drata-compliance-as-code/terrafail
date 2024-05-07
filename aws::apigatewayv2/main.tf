@@ -29,7 +29,7 @@ resource "aws_apigatewayv2_domain_name" "sac_apigwv2_domain" {
   domain_name_configuration {
     certificate_arn = "arn:aws:acm:us-east-2:709695003849:certificate/2c0bef53-a821-4722-939e-d3c29a2dd3b3"
     endpoint_type   = "REGIONAL"
-    security_policy = "TLS_1_1" # SaC Testing - Severity: Critical - set security_policy != TLS_1_2
+    security_policy = "tls_1_2"
   }
   # SaC Testing - Severity: Moderate - set tags to undefined
   # tags = {
