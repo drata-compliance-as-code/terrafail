@@ -56,6 +56,7 @@ resource "aws_lambda_function" "insecure_lambda_SAC" {
 
 resource "aws_lambda_permission" "allow_cloudwatch" {
   action        = "*" # SaC Testing - Severity: Critical - Set action to *
+  # Drata: Explicitly scope [aws_lambda_permission.action] action to ensure minimum necessary access. Avoid using insecure allow-all (*) access patterns
   function_name = aws_lambda_function.insecure_lambda_SAC.arn
   principal     = "*" # SaC Testing - Severity: Critical - Set principal to *
   # Drata: Explicitly scope [aws_lambda_permission.principal] principal to ensure minimum necessary access. Avoid using insecure allow-all (*) access patterns
