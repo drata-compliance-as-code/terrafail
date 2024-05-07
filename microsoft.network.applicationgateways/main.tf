@@ -32,7 +32,7 @@ resource "azurerm_application_gateway" "sac_application_gateway_standardv2_prede
     name                  = "backend-http-settings"
     cookie_based_affinity = "Disabled"
     port                  = 63
-    protocol              = "Http" # SaC Testing - Severity: Critical - Set protocol != Https
+    protocol              = "Https"
     request_timeout       = 20000
     connection_draining {
       enabled           = false # SaC Testing - Severity: Moderate - Set enabled to false
