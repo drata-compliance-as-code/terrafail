@@ -28,7 +28,7 @@ resource "aws_elasticsearch_domain" "sac_elasticsearch_domain" {
     #kms_key_id = aws_kms_key.elasticsearch_key.id  # SaC Testing - Severity: Moderate - Set kms_key_id to undefined
   }
   domain_endpoint_options {
-    enforce_https       = false                        # SaC Testing - Severity: Critical - Set enforce_https to false
+    enforce_https       = true
     tls_security_policy = "Policy-Min-TLS-1-0-2019-07" # SaC Testing - Severity: Critical - Set tls_security_policy != "Policy-Min-TLS-1-2-2019-07"
   }
   node_to_node_encryption {
