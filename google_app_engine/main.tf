@@ -47,7 +47,7 @@ resource "google_app_engine_standard_app_version" "sac_standard_app" {
     shell = "python ./app.py"
   }
   handlers {
-    security_level = "SECURE_DEFAULT" # SaC Testing - Severity: Critical - set security_level != 'secure_always'
+    security_level = "SECURE_ALWAYS"
   }
   deployment {
     zip {
