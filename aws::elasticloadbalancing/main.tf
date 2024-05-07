@@ -15,7 +15,7 @@ resource "aws_elb" "sac_elbv1" {
   }
   listener {
     instance_port     = 8000
-    instance_protocol = "HTTP" # SaC Testing - Severity: Critical - Set instance protocol to HTTP
+    instance_protocol = "HTTPS"
     lb_port           = 80
     lb_protocol       = "HTTPS"
   }
