@@ -61,6 +61,7 @@ resource "azurerm_key_vault_access_policy" "sac_key_vault_policy" { # SaC Testin
   object_id               = ""
   key_permissions         = ["Delete", "Purge", "Create", "Get", "Update"]                  # SaC Testing - Severity: Critical - Set key_permissions to bad_key_permissions
   secret_permissions      = ["Delete", "Purge", "Get", "Set", "List"]                       # SaC Testing - Severity: Critical - Set secret_permissions to bad_secrets_permissions
+  # Drata: Explicitly scope [azurerm_key_vault_access_policy.secret_permissions] to ensure minimum necessary access. Avoid using insecure allow-all ([<AccessPattern.AZ_ALL: 'all'>, <AccessPattern.AZ_DELETE: 'delete'>, <AccessPattern.AZ_PURGE: 'purge'>]) access patterns
   certificate_permissions = ["Delete", "DeleteIssuers", "Purge", "Create", "Get", "Update"] # SaC Testing - Severity: Critical - Set certificate_permissions to bad_certificates_permissions
 }
 # ---------------------------------------------------------------------
