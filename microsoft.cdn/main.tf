@@ -25,7 +25,7 @@ resource "azurerm_cdn_endpoint" "sac_cdn_endpoint" {
   location            = azurerm_resource_group.cdn_resource_group.location
   resource_group_name = azurerm_resource_group.cdn_resource_group.name
   is_http_allowed     = true  # SaC Testing - Severity: Critical - Set is_http_allowed to true
-  is_https_allowed    = false # SaC Testing - Severity: Critical - Set is_https_allowed to false
+  is_https_allowed    = true
   origin {
     name      = "sac-test-origin"
     host_name = "thisisthedarkside.com"
