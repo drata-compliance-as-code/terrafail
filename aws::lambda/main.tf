@@ -64,6 +64,7 @@ resource "aws_lambda_layer_version_permission" "lambda_layer_permission" {
   layer_name     = "arn:aws:lambda:us-east-2:709695003849:layer:lambda_layer_name"
   version_number = 4
   principal      = "*" # SaC Testing - Severity: Critical - Set principal to *
+  # Drata: Explicitly scope [aws_lambda_layer_version_permission.principal] principal to ensure minimum necessary access. Avoid using insecure allow-all (*) access patterns
   action         = "*" # SaC Testing - Severity: Critical - Set action to ""
   # Drata: Explicitly scope [aws_lambda_layer_version_permission.action] action to ensure minimum necessary access. Avoid using insecure allow-all (*) access patterns
   statement_id   = "dev-account"
