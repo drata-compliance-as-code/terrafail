@@ -1,4 +1,4 @@
-# TerraFail: A Tale of What Not to Do
+# TerraFail: Turning Terrable Code into Valuable Lessons
 
 ## Welcome to TerraFail!
 
@@ -8,7 +8,7 @@ TerraFail is an insecure by design Infrastructure as Code (IaC) repository devel
 
 ## Table of Contents
 
-- [TerraFail: A Tale of What Not to Do](#terrafail-a-tale-of-what-not-to-do)
+- [TerraFail: Turning Terrable Code into Valuable Lessons](#terrafail-turning-terrable-code-into-valuable-lessons)
   - [Welcome to TerraFail!](#welcome-to-terrafail)
   - [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
