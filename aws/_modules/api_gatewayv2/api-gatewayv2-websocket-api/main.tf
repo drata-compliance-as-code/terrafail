@@ -3,18 +3,18 @@
 # ---------------------------------------------------------------------
 # ApiGateway
 # ---------------------------------------------------------------------
-resource "aws_apigatewayv2_api" "sac_apigwv2_api" {
-  name          = "sac-testing-apigwv2-api"
+resource "aws_apigatewayv2_api" "TerraFailAPIv2" {
+  name          = "TerraFailAPIv2"
   protocol_type = "WEBSOCKET"
 }
 
-resource "aws_apigatewayv2_api_mapping" "api" {
-  api_id      = aws_apigatewayv2_api.sac_apigwv2_api.id
-  domain_name = aws_apigatewayv2_domain_name.sac_apigwv2_domain.id
-  stage       = aws_apigatewayv2_stage.sac_apigwv2_stage.id
+resource "aws_apigatewayv2_api_mapping" "TerraFailAPIv2_mapping" {
+  api_id      = aws_apigatewayv2_api.TerraFailAPIv2.id
+  domain_name = aws_apigatewayv2_domain_name.TerraFailAPIv2_domain.id
+  stage       = aws_apigatewayv2_stage.TerraFailAPIv2_stage.id
 }
 
-resource "aws_apigatewayv2_domain_name" "sac_apigwv2_domain" {
+resource "aws_apigatewayv2_domain_name" "TerraFailAPIv2_domain" {
   domain_name = "thisisthedarkside.com"
   domain_name_configuration {
     certificate_arn = "arn:aws:acm:us-east-2:709695003849:certificate/2c0bef53-a821-4722-939e-d3c29a2dd3b3"
@@ -23,17 +23,17 @@ resource "aws_apigatewayv2_domain_name" "sac_apigwv2_domain" {
   }
 }
 
-resource "aws_apigatewayv2_integration" "sac_apigwv2_integration" {
-  api_id             = aws_apigatewayv2_api.sac_apigwv2_api.id
+resource "aws_apigatewayv2_integration" "TerraFailAPIv2_integration" {
+  api_id             = aws_apigatewayv2_api.TerraFailAPIv2.id
   integration_type   = "AWS_PROXY"
   integration_method = "PATCH"
   connection_type    = "INTERNET"
-  integration_uri    = aws_lambda_function.sac_lambda.arn
+  integration_uri    = aws_lambda_function.TerraFailAPIv2_lambda_function.arn
 }
 
-resource "aws_apigatewayv2_stage" "sac_apigwv2_stage" {
-  api_id = aws_apigatewayv2_api.sac_apigwv2_api.id
-  name   = "sac-testing-apigwv2-stage"
+resource "aws_apigatewayv2_stage" "TerraFailAPIv2_stage" {
+  api_id = aws_apigatewayv2_api.TerraFailAPIv2.id
+  name   = "TerraFailAPIv2_stage"
 
   default_route_settings {
     detailed_metrics_enabled = false
@@ -41,25 +41,25 @@ resource "aws_apigatewayv2_stage" "sac_apigwv2_stage" {
   }
 }
 
-resource "aws_apigatewayv2_route" "sac_apigwv2_route" {
-  api_id             = aws_apigatewayv2_api.sac_apigwv2_api.id
+resource "aws_apigatewayv2_route" "TerraFailAPIv2_route" {
+  api_id             = aws_apigatewayv2_api.TerraFailAPIv2.id
   route_key          = "$connect"
   authorization_type = "NONE"
   api_key_required   = false
-  target             = "integrations/${aws_apigatewayv2_integration.sac_apigwv2_integration.id}"
+  target             = "integrations/${aws_apigatewayv2_integration.TerraFailAPIv2_integration.id}"
 }
 
 # ---------------------------------------------------------------------
 # Route53
 # ---------------------------------------------------------------------
-resource "aws_route53_zone" "sac_route_zone" {
+resource "aws_route53_zone" "TerraFailAPIv2_route_zone" {
   name = "thisisthedarkside.com"
 }
 
-resource "aws_route53_record" "sac_route_record" {
-  zone_id = aws_route53_zone.sac_route_zone.id
+resource "aws_route53_record" "TerraFailAPIv2_route_record" {
+  zone_id = aws_route53_zone.TerraFailAPIv2_route_zone.id
   name    = "thisisthedarkside.com"
-  type    = "A" # API
+  type    = "A"
   ttl     = 300
   records = ["192.0.2.1"]
 }
@@ -67,33 +67,33 @@ resource "aws_route53_record" "sac_route_record" {
 # ---------------------------------------------------------------------
 # Network
 # ---------------------------------------------------------------------
-resource "aws_vpc" "apigwv2_vpc" {
+resource "aws_vpc" "TerraFailAPIv2_vpc" {
   cidr_block = "10.0.0.0/16"
   tags = {
     Name = "apigwv2-vpc"
   }
 }
 
-resource "aws_internet_gateway" "gw" {
-  vpc_id = aws_vpc.apigwv2_vpc.id
+resource "aws_internet_gateway" "TerraFailAPIv2_gateway" {
+  vpc_id = aws_vpc.TerraFailAPIv2_vpc.id
 
   tags = {
     Name = "main"
   }
 }
 
-resource "aws_subnet" "apigwv2_subnet" {
-  vpc_id            = aws_vpc.apigwv2_vpc.id
+resource "aws_subnet" "TerraFailAPIv2_subnet" {
+  vpc_id            = aws_vpc.TerraFailAPIv2_vpc.id
   cidr_block        = "10.0.0.0/24"
   availability_zone = "us-east-2c"
 
   map_public_ip_on_launch = true
   tags = {
-    Name = "apigwv2_subnet"
+    Name = "TerraFailAPIv2_subnet"
   }
 }
-resource "aws_subnet" "apigwv2_subnet_2" {
-  vpc_id            = aws_vpc.apigwv2_vpc.id
+resource "aws_subnet" "TerraFailAPIv2_subnet_2" {
+  vpc_id            = aws_vpc.TerraFailAPIv2_vpc.id
   cidr_block        = "10.0.1.0/24"
   availability_zone = "us-east-2b"
 
@@ -102,9 +102,9 @@ resource "aws_subnet" "apigwv2_subnet_2" {
   }
 }
 
-resource "aws_security_group" "apigwv2_security_group" {
-  name   = "apigwv2-security-group"
-  vpc_id = aws_vpc.apigwv2_vpc.id
+resource "aws_security_group" "TerraFailAPIv2_security_group" {
+  name   = "TerraFailAPIv2_security_group"
+  vpc_id = aws_vpc.TerraFailAPIv2_vpc.id
 
   egress {
     from_port   = 0
@@ -113,7 +113,6 @@ resource "aws_security_group" "apigwv2_security_group" {
     cidr_blocks = ["173.0.0.0/32"]
   }
 
-  # SaC Testing - Severity: Moderate - Set tags to undefined
   tags = {
     Name = "apigwv2_sec_group"
   }
@@ -122,9 +121,9 @@ resource "aws_security_group" "apigwv2_security_group" {
 # ---------------------------------------------------------------------
 # Lambda
 # ---------------------------------------------------------------------
-resource "aws_lambda_function" "sac_lambda" {
-  function_name = "insecure_lambda_function"
-  role          = aws_iam_role.lambda_role.arn
+resource "aws_lambda_function" "TerraFailAPIv2_lambda_function" {
+  function_name = "TerraFailAPIv2_lambda_function"
+  role          = aws_iam_role.TerraFailAPIv2_role.arn
   filename      = "my-deployment-package.zip"
   handler       = "index.handler"
   runtime = "dotnet6"
@@ -134,8 +133,8 @@ resource "aws_lambda_function" "sac_lambda" {
 # ---------------------------------------------------------------------
 # IAM
 # ---------------------------------------------------------------------
-resource "aws_iam_role" "lambda_role" {
-  name               = "lambda_role"
+resource "aws_iam_role" "TerraFailAPIv2_role" {
+  name               = "TerraFailAPIv2_role"
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -154,9 +153,9 @@ resource "aws_iam_role" "lambda_role" {
 EOF
 }
 
-resource "aws_iam_role_policy" "test_policy" {
-  name = "test_policy"
-  role = aws_iam_role.lambda_role.id
+resource "aws_iam_role_policy" "TerraFailAPIv2_iam_policy" {
+  name = "TerraFailAPIv2_iam_policy"
+  role = aws_iam_role.TerraFailAPIv2_role.id
 
   policy = jsonencode({
     Version = "2012-10-17",
@@ -192,8 +191,8 @@ resource "aws_iam_role_policy" "test_policy" {
 # ---------------------------------------------------------------------
 # CloudWatch
 # ---------------------------------------------------------------------
-resource "aws_cloudwatch_log_group" "sac_api_gatewayv2_cloudwatch_log_group" {
-  name = "sac-testing-apigwv2-cloudwatch-log-group"
+resource "aws_cloudwatch_log_group" "TerraFailAPIv2_cloudwatch_group" {
+  name = "TerraFailAPIv2_cloudwatch_group"
 
   tags = {
     Environment = "production"

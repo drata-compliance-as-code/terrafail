@@ -2,8 +2,8 @@
 # Compute Instance
 # ---------------------------------------------------------------------
 
-resource "google_compute_instance" "sac_compute_instance" {
-  name         = "test-instance"
+resource "google_compute_instance" "TerraFailComputeInstance" {
+  name         = "TerraFailComputeInstance"
   machine_type = "e2-medium"
   zone         = "us-east1-b"
   project      = "project-id"
@@ -22,7 +22,7 @@ resource "google_compute_instance" "sac_compute_instance" {
     enable_vtpm                 = false
   }
   metadata = {
-    value                  = "tests"
+    value                  = "terrafail"
     block-project-ssh-keys = "false"
   }
   boot_disk {
@@ -31,7 +31,7 @@ resource "google_compute_instance" "sac_compute_instance" {
     }
   }
   attached_disk {
-    source = "test"
+    source = "terrafail"
   }
   confidential_instance_config {
     enable_confidential_compute = false

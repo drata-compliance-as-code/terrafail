@@ -1,15 +1,15 @@
-resource "azurerm_resource_group" "iothub_rg" {
-  name     = "iothub_rg"
+resource "azurerm_resource_group" "TerraFailIoTHub_rg" {
+  name     = "TerraFailIoTHub_rg"
   location = "East US"
 }
 
 # ---------------------------------------------------------------------
 # DNS
 # ---------------------------------------------------------------------
-resource "azurerm_iothub" "sac_iothub" {
-  name                = "sac-testing-iothub"
-  resource_group_name = azurerm_resource_group.iothub_rg.name
-  location            = azurerm_resource_group.iothub_rg.location
+resource "azurerm_iothub" "TerraFailIoTHub" {
+  name                = "TerraFailIoTHub"
+  resource_group_name = azurerm_resource_group.TerraFailIoTHub_rg.name
+  location            = azurerm_resource_group.TerraFailIoTHub_rg.location
 
   sku {
     name     = "S1"

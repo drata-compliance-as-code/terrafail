@@ -2,8 +2,8 @@
 # ---------------------------------------------------------------------
 # ElasticSearch
 # ---------------------------------------------------------------------
-resource "aws_elasticsearch_domain" "sac_elasticsearch_domain" {
-  domain_name           = "sac-testing-elasticsearch"
+resource "aws_elasticsearch_domain" "TerraFailElasticache_domain" {
+  domain_name           = "TerraFailElasticache_domain"
   elasticsearch_version = "7.10"
 
   advanced_security_options {
@@ -42,7 +42,7 @@ resource "aws_elasticsearch_domain" "sac_elasticsearch_domain" {
 # ---------------------------------------------------------------------
 # KMS
 # ---------------------------------------------------------------------
-resource "aws_kms_key" "elasticsearch_key" {
-  description             = "elasticsearch-key"
+resource "aws_kms_key" "TerraFailElasticache_key" {
+  description             = "TerraFailElasticache_key"
   deletion_window_in_days = 10
 }

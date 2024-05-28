@@ -1,9 +1,9 @@
 # ---------------------------------------------------------------------
 # Compute Firewall
 # ---------------------------------------------------------------------
-resource "google_compute_firewall" "sac_compute_firewall" {
-  name          = "test-firewall"
-  network       = google_compute_network.compute_network.name
+resource "google_compute_firewall" "TerraFailComputeFirewall" {
+  name          = "TerraFailComputeFirewall"
+  network       = google_compute_network.TerraFailComputeFirewall_network.name
   direction     = "ingress"
   source_ranges = ["*"]
   source_tags   = ["web"]
@@ -18,7 +18,7 @@ resource "google_compute_firewall" "sac_compute_firewall" {
   }
 }
 
-resource "google_compute_firewall_policy_rule" "sac_compute_firewall_rule" {
+resource "google_compute_firewall_policy_rule" "TerraFailComputeFirewall_rule" {
   firewall_policy = google_compute_firewall_policy.default.name
   description     = "Resource created for Terraform acceptance testing"
   priority        = 9000
@@ -52,6 +52,6 @@ resource "google_compute_firewall_policy_rule" "sac_compute_firewall_rule" {
 # ---------------------------------------------------------------------
 # Network
 # ---------------------------------------------------------------------
-resource "google_compute_network" "compute_network" {
-  name = "test-network"
+resource "google_compute_network" "TerraFailComputeFirewall_network" {
+  name = "TerraFailComputeFirewall_network"
 }

@@ -1,13 +1,13 @@
 # ---------------------------------------------------------------------
 # SQL
 # ---------------------------------------------------------------------
-resource "google_sql_database" "sac_sql_db" {
-  name     = "test-database"
-  instance = google_sql_database_instance.sac_sql_db_instance.name
+resource "google_sql_database" "TerraFailSQL_database" {
+  name     = "TerraFailSQL_database"
+  instance = google_sql_database_instance.TerraFailSQL_instance.name
 }
 
-resource "google_sql_database_instance" "sac_sql_db_instance" {
-  name             = "test-instance"
+resource "google_sql_database_instance" "TerraFailSQL_instance" {
+  name             = "TerraFailSQL_instance"
   region           = "us-east1"
   database_version = "SQLSERVER_2017_EXPRESS"
   settings {

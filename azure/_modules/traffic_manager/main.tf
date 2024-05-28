@@ -1,16 +1,16 @@
 
 
-resource "azurerm_resource_group" "sac_traffic_manager_group" {
-  name     = "sac-traffic-resource-group"
+resource "azurerm_resource_group" "TerraFailTrafficManager_rg" {
+  name     = "TerraFailTrafficManager_rg"
   location = "East US"
 }
 
 # ---------------------------------------------------------------------
 # Traffic Manager
 # ---------------------------------------------------------------------
-resource "azurerm_traffic_manager_profile" "sac_traffic_manager_profiles" {
-  name                   = "sac-testing-traffic-manager"
-  resource_group_name    = azurerm_resource_group.sac_traffic_manager_group.name
+resource "azurerm_traffic_manager_profile" "TerraFailTrafficManager_profile" {
+  name                   = "TerraFailTrafficManager_profile"
+  resource_group_name    = azurerm_resource_group.TerraFailTrafficManager_rg.name
   traffic_routing_method = "Geographic"
   traffic_view_enabled   = true
 
@@ -35,10 +35,10 @@ resource "azurerm_traffic_manager_profile" "sac_traffic_manager_profiles" {
   }
 }
 
-resource "azurerm_traffic_manager_azure_endpoint" "azure_endpoint" {
-  name               = "sac-azure-endpoint"
-  profile_id         = azurerm_traffic_manager_profile.sac_traffic_manager_profiles.id
-  target_resource_id = azurerm_public_ip.traffic_manager_ip.id
+resource "azurerm_traffic_manager_azure_endpoint" "TerraFailTrafficManager_endpoint" {
+  name               = "TerraFailTrafficManager_endpoint"
+  profile_id         = azurerm_traffic_manager_profile.TerraFailTrafficManager_profile.id
+  target_resource_id = azurerm_public_ip.TerraFailTrafficManager_public_ip.id
   weight             = 100
   priority           = 1
   geo_mappings       = ["US-OH"]
@@ -54,9 +54,9 @@ resource "azurerm_traffic_manager_azure_endpoint" "azure_endpoint" {
   }
 }
 
-resource "azurerm_traffic_manager_external_endpoint" "external_endpoint" {
-  name              = "sac-external-endpoint"
-  profile_id        = azurerm_traffic_manager_profile.sac_traffic_manager_profiles.id
+resource "azurerm_traffic_manager_external_endpoint" "TerraFailTrafficManager_external_endpoint" {
+  name              = "TerraFailTrafficManager_external_endpoint"
+  profile_id        = azurerm_traffic_manager_profile.TerraFailTrafficManager_profile.id
   target            = "thisisthedarkside.com"
   weight            = 10
   priority          = 2
@@ -73,10 +73,10 @@ resource "azurerm_traffic_manager_external_endpoint" "external_endpoint" {
   }
 }
 
-resource "azurerm_traffic_manager_nested_endpoint" "nested_endpoint" {
-  name                    = "sac-nested-endpoint"
-  target_resource_id      = azurerm_linux_web_app.app_service.id
-  profile_id              = azurerm_traffic_manager_profile.sac_traffic_manager_profiles.id
+resource "azurerm_traffic_manager_nested_endpoint" "TerraFailTrafficManager_nested_endpoint" {
+  name                    = "TerraFailTrafficManager_nested_endpoint"
+  target_resource_id      = azurerm_linux_web_app.TerraFailTrafficManager_web_app.id
+  profile_id              = azurerm_traffic_manager_profile.TerraFailTrafficManager_profile.id
   minimum_child_endpoints = 9
   weight                  = 5
   priority                = 3
@@ -96,21 +96,21 @@ resource "azurerm_traffic_manager_nested_endpoint" "nested_endpoint" {
 # ---------------------------------------------------------------------
 # Network
 # ---------------------------------------------------------------------
-resource "azurerm_public_ip" "traffic_manager_ip" {
-  name                = "sac-traffic-manager-public-ip"
-  location            = azurerm_resource_group.sac_traffic_manager_group.location
-  resource_group_name = azurerm_resource_group.sac_traffic_manager_group.name
+resource "azurerm_public_ip" "TerraFailTrafficManager_public_ip" {
+  name                = "TerraFailTrafficManager_public_ip"
+  location            = azurerm_resource_group.TerraFailTrafficManager_rg.location
+  resource_group_name = azurerm_resource_group.TerraFailTrafficManager_rg.name
   allocation_method   = "Static"
-  domain_name_label   = "sac-traffic-manager-public-ip"
+  domain_name_label   = "TerraFailTrafficManager_public_ip"
 }
 
 # ---------------------------------------------------------------------
 # Service Plan
 # ---------------------------------------------------------------------
-resource "azurerm_service_plan" "nested_plan" {
-  name                = "sac-app-service-plan"
-  resource_group_name = azurerm_resource_group.sac_traffic_manager_group.name
-  location            = azurerm_resource_group.sac_traffic_manager_group.location
+resource "azurerm_service_plan" "TerraFailTrafficManager_service_plan" {
+  name                = "TerraFailTrafficManager_service_plan"
+  resource_group_name = azurerm_resource_group.TerraFailTrafficManager_rg.name
+  location            = azurerm_resource_group.TerraFailTrafficManager_rg.location
   os_type             = "Linux"
   sku_name            = "P1v2"
 }
@@ -118,11 +118,11 @@ resource "azurerm_service_plan" "nested_plan" {
 # ---------------------------------------------------------------------
 # Web App
 # ---------------------------------------------------------------------
-resource "azurerm_linux_web_app" "app_service" {
-  name                = "sac-nested-app-service"
-  resource_group_name = azurerm_resource_group.sac_traffic_manager_group.name
-  location            = azurerm_service_plan.nested_plan.location
-  service_plan_id     = azurerm_service_plan.nested_plan.id
+resource "azurerm_linux_web_app" "TerraFailTrafficManager_web_app" {
+  name                = "TerraFailTrafficManager_web_app"
+  resource_group_name = azurerm_resource_group.TerraFailTrafficManager_rg.name
+  location            = azurerm_service_plan.TerraFailTrafficManager_service_plan.location
+  service_plan_id     = azurerm_service_plan.TerraFailTrafficManager_service_plan.id
 
   site_config {}
 }

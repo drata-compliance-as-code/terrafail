@@ -3,18 +3,18 @@
 # ---------------------------------------------------------------------
 # S3
 # ---------------------------------------------------------------------
-resource "aws_s3_bucket" "s3_bucket_sac" {
+resource "aws_s3_bucket" "TerraFailS3_bucket" {
   force_destroy       = false
   object_lock_enabled = false
 }
 
-resource "aws_s3_bucket_acl" "s3_bucket_acl-sac" {
-  bucket = aws_s3_bucket.s3_bucket_sac.id
+resource "aws_s3_bucket_acl" "TerraFailS3_bucket_acl" {
+  bucket = aws_s3_bucket.TerraFailS3_bucket.id
   acl    = "public-read-write"
 }
 
-resource "aws_s3_bucket_cors_configuration" "s3_cors_config_sac" {
-  bucket = aws_s3_bucket.s3_bucket_sac.id
+resource "aws_s3_bucket_cors_configuration" "TerraFailS3_bucket_cors" {
+  bucket = aws_s3_bucket.TerraFailS3_bucket.id
 
   cors_rule {
     allowed_headers = ["*"]
@@ -25,16 +25,16 @@ resource "aws_s3_bucket_cors_configuration" "s3_cors_config_sac" {
   }
 }
 
-resource "aws_s3_bucket_ownership_controls" "s3_ownership_controls_sac" {
-  bucket = aws_s3_bucket.s3_bucket_sac.id
+resource "aws_s3_bucket_ownership_controls" "TerraFailS3_bucket_ownership" {
+  bucket = aws_s3_bucket.TerraFailS3_bucket.id
 
   rule {
     object_ownership = "BucketOwnerPreferred"
   }
 }
 
-resource "aws_s3_bucket_policy" "s3_bucket_policy_sac" {
-  bucket = aws_s3_bucket.s3_bucket_sac.id
+resource "aws_s3_bucket_policy" "TerraFailS3_bucket_policy" {
+  bucket = aws_s3_bucket.TerraFailS3_bucket.id
   policy = <<EOF
 {
 "Version": "2012-10-17",
@@ -44,7 +44,7 @@ resource "aws_s3_bucket_policy" "s3_bucket_policy_sac" {
   "Principal": "*",
   "Effect": "Allow",
   "Action": "*",
-  "Resource": "${aws_s3_bucket.s3_bucket_sac.arn}/*",
+  "Resource": "${aws_s3_bucket.TerraFailS3_bucket.arn}/*",
   "Condition": {
     "Null": {
       "s3:x-amz-server-side-encryption-aws-kms-key-id": "true"
@@ -56,16 +56,16 @@ EOF
 }
 
 
-resource "aws_s3_bucket_public_access_block" "s3_public_access_block_sac" {
-  bucket                  = aws_s3_bucket.s3_bucket_sac.id
+resource "aws_s3_bucket_public_access_block" "TerraFailS3_bucket_access" {
+  bucket                  = aws_s3_bucket.TerraFailS3_bucket.id
   block_public_acls       = false
   block_public_policy     = false
   ignore_public_acls      = false
   restrict_public_buckets = false
 }
 
-resource "aws_s3_bucket_versioning" "s3_bucket_versioning_sac" {
-  bucket = aws_s3_bucket.s3_bucket_sac.id
+resource "aws_s3_bucket_versioning" "TerraFailS3_bucket_versioning" {
+  bucket = aws_s3_bucket.TerraFailS3_bucket.id
   versioning_configuration {
     status = "Disabled"
   }

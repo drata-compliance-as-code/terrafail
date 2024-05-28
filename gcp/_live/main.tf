@@ -41,6 +41,6 @@ terraform {
 }
 
 provider "google" {
-  project     = "my-project-id"
+  project     = "terrafail"
   region      = "us-central1"
 }

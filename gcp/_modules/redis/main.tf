@@ -1,8 +1,8 @@
 # ---------------------------------------------------------------------
 # Redis
 # ---------------------------------------------------------------------
-resource "google_redis_instance" "sac_redis_cache" {
-  name                    = "memory-cache"
+resource "google_redis_instance" "TerraFailRedis" {
+  name                    = "TerraFailRedis"
   memory_size_gb          = 1
   tier                    = "BASIC"
   auth_enabled            = false

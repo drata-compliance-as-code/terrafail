@@ -1,20 +1,20 @@
-resource "azurerm_resource_group" "sac_virtual_network" {
-  name     = "sac_virtual_network"
+resource "azurerm_resource_group" "TerraFailVNet_rg" {
+  name     = "TerraFailVNet_rg"
   location = "East US"
 }
 
 # ---------------------------------------------------------------------
 # Virtual Network
 # ---------------------------------------------------------------------
-resource "azurerm_virtual_network" "sac_virutal_network" {
-  name                = "sac-testing-virtual-network"
-  location            = azurerm_resource_group.sac_virtual_network.location
-  resource_group_name = azurerm_resource_group.sac_virtual_network.name
+resource "azurerm_virtual_network" "TerraFailVNet" {
+  name                = "TerraFailVNet"
+  location            = azurerm_resource_group.TerraFailVNet_rg.location
+  resource_group_name = azurerm_resource_group.TerraFailVNet_rg.name
   address_space       = ["10.0.0.0/16"]
   dns_servers         = ["10.0.0.4", "10.0.0.5"]
 
   ddos_protection_plan {
-    id     = azurerm_network_ddos_protection_plan.sac_vn_ddos_plan.id
+    id     = azurerm_network_ddos_protection_plan.TerraFailVNet_ddos_protection_plan.id
     enable = false
   }
 
@@ -24,8 +24,8 @@ resource "azurerm_virtual_network" "sac_virutal_network" {
   }
 }
 
-resource "azurerm_network_ddos_protection_plan" "sac_vn_ddos_plan" {
-  name                = "sac-protection-plan"
-  location            = azurerm_resource_group.sac_virtual_network.location
-  resource_group_name = azurerm_resource_group.sac_virtual_network.name
+resource "azurerm_network_ddos_protection_plan" "TerraFailVNet_ddos_protection_plan" {
+  name                = "TerraFailVNet_ddos_protection_plan"
+  location            = azurerm_resource_group.TerraFailVNet_rg.location
+  resource_group_name = azurerm_resource_group.TerraFailVNet_rg.name
 }

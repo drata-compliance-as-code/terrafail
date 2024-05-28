@@ -3,18 +3,18 @@
 # ---------------------------------------------------------------------
 # EKS
 # ---------------------------------------------------------------------
-resource "aws_eks_cluster" "sac_eks_cluster" {
-  name     = "sac-testing-eks-cluster"
-  role_arn = aws_iam_role.eks_cluster_role.arn
+resource "aws_eks_cluster" "TerraFailEKS_cluster" {
+  name     = "TerraFailEKS_cluster"
+  role_arn = aws_iam_role.TerraFailEKS_role.arn
 
   vpc_config {
-    security_group_ids = [aws_security_group.eks_security_group.id]
-    subnet_ids         = [aws_subnet.eks_subnet_1.id, aws_subnet.eks_subnet_2.id]
+    security_group_ids = [aws_security_group.TerraFailEKS_security_group.id]
+    subnet_ids         = [aws_subnet.TerraFailEKS_subnet.id, aws_subnet.TerraFailEKS_subnet_2.id]
   }
 
   depends_on = [
-    aws_iam_role_policy_attachment.demo-cluster-AmazonEKSClusterPolicy,
-    aws_iam_role_policy_attachment.demo-cluster-AmazonEKSVPCResourceController,
+    aws_iam_role_policy_attachment.TerraFailEKS_AmazonEKSClusterPolicy,
+    aws_iam_role_policy_attachment.TerraFailEKS_AmazonEKSVPCResourceController,
   ]
 
   tags = {
@@ -22,22 +22,22 @@ resource "aws_eks_cluster" "sac_eks_cluster" {
   }
 }
 
-resource "aws_eks_fargate_profile" "eks_fargate_profile" {
-  cluster_name           = aws_eks_cluster.sac_eks_cluster.name
-  fargate_profile_name   = "sac-eks-fargate-profile"
-  pod_execution_role_arn = aws_iam_role.eks_cluster_role.arn
-  subnet_ids             = [aws_subnet.eks_subnet_2.id]
+resource "aws_TerraFailEKS_fargate_profile" "TerraFailEKS_fargate_profile" {
+  cluster_name           = aws_eks_cluster.TerraFailEKS_cluster.name
+  fargate_profile_name   = "TerraFailEKS_fargate_profile"
+  pod_execution_role_arn = aws_iam_role.TerraFailEKS_role.arn
+  subnet_ids             = [aws_subnet.TerraFailEKS_subnet_2.id]
 
   selector {
-    namespace = "example"
+    namespace = "TerraFailEKS"
   }
 }
 
-resource "aws_eks_node_group" "eks_node_group" {
-  cluster_name    = aws_eks_cluster.sac_eks_cluster.name
-  node_group_name = "eks-cluster-node-group"
-  node_role_arn   = aws_iam_role.demo-node.arn
-  subnet_ids      = [aws_subnet.eks_subnet_1.id]
+resource "aws_TerraFailEKS_node_group" "TerraFailEKS_node_group" {
+  cluster_name    = aws_eks_cluster.TerraFailEKS_cluster.name
+  node_group_name = "TerraFailEKS_node_group"
+  node_role_arn   = aws_iam_role.TerraFailEKS_ec2_role.arn
+  subnet_ids      = [aws_subnet.TerraFailEKS_subnet.id]
 
   scaling_config {
     desired_size = 1
@@ -46,42 +46,42 @@ resource "aws_eks_node_group" "eks_node_group" {
   }
 
   depends_on = [
-    aws_iam_role_policy_attachment.demo-node-AmazonEKSWorkerNodePolicy,
-    aws_iam_role_policy_attachment.demo-node-AmazonEKS_CNI_Policy,
-    aws_iam_role_policy_attachment.demo-node-AmazonEC2ContainerRegistryReadOnly,
+    aws_iam_role_policy_attachment.TerraFailEKS_AmazonEKSWorkerNodePolicy,
+    aws_iam_role_policy_attachment.TerraFailEKS_AmazonEKS_CNI_Policy,
+    aws_iam_role_policy_attachment.TerraFailEKS_AmazonEC2ContainerRegistryReadOnly,
   ]
 }
 
 # ---------------------------------------------------------------------
 # IAM
 # ---------------------------------------------------------------------
-resource "aws_iam_role_policy_attachment" "demo-cluster-AmazonEKSClusterPolicy" {
+resource "aws_iam_role_policy_attachment" "TerraFailEKS_AmazonEKSClusterPolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
-  role       = aws_iam_role.eks_cluster_role.name
+  role       = aws_iam_role.TerraFailEKS_role.name
 }
 
-resource "aws_iam_role_policy_attachment" "demo-cluster-AmazonEKSVPCResourceController" {
+resource "aws_iam_role_policy_attachment" "TerraFailEKS_AmazonEKSVPCResourceController" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSVPCResourceController"
-  role       = aws_iam_role.eks_cluster_role.name
+  role       = aws_iam_role.TerraFailEKS_role.name
 }
 
-resource "aws_iam_role_policy_attachment" "demo-node-AmazonEKSWorkerNodePolicy" {
+resource "aws_iam_role_policy_attachment" "TerraFailEKS_AmazonEKSWorkerNodePolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
-  role       = aws_iam_role.demo-node.name
+  role       = aws_iam_role.TerraFailEKS_ec2_role.name
 }
 
-resource "aws_iam_role_policy_attachment" "demo-node-AmazonEKS_CNI_Policy" {
+resource "aws_iam_role_policy_attachment" "TerraFailEKS_AmazonEKS_CNI_Policy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
-  role       = aws_iam_role.demo-node.name
+  role       = aws_iam_role.TerraFailEKS_ec2_role.name
 }
 
-resource "aws_iam_role_policy_attachment" "demo-node-AmazonEC2ContainerRegistryReadOnly" {
+resource "aws_iam_role_policy_attachment" "TerraFailEKS_AmazonEC2ContainerRegistryReadOnly" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
-  role       = aws_iam_role.demo-node.name
+  role       = aws_iam_role.TerraFailEKS_ec2_role.name
 }
 
-resource "aws_iam_role" "eks_cluster_role" {
-  name = "sac-testing-eks-cluster-role"
+resource "aws_iam_role" "TerraFailEKS_role" {
+  name = "TerraFailEKS_role"
 
   assume_role_policy = <<POLICY
 {
@@ -100,8 +100,8 @@ resource "aws_iam_role" "eks_cluster_role" {
 POLICY
 }
 
-resource "aws_iam_role" "demo-node" {
-  name = "terraform-eks-demo-node"
+resource "aws_iam_role" "TerraFailEKS_ec2_role" {
+  name = "TerraFailEKS_ec2_role"
 
   assume_role_policy = <<POLICY
 {
@@ -122,17 +122,15 @@ POLICY
 # ---------------------------------------------------------------------
 # Network
 # ---------------------------------------------------------------------
-data "aws_availability_zones" "available" {}
-
-resource "aws_vpc" "eks_vpc" {
+resource "aws_vpc" "TerraFailEKS_vpc" {
   cidr_block = "10.0.0.0/16"
   tags = {
-    Name = "eks-demo-node"
+    Name = "TerraFailEKS_vpc"
   }
 }
 
-resource "aws_subnet" "eks_subnet_1" {
-  vpc_id            = aws_vpc.eks_vpc.id
+resource "aws_subnet" "TerraFailEKS_subnet" {
+  vpc_id            = aws_vpc.TerraFailEKS_vpc.id
   cidr_block        = "10.0.0.0/24"
   availability_zone = "us-east-2c"
 
@@ -142,13 +140,13 @@ resource "aws_subnet" "eks_subnet_1" {
   }
 }
 
-resource "aws_subnet" "eks_subnet_2" {
+resource "aws_subnet" "TerraFailEKS_subnet_2" {
   depends_on = [
-    aws_vpc.eks_vpc,
-    aws_subnet.eks_subnet_1
+    aws_vpc.TerraFailEKS_vpc,
+    aws_subnet.TerraFailEKS_subnet
   ]
 
-  vpc_id                  = aws_vpc.eks_vpc.id
+  vpc_id                  = aws_vpc.TerraFailEKS_vpc.id
   cidr_block              = "10.0.2.0/24"
   availability_zone       = "us-east-2b"
   map_public_ip_on_launch = false
@@ -158,34 +156,34 @@ resource "aws_subnet" "eks_subnet_2" {
   }
 }
 
-resource "aws_internet_gateway" "eks_gateway" {
-  vpc_id = aws_vpc.eks_vpc.id
+resource "aws_internet_gateway" "TerraFailEKS_gateway" {
+  vpc_id = aws_vpc.TerraFailEKS_vpc.id
 
   tags = {
-    Name = "eks-demo"
+    Name = "TerraFailEKS_gateway"
   }
 }
 
-resource "aws_route_table" "eks_route_table" {
-  vpc_id = aws_vpc.eks_vpc.id
+resource "aws_route_table" "TerraFailEKS_route_table" {
+  vpc_id = aws_vpc.TerraFailEKS_vpc.id
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.eks_gateway.id
+    gateway_id = aws_internet_gateway.TerraFailEKS_gateway.id
   }
 }
 
-resource "aws_route_table_association" "eks_route_table_association" {
+resource "aws_route_table_association" "TerraFailEKS_route_table_association" {
   count = 2
 
-  subnet_id      = aws_subnet.eks_subnet_1.id
-  route_table_id = aws_route_table.eks_route_table.id
+  subnet_id      = aws_subnet.TerraFailEKS_subnet.id
+  route_table_id = aws_route_table.TerraFailEKS_route_table.id
 }
 
-resource "aws_security_group" "eks_security_group" {
-  name        = "eks-cluster-security-group"
+resource "aws_security_group" "TerraFailEKS_security_group" {
+  name        = "TerraFailEKS_security_group"
   description = "Cluster communication with worker nodes"
-  vpc_id      = aws_vpc.eks_vpc.id
+  vpc_id      = aws_vpc.TerraFailEKS_vpc.id
 
   egress {
     from_port   = 0
@@ -194,14 +192,14 @@ resource "aws_security_group" "eks_security_group" {
     cidr_blocks = ["173.0.0.0/32"]
   }
   tags = {
-    Name = "terraform-eks-demo"
+    Name = "TerraFailEKS_security_group"
   }
 }
 
 # ---------------------------------------------------------------------
 # KMS
 # ---------------------------------------------------------------------
-resource "aws_kms_key" "eks_kms_key" {
+resource "aws_kms_key" "TerraFailEKS_key" {
   description              = "KMS key to encrypt/decrypt"
   deletion_window_in_days  = 10
   key_usage                = "ENCRYPT_DECRYPT"

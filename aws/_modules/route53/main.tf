@@ -1,6 +1,6 @@
 # ---------------------------------------------------------------------
 # Route53
 # ---------------------------------------------------------------------
-resource "aws_route53_zone" "sac_route53_zone" {
+resource "aws_route53_zone" "TerraFailRoute53_zone" {
   name = "thisisthedarkside.com"
 }

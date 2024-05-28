@@ -3,7 +3,7 @@
 # ---------------------------------------------------------------------
 # CloudFront
 # ---------------------------------------------------------------------
-resource "aws_cloudfront_distribution" "sac_cloudfront_distribution" {
+resource "aws_cloudfront_distribution" "TerraFailCloudfront_distribution" {
   enabled = true
   aliases = ["www.thisisthedarkside.com", "thisisthedarkside.com"]
 
@@ -17,7 +17,7 @@ resource "aws_cloudfront_distribution" "sac_cloudfront_distribution" {
   default_cache_behavior {
     allowed_methods        = ["HEAD", "GET"]
     cached_methods         = ["HEAD", "GET"]
-    target_origin_id       = aws_s3_bucket.sac_cloudfront_log_bucket.id
+    target_origin_id       = aws_s3_bucket.TerraFailCloudfront_bucket.id
     viewer_protocol_policy = "allow-all"
 
     forwarded_values {
@@ -30,8 +30,8 @@ resource "aws_cloudfront_distribution" "sac_cloudfront_distribution" {
   }
 
   origin {
-    origin_id   = aws_s3_bucket.sac_cloudfront_log_bucket.id
-    domain_name = aws_s3_bucket.sac_cloudfront_log_bucket.bucket_regional_domain_name
+    origin_id   = aws_s3_bucket.TerraFailCloudfront_bucket.id
+    domain_name = aws_s3_bucket.TerraFailCloudfront_bucket.bucket_regional_domain_name
 
     custom_origin_config {
       http_port              = 80
@@ -48,15 +48,15 @@ resource "aws_cloudfront_distribution" "sac_cloudfront_distribution" {
   }
 }
 
-resource "aws_cloudfront_origin_access_identity" "origin_access_identity" {
+resource "aws_cloudfront_TerraFailCloudfront_identity" "TerraFailCloudfront_identity" {
   comment = "s3-my-webapp.example.com"
 }
 
 # ---------------------------------------------------------------------
 # S3
 # ---------------------------------------------------------------------
-resource "aws_s3_bucket" "sac_cloudfront_log_bucket" {
-  bucket = "sac-cloudfront-bucket"
+resource "aws_s3_bucket" "TerraFailCloudfront_bucket" {
+  bucket = "TerraFailCloudfront_bucket"
   acl    = "private"
 
   tags = {
@@ -65,23 +65,23 @@ resource "aws_s3_bucket" "sac_cloudfront_log_bucket" {
   }
 }
 
-resource "aws_s3_bucket_ownership_controls" "s3_ownership_controls_sac" {
-  bucket = aws_s3_bucket.sac_cloudfront_log_bucket.id
+resource "aws_s3_bucket_ownership_controls" "TerraFailCloudfront_bucket_ownership" {
+  bucket = aws_s3_bucket.TerraFailCloudfront_bucket.id
   rule {
     object_ownership = "ObjectWriter"
   }
 }
 
-resource "aws_s3_bucket_public_access_block" "s3_public_access_block_sac" {
-  bucket                  = aws_s3_bucket.sac_cloudfront_log_bucket.id
+resource "aws_s3_bucket_public_access_block" "TerraFailCloudfront_bucket_access_block" {
+  bucket                  = aws_s3_bucket.TerraFailCloudfront_bucket.id
   block_public_acls       = true
   block_public_policy     = true
   ignore_public_acls      = true
   restrict_public_buckets = true
 }
 
-resource "aws_s3_bucket_server_side_encryption_configuration" "encrypt" {
-  bucket = aws_s3_bucket.sac_cloudfront_log_bucket.id
+resource "aws_s3_bucket_server_side_encryption_configuration" "TerraFailCloudfront_sse_configuration" {
+  bucket = aws_s3_bucket.TerraFailCloudfront_bucket.id
   rule {
     apply_server_side_encryption_by_default {
       sse_algorithm = "AES256"
@@ -89,8 +89,8 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "encrypt" {
   }
 }
 
-resource "aws_s3_bucket_website_configuration" "website" {
-  bucket = aws_s3_bucket.sac_cloudfront_log_bucket.id
+resource "aws_s3_bucket_website_configuration" "TerraFailCloudfront_website_configuration" {
+  bucket = aws_s3_bucket.TerraFailCloudfront_bucket.id
   index_document {
     suffix = "index.html"
   }
@@ -102,16 +102,16 @@ resource "aws_s3_bucket_website_configuration" "website" {
 # ---------------------------------------------------------------------
 # IAM
 # ---------------------------------------------------------------------
-data "aws_iam_policy_document" "bucket_policy_document" {
+data "aws_iam_policy_document" "TerraFailCloudfront_iam_policy" {
   statement {
     actions = ["s3:GetObject"]
     resources = [
-      aws_s3_bucket.sac_cloudfront_log_bucket.arn,
-      "${aws_s3_bucket.sac_cloudfront_log_bucket.arn}/*"
+      aws_s3_bucket.TerraFailCloudfront_bucket.arn,
+      "${aws_s3_bucket.TerraFailCloudfront_bucket.arn}/*"
     ]
     principals {
       type        = "AWS"
-      identifiers = [aws_cloudfront_origin_access_identity.origin_access_identity.iam_arn]
+      identifiers = [aws_cloudfront_TerraFailCloudfront_identity.TerraFailCloudfront_identity.iam_arn]
     }
   }
 }
@@ -119,9 +119,9 @@ data "aws_iam_policy_document" "bucket_policy_document" {
 # ---------------------------------------------------------------------
 # WAF
 # ---------------------------------------------------------------------
-resource "aws_wafv2_web_acl" "sac_cloudfront_web_acl_" {
-  name        = "sac-testing-web-acl"
-  description = "Example of a managed rule."
+resource "aws_wafv2_web_acl" "TerraFailCloudfront_web_acl" {
+  name        = "TerraFailCloudfront_web_acl"
+  description = "TerraFailCloudfront_web_acl managed rule."
   scope       = "CLOUDFRONT"
 
   default_action {
@@ -138,17 +138,17 @@ resource "aws_wafv2_web_acl" "sac_cloudfront_web_acl_" {
 # ---------------------------------------------------------------------
 # Route53
 # ---------------------------------------------------------------------
-resource "aws_route53_zone" "sac_route_zone" {
+resource "aws_route53_zone" "TerraFailCloudfront_route_zone" {
   name = "thisisthedarkside.com"
 }
 
-resource "aws_route53_record" "websiteurl" {
+resource "aws_route53_record" "TerraFailCloudfront_route_record" {
   name    = "thisisthedarkside.com"
-  zone_id = aws_route53_zone.sac_route_zone.id
+  zone_id = aws_route53_zone.TerraFailCloudfront_route_zone.id
   type    = "A"
   alias {
-    name                   = aws_cloudfront_distribution.sac_cloudfront_distribution.domain_name
-    zone_id                = aws_cloudfront_distribution.sac_cloudfront_distribution.hosted_zone_id
+    name                   = aws_cloudfront_distribution.TerraFailCloudfront_distribution.domain_name
+    zone_id                = aws_cloudfront_distribution.TerraFailCloudfront_distribution.hosted_zone_id
     evaluate_target_health = true
   }
 }

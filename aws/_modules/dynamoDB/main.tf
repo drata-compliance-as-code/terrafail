@@ -3,8 +3,8 @@
 # ---------------------------------------------------------------------
 # DynamoDB
 # ---------------------------------------------------------------------
-resource "aws_dynamodb_table" "dynamo-db-" {
-  name           = "foo"
+resource "aws_dynamodb_table" "TerraFailDynamoDB" {
+  name           = "TerraFailDynamoDB"
   billing_mode   = "PROVISIONED"
   hash_key       = "UserId"
   range_key      = "GameTitle"
@@ -59,8 +59,8 @@ resource "aws_dynamodb_table" "dynamo-db-" {
 # ---------------------------------------------------------------------
 # KMS
 # ---------------------------------------------------------------------
-resource "aws_kms_key" "foo_DDB" {
-  description             = "This key is used to encrypt dynamoDB objects"
+resource "aws_kms_key" "TerraFailDynamoDB_key" {
+  description             = "TerraFailDynamoDB encryption key"
   deletion_window_in_days = 10
   enable_key_rotation     = false
   key_usage               = "ENCRYPT_DECRYPT"

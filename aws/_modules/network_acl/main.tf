@@ -2,8 +2,8 @@
 # ---------------------------------------------------------------------
 # Network ACL
 # ---------------------------------------------------------------------
-resource "aws_network_acl" "sac_network_acl" {
-  vpc_id = aws_vpc.sac_vpc.id
+resource "aws_network_acl" "TerraFailACL" {
+  vpc_id = aws_vpc.TerraFailACL_vpc.id
 
   egress {
     protocol   = "tcp"
@@ -27,10 +27,10 @@ resource "aws_network_acl" "sac_network_acl" {
 # ---------------------------------------------------------------------
 # VPC
 # ---------------------------------------------------------------------
-resource "aws_vpc" "sac_vpc" {
+resource "aws_vpc" "TerraFailACL_vpc" {
   cidr_block = "10.1.0.0/16"
 
   tags = {
-    Name = "Default VPC"
+    Name = "TerraFailACL_vpc"
   }
 }

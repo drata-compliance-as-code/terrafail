@@ -3,40 +3,40 @@
 # ---------------------------------------------------------------------
 # ELBv2
 # ---------------------------------------------------------------------
-resource "aws_lb" "elbv2_sac" {
-  name                       = "elbv2-sac"
+resource "aws_lb" "TerraFailLB" {
+  name                       = "TerraFailLB"
   load_balancer_type         = "gateway"
   drop_invalid_header_fields = true
-  desync_mitigation_mode = "monitor"
-  internal = false
+  desync_mitigation_mode     = "monitor"
+  internal                   = false
 
   subnet_mapping {
-    subnet_id = aws_subnet.elbv2_subnet_2.id
+    subnet_id = aws_subnet.TerraFailLB_subnet_2.id
   }
 
   access_logs {
-    bucket = aws_s3_bucket.elbv2_bucket.bucket
+    bucket  = aws_s3_bucket.TerraFailLB_bucket.bucket
     enabled = false
   }
 }
 
-resource "aws_lb_listener_rule" "elbv2-listener-rule" {
-  listener_arn = aws_lb_listener.elbv2_listener.arn
+resource "aws_lb_listener_rule" "TerraFailLB_listener_rule" {
+  listener_arn = aws_lb_listener.TerraFailLB_listener.arn
 
   action {
-    type = "forward"
-    target_group_arn = aws_lb_target_group.elbv2_target_group.arn
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.TerraFailLB_target_group.arn
 
     authenticate_oidc {
       on_unauthenticated_request = "allow"
-      session_cookie_name = "sac-testing-cookie"
-      session_timeout        = 300
-      client_id              = ""
-      client_secret          = ""
-      issuer                 = "https://oak9.okta.com/oauth2/default"
-      token_endpoint         = "https://oak9.okta.com/oauth2/default/v1/token"
-      authorization_endpoint = "https://oak9.okta.com/oauth2/default/v1/authorize"
-      user_info_endpoint     = "https://oak9.okta.com/oauth2/default/v1/userinfo"
+      session_cookie_name        = "TerraFailLB_listener_rule_cookie"
+      session_timeout            = 300
+      client_id                  = ""
+      client_secret              = ""
+      issuer                     = "https://oak9.okta.com/oauth2/default"
+      token_endpoint             = "https://oak9.okta.com/oauth2/default/v1/token"
+      authorization_endpoint     = "https://oak9.okta.com/oauth2/default/v1/authorize"
+      user_info_endpoint         = "https://oak9.okta.com/oauth2/default/v1/userinfo"
     }
   }
 
@@ -47,90 +47,90 @@ resource "aws_lb_listener_rule" "elbv2-listener-rule" {
   }
 }
 
-resource "aws_lb_listener" "elbv2_listener" {
-  load_balancer_arn = aws_lb.elbv2_sac.arn
+resource "aws_lb_listener" "TerraFailLB_listener" {
+  load_balancer_arn = aws_lb.TerraFailLB.arn
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.elbv2_target_group.arn
+    target_group_arn = aws_lb_target_group.TerraFailLB_target_group.arn
 
     authenticate_oidc {
       on_unauthenticated_request = "allow"
-      session_cookie_name = "sac-testing-cookie"
-      session_timeout        = 300
-      client_id              = ""
-      client_secret          = ""
-      issuer                 = "https://oak9.okta.com/oauth2/default"
-      token_endpoint         = "https://oak9.okta.com/oauth2/default/v1/token"
-      authorization_endpoint = "https://oak9.okta.com/oauth2/default/v1/authorize"
-      user_info_endpoint     = "https://oak9.okta.com/oauth2/default/v1/userinfo"
+      session_cookie_name        = "TerraFailLB_listener_cookie"
+      session_timeout            = 300
+      client_id                  = ""
+      client_secret              = ""
+      issuer                     = "https://oak9.okta.com/oauth2/default"
+      token_endpoint             = "https://oak9.okta.com/oauth2/default/v1/token"
+      authorization_endpoint     = "https://oak9.okta.com/oauth2/default/v1/authorize"
+      user_info_endpoint         = "https://oak9.okta.com/oauth2/default/v1/userinfo"
     }
   }
 }
 
-resource "aws_lb_target_group_attachment" "elbv2_target_group_attachment" {
-  target_group_arn = aws_lb_target_group.elbv2_target_group.arn
-  target_id        = aws_instance.aws_ec2_instance_sac_default.id
+resource "aws_lb_target_group_attachment" "TerraFailLB_target_group_attachment" {
+  target_group_arn = aws_lb_target_group.TerraFailLB_target_group.arn
+  target_id        = aws_instance.TerraFailLB_instance.id
 }
 
-resource "aws_lb_target_group" "elbv2_target_group" {
-  name        = "elbv2-target-group-sac"
+resource "aws_lb_target_group" "TerraFailLB_target_group" {
+  name        = "TerraFailLB_target_group"
   target_type = "instance"
-  vpc_id = aws_vpc.ec2_instance_vpc_default.id
-  port   = 80
-  protocol = "TCP"
+  vpc_id      = aws_vpc.TerraFailLB_vpc.id
+  port        = 80
+  protocol    = "TCP"
 
   health_check {
-    enabled = true
+    enabled  = true
     protocol = "HTTP"
   }
 
   stickiness {
     enabled = false
-    type = "source_ip"
+    type    = "source_ip"
   }
 }
 
 # ---------------------------------------------------------------------
 # Network
 # ---------------------------------------------------------------------
-resource "aws_subnet" "elbv2_subnet_1" {
-  vpc_id            = aws_vpc.ec2_instance_vpc_default.id
+resource "aws_subnet" "TerraFailLB_subnet" {
+  vpc_id            = aws_vpc.TerraFailLB_vpc.id
   cidr_block        = "10.0.0.0/24"
   availability_zone = "us-east-2c"
 
   tags = {
-    Name = "Main"
+    Name = "TerraFailLB_subnet"
   }
 }
 
-resource "aws_subnet" "elbv2_subnet_2" {
-  vpc_id            = aws_vpc.ec2_instance_vpc_default.id
+resource "aws_subnet" "TerraFailLB_subnet_2" {
+  vpc_id            = aws_vpc.TerraFailLB_vpc.id
   cidr_block        = "10.0.2.0/24"
   availability_zone = "us-east-2b"
 
   tags = {
-    Name = "Main"
+    Name = "TerraFailLB_subnet_2"
   }
 }
 
-resource "aws_subnet" "ec2_instance_subnet_default" {
-  vpc_id     = aws_vpc.ec2_instance_vpc_default.id
+resource "aws_subnet" "TerraFailLB_subnet_default" {
+  vpc_id     = aws_vpc.TerraFailLB_vpc.id
   cidr_block = "10.0.1.0/24"
 
   tags = {
-    Name = "Main"
+    Name = "TerraFailLB_subnet_default"
   }
 }
 
-resource "aws_vpc" "ec2_instance_vpc_default" {
+resource "aws_vpc" "TerraFailLB_vpc" {
   cidr_block = "10.0.0.0/16"
 }
 
-resource "aws_security_group" "ec2_instance_security_group_default" {
-  name                   = "ec2-instance-security-group-default"
+resource "aws_security_group" "TerraFailLB_security_group" {
+  name                   = "TerraFailLB_security_group"
   description            = "Allow TLS inbound traffic"
-  vpc_id                 = aws_vpc.ec2_instance_vpc_default.id
+  vpc_id                 = aws_vpc.TerraFailLB_vpc.id
   revoke_rules_on_delete = false
 
   ingress {
@@ -153,47 +153,47 @@ resource "aws_security_group" "ec2_instance_security_group_default" {
 # ---------------------------------------------------------------------
 # S3
 # ---------------------------------------------------------------------
-resource "aws_s3_bucket" "elbv2_bucket" {
-  bucket = "elbv2-bucket"
+resource "aws_s3_bucket" "TerraFailLB_bucket" {
+  bucket = "TerraFailLB_bucket"
   acl    = "public-read-write"
 }
 
 # ---------------------------------------------------------------------
 # EC2-Instance
 # ---------------------------------------------------------------------
-resource "aws_instance" "aws_ec2_instance_sac_default" {
+resource "aws_instance" "TerraFailLB_instance" {
   ami                  = data.aws_ami.ubuntu.id
-  subnet_id            = aws_subnet.ec2_instance_subnet_default.id
-  iam_instance_profile = aws_iam_instance_profile.ec2_instance_profile_default.name
+  subnet_id            = aws_subnet.TerraFailLB_subnet_default.id
+  iam_instance_profile = aws_iam_instance_profile.TerraFailLB_instance_profile.name
 
   launch_template {
-    id = aws_launch_template.aws_ec2_launch_template_sac_default.id
+    id = aws_launch_template.TerraFailLB_launch_template.id
   }
 
   associate_public_ip_address = false
-  availability_zone = "us-east-2c"
-  monitoring = true
-  vpc_security_group_ids = [aws_security_group.ec2_instance_security_group_default.id]
+  availability_zone           = "us-east-2c"
+  monitoring                  = true
+  vpc_security_group_ids      = [aws_security_group.TerraFailLB_security_group.id]
 
   tags = {
-    key = "value"
+    name = "TerraFailLB_instance"
   }
 
   ebs_block_device {
     delete_on_termination = false
     device_name           = "/dev/sdf"
-    encrypted = true
-    kms_key_id  = aws_kms_key.ec2_instance_kms_key_default.id
-    volume_size = 5
+    encrypted             = true
+    kms_key_id            = aws_kms_key.TerraFailLB_key.id
+    volume_size           = 5
 
     tags = {
-      "key" = "value"
+      name = "TerraFailLB_instance"
     }
   }
 }
 
-resource "aws_launch_template" "aws_ec2_launch_template_sac_default" {
-  name                                 = "ec2-instance-launch-template-sac-default"
+resource "aws_launch_template" "TerraFailLB_launch_template" {
+  name                                 = "TerraFailLB_launch_template"
   default_version                      = 1
   disable_api_stop                     = false
   disable_api_termination              = false
@@ -202,7 +202,7 @@ resource "aws_launch_template" "aws_ec2_launch_template_sac_default" {
   instance_type                        = "t2.micro"
 
   tags = {
-    "key" = "value"
+    name = "TerraFailLB_launch_template"
   }
 
   metadata_options {
@@ -231,13 +231,13 @@ data "aws_ami" "ubuntu" {
 # ---------------------------------------------------------------------
 # IAM
 # ---------------------------------------------------------------------
-resource "aws_iam_instance_profile" "ec2_instance_profile_default" {
-  name = "ec2-instance-profile-default"
-  role = aws_iam_role.ec2_instance_role_default.name
+resource "aws_iam_instance_profile" "TerraFailLB_instance_profile" {
+  name = "TerraFailLB_instance_profile"
+  role = aws_iam_role.TerraFailLB_role.name
 }
 
-resource "aws_iam_role" "ec2_instance_role_default" {
-  name = "ec2-instance-role-default"
+resource "aws_iam_role" "TerraFailLB_role" {
+  name = "TerraFailLB_role"
   path = "/"
 
   assume_role_policy = <<EOF
@@ -260,7 +260,7 @@ EOF
 # ---------------------------------------------------------------------
 # KMS
 # ---------------------------------------------------------------------
-resource "aws_kms_key" "ec2_instance_kms_key_default" {
-  description             = "Instance-key"
+resource "aws_kms_key" "TerraFailLB_key" {
+  description             = "TerraFailLB_key"
   deletion_window_in_days = 10
 }

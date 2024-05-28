@@ -1,9 +1,9 @@
 # ---------------------------------------------------------------------
 # SNS
 # ---------------------------------------------------------------------
-resource "aws_sns_topic" "sac_sns_topic" {
-  name         = "sac-testing-sns"
-  display_name = "sac-test-sns"
+resource "aws_sns_topic" "TerraFailSNS" {
+  name         = "TerraFailSNS"
+  display_name = "TerraFailSNS"
   policy       = <<EOF
 {
     "Version": "2012-10-17",
@@ -20,8 +20,8 @@ EOF
 
 }
 
-resource "aws_sns_topic_subscription" "sac_sns_topic_subscription" {
-  topic_arn = aws_sns_topic.sac_sns_topic.arn
+resource "aws_sns_topic_subscription" "TerraFailSNS_subscription" {
+  topic_arn = aws_sns_topic.TerraFailSNS.arn
   protocol  = "http"
-  endpoint  = "http://devapi.oak9.cloud/console/"
+  endpoint  = "www.thisisthedarkside.com"
 }

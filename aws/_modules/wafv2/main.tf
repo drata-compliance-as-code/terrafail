@@ -3,16 +3,16 @@
 # ---------------------------------------------------------------------
 # WAFv2
 # ---------------------------------------------------------------------
-resource "aws_wafv2_ip_set" "wafv2_ip_set" {
-  name               = "ip_set_demo"
-  description        = "Example IP set"
+resource "aws_wafv2_ip_set" "TerraFailWAF_ip_set" {
+  name               = "TerraFailWAF_ip_set"
+  description        = "TerraFailWAF_ip_set description"
   scope              = "REGIONAL"
   ip_address_version = "IPV4"
   addresses          = ["1.2.3.4/32", "5.6.7.8/32"]
 }
 
-resource "aws_wafv2_rule_group" "wafv2_rule_demo" {
-  name     = "wafv2_rule_demo"
+resource "aws_wafv2_rule_group" "TerraFailWAF_rule_group" {
+  name     = "TerraFailWAF_rule_group"
   scope    = "REGIONAL"
   capacity = 2
 
@@ -46,9 +46,9 @@ resource "aws_wafv2_rule_group" "wafv2_rule_demo" {
 }
 
 
-resource "aws_wafv2_web_acl" "wafv2_web_acl" {
-  name        = "managed-rule-example"
-  description = "Example of a managed rule."
+resource "aws_TerraFailWAF_web_acl" "TerraFailWAF_web_acl" {
+  name        = "TerraFailWAF_web_acl"
+  description = "TerraFailWAF_web_acl managed rule"
   scope       = "REGIONAL"
 
   default_action {
@@ -90,8 +90,8 @@ resource "aws_wafv2_web_acl" "wafv2_web_acl" {
   }
 }
 
-resource "aws_wafv2_regex_pattern_set" "example" {
-  name        = "example"
-  description = "Example regex pattern set"
+resource "aws_wafv2_regex_pattern_set" "TerraFailWAF_regex_pattern_set" {
+  name        = "TerraFailWAF_regex_pattern_set"
+  description = "TerraFailWAF_regex_pattern_set description"
   scope       = "REGIONAL"
 }

@@ -1,17 +1,17 @@
 
 
-resource "azurerm_resource_group" "app_gateway_resource_group" {
-  name     = "sac-app-gateway-group"
+resource "azurerm_resource_group" "TerraFailAppGateway_rg" {
+  name     = "TerraFailAppGateway_rg"
   location = "East US 2"
 }
 
 # ---------------------------------------------------------------------
 # Application Gateway
 # ---------------------------------------------------------------------
-resource "azurerm_application_gateway" "sac_application_gateway" {
-  name                = "sac-application-gateway"
-  resource_group_name = azurerm_resource_group.app_gateway_resource_group.name
-  location            = azurerm_resource_group.app_gateway_resource_group.location
+resource "azurerm_application_gateway" "TerraFailAppGateway" {
+  name                = "TerraFailAppGateway"
+  resource_group_name = azurerm_resource_group.TerraFailAppGateway_rg.name
+  location            = azurerm_resource_group.TerraFailAppGateway_rg.location
 
   frontend_port {
     name = "redirect-port"
@@ -25,16 +25,16 @@ resource "azurerm_application_gateway" "sac_application_gateway" {
   }
 
   gateway_ip_configuration {
-    name      = "sac-testing-gateway-config"
+    name      = "TerraFailAppGateway_ip_configuration"
     subnet_id = azurerm_subnet.app_gateway_subnet.id
   }
 
   backend_address_pool {
-    name = "backend-address-pool"
+    name = "TerraFailAppGateway_backend_pool"
   }
 
   request_routing_rule {
-    name                       = "demo-test-routing-rule"
+    name                       = "TerraFailAppGateway_request_routing_rule"
     rule_type                  = "Basic"
     http_listener_name         = "http-listener-1"
     backend_address_pool_name  = "backend-address-pool"
@@ -43,7 +43,7 @@ resource "azurerm_application_gateway" "sac_application_gateway" {
   }
 
   frontend_ip_configuration {
-    name = "frontend-ip-config"
+    name = "TerraFailAppGateway_frontend_ip_config"
   }
 
   backend_http_settings {
@@ -67,23 +67,23 @@ resource "azurerm_application_gateway" "sac_application_gateway" {
   }
 
   ssl_policy {
-    policy_type = "Predefined"
+    policy_type          = "Predefined"
     min_protocol_version = "TLSv1_1"
-    policy_name = "AppGwSslPolicy20150501"
+    policy_name          = "AppGwSslPolicy20150501"
   }
 
   ssl_certificate {
-    name = "demo-ssl-certificate"
+    name = "TerraFailAppGateway_ssl_cert"
   }
 }
 
 # ---------------------------------------------------------------------
 # Network
 # ---------------------------------------------------------------------
-resource "azurerm_public_ip" "app_gateway_ip_config" {
-  name                = "demo-app-gateway-ipconfig"
-  resource_group_name = azurerm_resource_group.app_gateway_resource_group.name
-  location            = azurerm_resource_group.app_gateway_resource_group.location
+resource "azurerm_public_ip" "TerraFailAppGateway_ip_config" {
+  name                = "TerraFailAppGateway_ip_config"
+  resource_group_name = azurerm_resource_group.TerraFailAppGateway_rg.name
+  location            = azurerm_resource_group.TerraFailAppGateway_rg.location
   allocation_method   = "Static"
   sku                 = "Standard"
   zones               = ["us-east-1", "us-west-1", "us-west-2"]
@@ -92,10 +92,10 @@ resource "azurerm_public_ip" "app_gateway_ip_config" {
 # ---------------------------------------------------------------------
 # KeyVault
 # ---------------------------------------------------------------------
-resource "azurerm_key_vault" "app_gateway_vault" {
-  name                        = "sac-app-gateway-vault"
-  location                    = azurerm_resource_group.app_gateway_resource_group.location
-  resource_group_name         = azurerm_resource_group.app_gateway_resource_group.name
+resource "azurerm_key_vault" "TerraFailAppGateway_vault" {
+  name                        = "TerraFailAppGateway_vault"
+  location                    = azurerm_resource_group.TerraFailAppGateway_rg.location
+  resource_group_name         = azurerm_resource_group.TerraFailAppGateway_rg.name
   enabled_for_disk_encryption = true
   tenant_id                   = data.azurerm_client_config.current.tenant_id
   soft_delete_retention_days  = 7

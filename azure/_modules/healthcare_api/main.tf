@@ -1,15 +1,15 @@
-resource "azurerm_resource_group" "sac_healthcare" {
-  name     = "sac-testing-function-resource-group"
+resource "azurerm_resource_group" "TerraFailHealthcare_rg" {
+  name     = "TerraFailHealthcare_rg"
   location = "East US 2"
 }
 
 # ---------------------------------------------------------------------
 # Healthcare API
 # ---------------------------------------------------------------------
-resource "azurerm_healthcare_service" "sac_healthcare_apis" {
-  name                = "sac-healthcare-apis"
-  resource_group_name = azurerm_resource_group.sac_healthcare.name
-  location            = azurerm_resource_group.sac_healthcare.location
+resource "azurerm_healthcare_service" "TerraFailHealthcare" {
+  name                = "TerraFailHealthcare"
+  resource_group_name = azurerm_resource_group.TerraFailHealthcare_rg.name
+  location            = azurerm_resource_group.TerraFailHealthcare_rg.location
   kind                = "fhir-R4"
   cosmosdb_throughput = "2000"
 

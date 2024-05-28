@@ -1,8 +1,8 @@
 # ---------------------------------------------------------------------
 # Storage
 # ---------------------------------------------------------------------
-resource "google_storage_bucket" "sac_storage_bucket" {
-  name                        = "gcp-storage"
+resource "google_storage_bucket" "TerraFailStorage" {
+  name                        = "TerraFailStorage"
   location                    = "US-EAST1"
   uniform_bucket_level_access = true
   versioning {
@@ -17,8 +17,8 @@ resource "google_storage_bucket" "sac_storage_bucket" {
   }
 }
 
-resource "google_storage_bucket_object" "sac_storage_object" {
-  name    = "functions_object"
-  bucket  = google_storage_bucket.sac_storage_bucket.name
-  content = "test_content"
+resource "google_storage_bucket_object" "TerraFailStorage_object" {
+  name    = "TerraFailStorage_object"
+  bucket  = google_storage_bucket.TerraFailStorage.name
+  content = "TerraFailStorage_object content"
 }

@@ -1,8 +1,8 @@
 # ---------------------------------------------------------------------
 # Container
 # ---------------------------------------------------------------------
-resource "google_container_cluster" "sac_container_cluster" {
-  name                    = "test-container"
+resource "google_container_cluster" "TerraFailContainer_cluster" {
+  name                    = "TerraFailContainer_cluster"
   initial_node_count      = 3
   enable_kubernetes_alpha = true
   enable_shielded_nodes   = false
@@ -25,9 +25,9 @@ resource "google_container_cluster" "sac_container_cluster" {
   }
 }
 
-resource "google_container_node_pool" "test_nodepool" {
-  name       = "test-nodepool"
-  cluster    = google_container_cluster.sac_container_cluster.name
+resource "google_container_node_pool" "TerraFailContainer_node_pool" {
+  name       = "TerraFailContainer_node_pool"
+  cluster    = google_container_cluster.TerraFailContainer_cluster.name
   node_count = 1
   node_config {
     disk_size_gb = 10

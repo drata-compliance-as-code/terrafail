@@ -1,19 +1,19 @@
-resource "azurerm_resource_group" "sac_aks_resource_group" {
-  name     = "sac-testing-aks-resource-group"
+resource "azurerm_resource_group" "TerraFailAKS_rg" {
+  name     = "TerraFailAKS_rg"
   location = "East US 2"
 }
 
 # ---------------------------------------------------------------------
 # AKS
 # ---------------------------------------------------------------------
-resource "azurerm_kubernetes_cluster" "sac_aks_cluster" {
-  name                = "sac-testing-aks-cluster"
-  location            = azurerm_resource_group.sac_aks_resource_group.location
-  resource_group_name = azurerm_resource_group.sac_aks_resource_group.name
-  dns_prefix          = "sac-testing-cluster"
+resource "azurerm_kubernetes_cluster" "TerraFailAKS_cluster" {
+  name                = "TerraFailAKS_cluster"
+  location            = azurerm_resource_group.TerraFailAKS_rg.location
+  resource_group_name = azurerm_resource_group.TerraFailAKS_rg.name
+  dns_prefix          = "TerraFailAKS_cluster"
 
   default_node_pool {
-    name                = "sacakspool"
+    name                = "TerraFailAKS_pool"
     vm_size             = "Standard_D2_v2"
     node_count          = 1
     enable_auto_scaling = false
@@ -38,9 +38,9 @@ resource "azurerm_kubernetes_cluster" "sac_aks_cluster" {
   }
 }
 
-resource "azurerm_kubernetes_cluster_node_pool" "sac_aks_node_pool" {
-  name                  = "sacakspool"
-  kubernetes_cluster_id = azurerm_kubernetes_cluster.sac_aks_cluster.id
+resource "azurerm_kubernetes_cluster_node_pool" "TerraFailAKS_node_pool" {
+  name                  = "TerraFailAKS_node_pool"
+  kubernetes_cluster_id = azurerm_kubernetes_cluster.TerraFailAKS_cluster.id
   vm_size               = "Standard_DS2_v2"
   enable_node_public_ip = true
   enable_auto_scaling   = false

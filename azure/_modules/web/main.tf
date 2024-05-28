@@ -1,18 +1,18 @@
 
 
-resource "azurerm_resource_group" "sac_web_resource_group" {
-  name     = "sac-test-web-resource-group"
+resource "azurerm_resource_group" "TerraFailWeb_rg" {
+  name     = "TerraFailWeb_rg"
   location = "East US"
 }
 
 # ---------------------------------------------------------------------
 # Web App
 # ---------------------------------------------------------------------
-resource "azurerm_linux_web_app" "sac_linux_web_app" {
-  name                       = "sac-linux-web-app"
-  resource_group_name        = azurerm_resource_group.sac_web_resource_group.name
-  location                   = azurerm_resource_group.sac_web_resource_group.location
-  service_plan_id            = azurerm_service_plan.sac_web_service_plan.id
+resource "azurerm_linux_web_app" "TerraFailWeb_linux" {
+  name                       = "TerraFailWeb_linux"
+  resource_group_name        = azurerm_resource_group.TerraFailWeb_rg.name
+  location                   = azurerm_resource_group.TerraFailWeb_rg.location
+  service_plan_id            = azurerm_service_plan.TerraFailWeb_service_plan.id
   client_certificate_enabled = false
   client_certificate_mode    = "Optional"
 
@@ -30,11 +30,11 @@ resource "azurerm_linux_web_app" "sac_linux_web_app" {
   }
 }
 
-resource "azurerm_windows_web_app" "sac_windows_web_app" {
-  name                       = "sac-windows-web-app"
-  resource_group_name        = azurerm_resource_group.sac_web_resource_group.name
-  location                   = azurerm_resource_group.sac_web_resource_group.location
-  service_plan_id            = azurerm_service_plan.sac_web_service_plan.id
+resource "azurerm_windows_web_app" "TerraFailWeb_windows" {
+  name                       = "TerraFailWeb_windows"
+  resource_group_name        = azurerm_resource_group.TerraFailWeb_rg.name
+  location                   = azurerm_resource_group.TerraFailWeb_rg.location
+  service_plan_id            = azurerm_service_plan.TerraFailWeb_service_plan.id
   client_certificate_enabled = false
   client_certificate_mode    = "Optional"
 
@@ -54,10 +54,10 @@ resource "azurerm_windows_web_app" "sac_windows_web_app" {
 # ---------------------------------------------------------------------
 # Service Plan
 # ---------------------------------------------------------------------
-resource "azurerm_service_plan" "sac_web_service_plan" {
-  name                = "sac-web-service-plan"
-  resource_group_name = azurerm_resource_group.sac_web_resource_group.name
-  location            = azurerm_resource_group.sac_web_resource_group.location
+resource "azurerm_service_plan" "TerraFailWeb_service_plan" {
+  name                = "TerraFailWeb_service_plan"
+  resource_group_name = azurerm_resource_group.TerraFailWeb_rg.name
+  location            = azurerm_resource_group.TerraFailWeb_rg.location
   os_type             = "Linux"
   sku_name            = "Y1"
 }

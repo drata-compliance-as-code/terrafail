@@ -3,12 +3,12 @@
 # ---------------------------------------------------------------------
 # KMS
 # ---------------------------------------------------------------------
-resource "aws_kms_alias" "kms_alias_sac" {
-  name          = "alias/sac-testing-kms"
-  target_key_id = aws_kms_key.kms_key_sac.key_id
+resource "aws_kms_alias" "TerraFailKMS_alias" {
+  name          = "alias/TerraFailKMS_alias"
+  target_key_id = aws_kms_key.TerraFailKMS_key.key_id
 }
 
-resource "aws_kms_key" "kms_key_sac" {
+resource "aws_kms_key" "TerraFailKMS_key" {
   description             = "KMS key template"
   deletion_window_in_days = 10
   key_usage               = "ENCRYPT_DECRYPT"

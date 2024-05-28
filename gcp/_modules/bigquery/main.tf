@@ -1,51 +1,50 @@
 # ---------------------------------------------------------------------
 # Big Query
 # ---------------------------------------------------------------------
-
-resource "google_bigquery_dataset" "sac_bigquery_dataset" {
-  dataset_id = "sac-bigquery"
+resource "google_bigquery_dataset" "TerraFailBigQuery_dataset" {
+  dataset_id = "TerraFailBigQuery_dataset"
   location   = "US-EAST1"
-  project    = "sandbox"
+  project    = "terrafail"
 
   access {
     special_group = "allUseres"
   }
 }
 
-resource "google_bigquery_dataset_iam_binding" "sac_bigquery_iam_binding" {
-  dataset_id = google_bigquery_dataset.sac_bigquery_dataset.dataset_id
+resource "google_bigquery_dataset_iam_binding" "TerraFailBigQuery_iam_binding" {
+  dataset_id = google_bigquery_dataset.TerraFailBigQuery_dataset.dataset_id
   role       = "roles/bigquery.dataViewer"
   members = [
     "allUsers",
   ]
 }
 
-resource "google_bigquery_dataset_iam_member" "sac_bigquery_iam_member" {
-  dataset_id = google_bigquery_dataset.sac_bigquery_dataset.dataset_id
+resource "google_bigquery_dataset_iam_member" "TerraFailBigQuery_iam_member" {
+  dataset_id = google_bigquery_dataset.TerraFailBigQuery_dataset.dataset_id
   role       = "roles/bigquery.dataEditor"
   member     = "allUsers"
 }
 
-resource "google_bigquery_table" "sac_bigquery_table" {
-  dataset_id = google_bigquery_dataset.sac_bigquery_dataset.dataset_id
+resource "google_bigquery_table" "TerraFailBigQuery_table" {
+  dataset_id = google_bigquery_dataset.TerraFailBigQuery_dataset.dataset_id
   table_id   = "bigQ"
   time_partitioning {
     type = "DAY"
   }
 }
 
-resource "google_bigquery_table_iam_binding" "table_iam_binding" {
-  dataset_id = google_bigquery_table.sac_bigquery_table.dataset_id
-  table_id   = google_bigquery_table.sac_bigquery_table.table_id
+resource "google_bigquery_table_iam_binding" "TerraFailBigQuery_table_iam_binding" {
+  dataset_id = google_bigquery_table.TerraFailBigQuery_table.dataset_id
+  table_id   = google_bigquery_table.TerraFailBigQuery_table.table_id
   role       = "roles/bigquery.dataOwner"
   members = [
     "allUsers",
   ]
 }
 
-resource "google_bigquery_table_iam_member" "table_iam_member" {
-  dataset_id = google_bigquery_table.sac_bigquery_table.dataset_id
-  table_id   = google_bigquery_table.sac_bigquery_table.table_id
+resource "google_bigquery_table_iam_member" "TerraFailBigQuery_table_iam_member" {
+  dataset_id = google_bigquery_table.TerraFailBigQuery_table.dataset_id
+  table_id   = google_bigquery_table.TerraFailBigQuery_table.table_id
   role       = "roles/bigquery.dataOwner"
   member     = "allUsers"
 }

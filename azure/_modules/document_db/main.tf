@@ -1,17 +1,17 @@
 
 
-resource "azurerm_resource_group" "cosmos_db_resource_group" {
-  name     = "cosmos-db-rg"
+resource "azurerm_resource_group" "TerraFailCosmosDB_rg" {
+  name     = "TerraFailCosmosDB_rg"
   location = "East US 2"
 }
 
 # ---------------------------------------------------------------------
 # CosmosDB
 # ---------------------------------------------------------------------
-resource "azurerm_cosmosdb_account" "sac_cosmosdb_account" {
-  name                              = "sac-testing-cosmosdb"
-  resource_group_name               = azurerm_resource_group.cosmos_db_resource_group.name
-  location                          = azurerm_resource_group.cosmos_db_resource_group.location
+resource "azurerm_cosmosdb_account" "TerraFailCosmosDB_account" {
+  name                              = "TerraFailCosmosDB_account"
+  resource_group_name               = azurerm_resource_group.TerraFailCosmosDB_rg.name
+  location                          = azurerm_resource_group.TerraFailCosmosDB_rg.location
   kind                              = "GlobalDocumentDB"
   offer_type                        = "Standard"
   is_virtual_network_filter_enabled = true
@@ -38,18 +38,18 @@ resource "azurerm_cosmosdb_account" "sac_cosmosdb_account" {
   }
 }
 
-resource "azurerm_cosmosdb_sql_database" "cosmos_db_sql_db" {
-  name                = "cosmos-db-sql"
-  resource_group_name = azurerm_resource_group.cosmos_db_resource_group.name
-  account_name        = azurerm_cosmosdb_account.sac_cosmosdb_account.name
+resource "azurerm_cosmosdb_sql_database" "TerraFailCosmosDB" {
+  name                = "TerraFailCosmosDB"
+  resource_group_name = azurerm_resource_group.TerraFailCosmosDB_rg.name
+  account_name        = azurerm_cosmosdb_account.TerraFailCosmosDB_account.name
   throughput          = 400
 }
 
-resource "azurerm_cosmosdb_sql_container" "cosmos_db_sql_container" {
-  name                   = "cosmos-db-sqlcont"
-  resource_group_name    = azurerm_resource_group.cosmos_db_resource_group.name
-  account_name           = azurerm_cosmosdb_account.sac_cosmosdb_account.name
-  database_name          = azurerm_cosmosdb_sql_database.cosmos_db_sql_db.name
+resource "azurerm_cosmosdb_sql_container" "TerraFailCosmosDB_container" {
+  name                   = "TerraFailCosmosDB_container"
+  resource_group_name    = azurerm_resource_group.TerraFailCosmosDB_rg.name
+  account_name           = azurerm_cosmosdb_account.TerraFailCosmosDB_account.name
+  database_name          = azurerm_cosmosdb_sql_database.TerraFailCosmosDB.name
   partition_key_path     = "/definition/id"
   partition_key_version  = 1
   throughput             = 400
@@ -79,25 +79,25 @@ resource "azurerm_cosmosdb_sql_container" "cosmos_db_sql_container" {
 # ---------------------------------------------------------------------
 # Network
 # ---------------------------------------------------------------------
-resource "azurerm_subnet" "sac_dynamodb_subnet" {
-  name                 = "sac-testing-cosmos-subnet"
-  resource_group_name  = azurerm_resource_group.cosmos_db_resource_group.name
-  virtual_network_name = azurerm_virtual_network.sac_cosmos_db_virtual_network.name
+resource "azurerm_subnet" "TerraFailCosmosDB_subnet" {
+  name                 = "TerraFailCosmosDB_subnet"
+  resource_group_name  = azurerm_resource_group.TerraFailCosmosDB_rg.name
+  virtual_network_name = azurerm_virtual_network.TerraFailCosmosDB_virtual_network.name
   address_prefixes     = ["10.0.1.0/24"]
   service_endpoints    = ["Microsoft.Storage", "Microsoft.AzureCosmosDB"]
 }
 
-resource "azurerm_virtual_network" "sac_cosmos_db_virtual_network" {
-  name                = "sac-testing-cosmos-virtual-network"
-  location            = azurerm_resource_group.cosmos_db_resource_group.location
-  resource_group_name = azurerm_resource_group.cosmos_db_resource_group.name
+resource "azurerm_virtual_network" "TerraFailCosmosDB_virtual_network" {
+  name                = "TerraFailCosmosDB_virtual_network"
+  location            = azurerm_resource_group.TerraFailCosmosDB_rg.location
+  resource_group_name = azurerm_resource_group.TerraFailCosmosDB_rg.name
   address_space       = ["10.0.0.0/16"]
 }
 
-resource "azurerm_storage_account" "sac_cosmos_storage" {
-  name                     = "tfendpint"
-  location                 = azurerm_resource_group.cosmos_db_resource_group.location
-  resource_group_name      = azurerm_resource_group.cosmos_db_resource_group.name
+resource "azurerm_storage_account" "TerraFailCosmosDB_storage" {
+  name                     = "TerraFailCosmosDB_storage"
+  location                 = azurerm_resource_group.TerraFailCosmosDB_rg.location
+  resource_group_name      = azurerm_resource_group.TerraFailCosmosDB_rg.name
   account_tier             = "Standard"
   account_replication_type = "LRS"
 
@@ -106,6 +106,6 @@ resource "azurerm_storage_account" "sac_cosmos_storage" {
   }
   network_rules {
     default_action             = "Deny"
-    virtual_network_subnet_ids = [azurerm_subnet.sac_dynamodb_subnet.id]
+    virtual_network_subnet_ids = [azurerm_subnet.TerraFailCosmosDB_subnet.id]
   }
 }

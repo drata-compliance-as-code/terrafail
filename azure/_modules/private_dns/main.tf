@@ -1,12 +1,12 @@
-resource "azurerm_resource_group" "private_dns_zone_rg" {
-  name     = "private-dns-resource-group"
+resource "azurerm_resource_group" "TerraFailDNS_rg" {
+  name     = "TerraFailDNS_rg"
   location = "East US 2"
 }
 
 # ---------------------------------------------------------------------
 # DNS
 # ---------------------------------------------------------------------
-resource "azurerm_private_dns_zone" "sac_private_dns_zone" {
+resource "azurerm_private_dns_zone" "TerraFailDNS" {
   name                = "thisisthedarkside.com"
-  resource_group_name = azurerm_resource_group.private_dns_zone_rg.name
+  resource_group_name = azurerm_resource_group.TerraFailDNS_rg.name
 }

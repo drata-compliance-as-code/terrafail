@@ -1,14 +1,14 @@
 # ---------------------------------------------------------------------
 # Route Table
 # ---------------------------------------------------------------------
-resource "aws_route_table" "sac_testing_route_table" {
-  vpc_id = aws_vpc.route_vpc.id
+resource "aws_route_table" "TerraFailRoute_table" {
+  vpc_id = aws_vpc.TerraFailRoute_vpc.id
   route  = []
 }
 
 # ---------------------------------------------------------------------
 # Network
 # ---------------------------------------------------------------------
-resource "aws_vpc" "route_vpc" {
+resource "aws_vpc" "TerraFailRoute_vpc" {
   cidr_block = "10.0.0.0/16"
 }

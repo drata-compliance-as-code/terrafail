@@ -1,9 +1,9 @@
 # ---------------------------------------------------------------------
 # Certificate Manager
 # ---------------------------------------------------------------------
-resource "google_certificate_manager_certificate" "sac_cert_manager" {
-  name        = "issuance-config-cert"
-  description = "The default cert"
+resource "google_certificate_manager_certificate" "TerraFailCertManager" {
+  name        = "TerraFailCertManager"
+  description = "TerraFailCertManager description"
   scope       = "EDGE_CACHE"
   managed {
     domains = [
@@ -13,21 +13,21 @@ resource "google_certificate_manager_certificate" "sac_cert_manager" {
   }
 }
 
-resource "google_certificate_manager_certificate_map" "sac_cert_map" {
-  name        = "cert-map"
-  description = "My acceptance test certificate map"
+resource "google_certificate_manager_certificate_map" "TerraFailCertManager_map" {
+  name        = "TerraFailCertManager_map"
+  description = "TerraFailCertManager certificate map"
 }
 
-resource "google_certificate_manager_certificate_map_entry" "sac_cert_map_entry" {
-  name         = "cert-map-entry"
-  description  = "My acceptance test certificate map entry"
-  map          = google_certificate_manager_certificate_map.sac_cert_map.name
-  certificates = [google_certificate_manager_certificate.sac_cert_manager.id]
+resource "google_certificate_manager_certificate_map_entry" "TerraFailCertManager_map_entry" {
+  name         = "TerraFailCertManager_map_entry"
+  description  = "TerraFailCertManager map entry"
+  map          = google_certificate_manager_certificate_map.TerraFailCertManager_map.name
+  certificates = [google_certificate_manager_certificate.TerraFailCertManager.id]
   matcher      = "PRIMARY"
 }
 
-resource "google_certificate_manager_dns_authorization" "sac_cert_dns_auth" {
-  name        = "dns-auth"
-  description = "The default dnss"
+resource "google_certificate_manager_dns_authorization" "TerraFailCertManager_dns_authorization" {
+  name        = "TerraFailCertManager_dns_authorization"
+  description = "TerraFailCertManager dns authorization"
   domain      = "subdomain.hashicorptest.com"
 }

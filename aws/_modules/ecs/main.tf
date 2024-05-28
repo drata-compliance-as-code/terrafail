@@ -3,20 +3,20 @@
 # ---------------------------------------------------------------------
 # ECS
 # ---------------------------------------------------------------------
-resource "aws_ecs_cluster" "sac_ecs_cluster" {
-  name = "sac-testing-ecs-cluster"
+resource "aws_ecs_cluster" "TerraFailECS_cluster" {
+  name = "TerraFailECS_cluster"
 }
 
-resource "aws_ecs_service" "sac_ecs_service" {
-  name            = "sac-testing-ecs-service"
-  cluster         = aws_ecs_cluster.sac_ecs_cluster.arn
-  task_definition = aws_ecs_task_definition.sac_ecs_task_definition.arn
+resource "aws_ecs_service" "TerraFailECS_service" {
+  name            = "TerraFailECS_service"
+  cluster         = aws_ecs_cluster.TerraFailECS_cluster.arn
+  task_definition = aws_ecs_task_definition.TerraFailECS_task_definition.arn
   launch_type     = "EC2"
 }
 
-resource "aws_ecs_task_definition" "sac_ecs_task_definition" {
+resource "aws_ecs_task_definition" "TerraFailECS_task_definition" {
 
-  family = "sac-ecs-task-def"
+  family = "TerraFailECS_task_definition"
   container_definitions = jsonencode([{
     "memory" : 32,
     "essential" : true,
@@ -41,7 +41,7 @@ resource "aws_ecs_task_definition" "sac_ecs_task_definition" {
   volume {
     name = "myEfsVolume"
     efs_volume_configuration {
-      file_system_id     = aws_efs_file_system.sac_ecs_efs.id
+      file_system_id     = aws_efs_file_system.TerraFailECS_efs.id
       transit_encryption = "DISABLED"
 
       authorization_config {
@@ -54,8 +54,8 @@ resource "aws_ecs_task_definition" "sac_ecs_task_definition" {
 # ---------------------------------------------------------------------
 # Network
 # ---------------------------------------------------------------------
-resource "aws_subnet" "sac_ecs_subnet" {
-  vpc_id     = aws_vpc.sac_ecs_vpc.id
+resource "aws_subnet" "TerraFailECS_subnet" {
+  vpc_id     = aws_vpc.TerraFailECS_vpc.id
   cidr_block = "10.0.1.0/24"
 
   tags = {
@@ -63,14 +63,14 @@ resource "aws_subnet" "sac_ecs_subnet" {
   }
 }
 
-resource "aws_vpc" "sac_ecs_vpc" {
+resource "aws_vpc" "TerraFailECS_vpc" {
   cidr_block = "10.0.0.0/16"
 }
 
-resource "aws_security_group" "sac_ecs_security_group" {
-  name                   = "sac-ecs-sec-group"
+resource "aws_security_group" "TerraFailECS_security_group" {
+  name                   = "TerraFailECS_security_group"
   description            = "Allow TLS inbound traffic"
-  vpc_id                 = aws_vpc.sac_ecs_vpc.id
+  vpc_id                 = aws_vpc.TerraFailECS_vpc.id
   revoke_rules_on_delete = false
 
   ingress {
@@ -93,7 +93,7 @@ resource "aws_security_group" "sac_ecs_security_group" {
 # ---------------------------------------------------------------------
 # EFS
 # ---------------------------------------------------------------------
-resource "aws_efs_file_system" "sac_ecs_efs" {
+resource "aws_efs_file_system" "TerraFailECS_efs" {
   creation_token = "efs-html"
 
   tags = {

@@ -1,17 +1,17 @@
 
 
-resource "azurerm_resource_group" "sac_storage_account_resource_group" {
-  name     = "sac-storage-account-resource-group"
+resource "azurerm_resource_group" "TerraFailStorage_rg" {
+  name     = "TerraFailStorage_rg"
   location = "East US"
 }
 
 # ---------------------------------------------------------------------
 # Storage Account
 # ---------------------------------------------------------------------
-resource "azurerm_storage_account" "sac_storage_account" {
-  name                              = "sactestingstorageaccount"
-  resource_group_name               = azurerm_resource_group.sac_storage_account_resource_group.name
-  location                          = azurerm_resource_group.sac_storage_account_resource_group.location
+resource "azurerm_storage_account" "TerraFailStorage" {
+  name                              = "TerraFailStorage"
+  resource_group_name               = azurerm_resource_group.TerraFailStorage_resource_group.name
+  location                          = azurerm_resource_group.TerraFailStorage_resource_group.location
   account_tier                      = "Standard"
   account_kind                      = "StorageV2"
   public_network_access_enabled     = true
@@ -27,7 +27,7 @@ resource "azurerm_storage_account" "sac_storage_account" {
 
   identity {
     type         = "UserAssigned"
-    identity_ids = [azurerm_user_assigned_identity.sac_storage_account_identity.id]
+    identity_ids = [azurerm_user_assigned_identity.TerraFailStorage_user_identity.id]
   }
 
   share_properties {
@@ -67,8 +67,8 @@ data "azurerm_client_config" "current" {
 # ---------------------------------------------------------------------
 # Managed Identity
 # ---------------------------------------------------------------------
-resource "azurerm_user_assigned_identity" "sac_storage_account_identity" {
-  location            = azurerm_resource_group.sac_storage_account_resource_group.location
-  name                = "sac-storage-account-id"
-  resource_group_name = azurerm_resource_group.sac_storage_account_resource_group.name
+resource "azurerm_user_assigned_identity" "TerraFailStorage_user_identity" {
+  location            = azurerm_resource_group.TerraFailStorage_resource_group.location
+  name                = "TerraFailStorage_user_identity"
+  resource_group_name = azurerm_resource_group.TerraFailStorage_resource_group.name
 }

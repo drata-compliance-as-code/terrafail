@@ -3,23 +3,23 @@
 # ---------------------------------------------------------------------
 # SecretsManager
 # ---------------------------------------------------------------------
-resource "aws_secretsmanager_secret_rotation" "secrets_manager_rotation" {
-  secret_id           = aws_secretsmanager_secret.sac_secrets_manager_insecure.id
-  rotation_lambda_arn = aws_lambda_function.secure_lambda_SAC.arn
+resource "aws_secretsmanager_secret_rotation" "TerraFailSecretsManager_rotation" {
+  secret_id           = aws_secretsmanager_secret.TerraFailSecretsManager_secret.id
+  rotation_lambda_arn = aws_lambda_function.TerraFailSecretsManager_lambda.arn
 
   rotation_rules {
     automatically_after_days = 90
   }
 }
 
-resource "aws_secretsmanager_secret" "sac_secrets_manager_insecure" {
-  name                    = "sac-testing-secrets-manager-insecure"
-  description             = "Default config2"
+resource "aws_secretsmanager_secret" "TerraFailSecretsManager_secret" {
+  name                    = "TerraFailSecretsManager_secret"
+  description             = "TerraFailSecretsManager_secret description"
   recovery_window_in_days = 10
 }
 
-resource "aws_secretsmanager_secret_policy" "sac_secrets_manager_policy" {
-  secret_arn = aws_secretsmanager_secret.sac_secrets_manager_insecure.arn
+resource "aws_secretsmanager_secret_policy" "TerraFailSecretsManager_policy" {
+  secret_arn = aws_secretsmanager_secret.TerraFailSecretsManager_secret.arn
 
   policy = <<POLICY
 {
@@ -40,31 +40,31 @@ POLICY
 # ---------------------------------------------------------------------
 # Lambda
 # ---------------------------------------------------------------------
-resource "aws_lambda_function" "secure_lambda_SAC" {
-  function_name                  = "secure_lambda_function"
-  role                           = aws_iam_role.lambda_role.arn
+resource "aws_lambda_function" "TerraFailSecretsManager_lambda" {
+  function_name                  = "TerraFailSecretsManager_lambda"
+  role                           = aws_iam_role.TerraFailSecretsManager_role.arn
   filename                       = "my-deployment-package.zip"
   handler                        = "index.handler"
   runtime                        = "dotnet6"
   reserved_concurrent_executions = 2
-  kms_key_arn                    = aws_kms_key.sac_kms_key.arn
+  kms_key_arn                    = aws_kms_key.TerraFailSecretsManager_key.arn
 
   tags = {
-    Name = "foo function"
+    Name = "TerraFailSecretsManager_lambda"
   }
 
   vpc_config {
-    subnet_ids         = [aws_subnet.test-subnet.id]
-    security_group_ids = [aws_security_group.security-group-lambda.id]
+    subnet_ids         = [aws_subnet.TerraFailSecretsManager_subnet.id]
+    security_group_ids = [aws_security_group.TerraFailSecretsManager_security_group.id]
   }
 
   dead_letter_config {
-    target_arn = aws_sns_topic.topic-sns.arn
+    target_arn = aws_sns_topic.TerraFailSecretsManager_topic.arn
   }
 }
 
-resource "aws_lambda_permission" "rotation_lambda_permission" {
-  function_name = aws_lambda_function.secure_lambda_SAC.function_name
+resource "aws_lambda_permission" "TerraFailSecretsManager_permission" {
+  function_name = aws_lambda_function.TerraFailSecretsManager_lambda.function_name
   statement_id  = "AllowExecutionSecretManager"
   action        = "lambda:InvokeFunction"
   principal     = "secretsmanager.amazonaws.com"
@@ -73,15 +73,15 @@ resource "aws_lambda_permission" "rotation_lambda_permission" {
 # ---------------------------------------------------------------------
 # SNS
 # ---------------------------------------------------------------------
-resource "aws_sns_topic" "topic-sns" {
-  name = "user-updates-topic"
+resource "aws_sns_topic" "TerraFailSecretsManager_topic" {
+  name = "TerraFailSecretsManager_topic"
 }
 
 # ---------------------------------------------------------------------
 # Network
 # ---------------------------------------------------------------------
-resource "aws_security_group" "security-group-lambda" {
-  vpc_id = aws_vpc.main.id
+resource "aws_security_group" "TerraFailSecretsManager_security_group" {
+  vpc_id = aws_vpc.TerraFailSecretsManager_vpc.id
   egress {
     from_port        = 0
     to_port          = 0
@@ -91,16 +91,16 @@ resource "aws_security_group" "security-group-lambda" {
   }
 }
 
-resource "aws_subnet" "test-subnet" {
-  vpc_id     = aws_vpc.main.id
+resource "aws_subnet" "TerraFailSecretsManager_subnet" {
+  vpc_id     = aws_vpc.TerraFailSecretsManager_vpc.id
   cidr_block = "10.0.1.0/24"
 
   tags = {
-    Name = "Main"
+    Name = "TerraFailSecretsManager_vpc"
   }
 }
 
-resource "aws_vpc" "main" {
+resource "aws_vpc" "TerraFailSecretsManager_vpc" {
   cidr_block = "10.0.0.0/16"
 }
 
@@ -108,8 +108,8 @@ resource "aws_vpc" "main" {
 # ---------------------------------------------------------------------
 # IAM
 # ---------------------------------------------------------------------
-resource "aws_iam_role" "lambda_role" {
-  name               = "lambda_role"
+resource "aws_iam_role" "TerraFailSecretsManager_role" {
+  name               = "TerraFailSecretsManager_role"
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -128,9 +128,9 @@ resource "aws_iam_role" "lambda_role" {
 EOF
 }
 
-resource "aws_iam_role_policy" "test_policy" {
-  name = "test_policy"
-  role = aws_iam_role.lambda_role.id
+resource "aws_iam_role_policy" "TerraFailSecretsManager_iam_policy" {
+  name = "TerraFailSecretsManager_iam_policy"
+  role = aws_iam_role.TerraFailSecretsManager_role.id
   policy = jsonencode({
     Version = "2012-10-17",
     Statement = [
@@ -144,7 +144,7 @@ resource "aws_iam_role_policy" "test_policy" {
 
         ]
         Effect   = "Allow",
-        Resource = "${aws_secretsmanager_secret.sac_secrets_manager_insecure.arn}"
+        Resource = "${aws_secretsmanager_secret.TerraFailSecretsManager_secret.arn}"
       },
     ]
   })
@@ -153,12 +153,12 @@ resource "aws_iam_role_policy" "test_policy" {
 # ---------------------------------------------------------------------
 # KMS
 # ---------------------------------------------------------------------
-resource "aws_kms_key" "sac_kms_key" {
-  description             = "This key is used to encrypt dynamoDB objects"
+resource "aws_kms_key" "TerraFailSecretsManager_key" {
+  description             = "TerraFailSecretsManager key description"
   deletion_window_in_days = 10
   enable_key_rotation     = true
   key_usage               = "ENCRYPT_DECRYPT"
   tags = {
-    Name = "kms-key-1"
+    Name = "TerraFailSecretsManager_key"
   }
 }

@@ -3,9 +3,9 @@
 # ---------------------------------------------------------------------
 # ELBv1
 # ---------------------------------------------------------------------
-resource "aws_elb" "sac_elbv1" {
-  name     = "sac-elbv1"
-  subnets  = [aws_subnet.elbv1_subnet1.id]
+resource "aws_elb" "TerraFailELB" {
+  name     = "TerraFailELB"
+  subnets  = [aws_subnet.TerraFailELB_subnet.id]
   internal = false
 
   listener {
@@ -32,10 +32,10 @@ resource "aws_elb" "sac_elbv1" {
 # ---------------------------------------------------------------------
 # Network
 # ---------------------------------------------------------------------
-resource "aws_security_group" "elbv1_security_group" {
-  name                   = "elbv1-security-group"
+resource "aws_security_group" "TerraFailELB_security_group" {
+  name                   = "TerraFailELB_security_group"
   description            = "Allow TLS inbound traffic"
-  vpc_id                 = aws_vpc.elbv1_vpc.id
+  vpc_id                 = aws_vpc.TerraFailELB_vpc.id
   revoke_rules_on_delete = false
 
   ingress {
@@ -55,16 +55,16 @@ resource "aws_security_group" "elbv1_security_group" {
   }
 }
 
-resource "aws_subnet" "elbv1_subnet1" {
-  vpc_id            = aws_vpc.elbv1_vpc.id
+resource "aws_subnet" "TerraFailELB_subnet" {
+  vpc_id            = aws_vpc.TerraFailELB_vpc.id
   cidr_block        = "10.0.2.0/24"
   availability_zone = "us-east-2b"
 
   tags = {
-    Name = "Main"
+    Name = "TerraFailELB_subnet"
   }
 }
 
-resource "aws_vpc" "elbv1_vpc" {
+resource "aws_vpc" "TerraFailELB_vpc" {
   cidr_block = "10.0.0.0/16"
 }

@@ -1,32 +1,32 @@
 # ---------------------------------------------------------------------
 # Compute Subnetwork
 # ---------------------------------------------------------------------
-resource "google_compute_subnetwork" "sac_compute_subnetwork" {
-  name          = "test-subnetwork"
+resource "google_compute_subnetwork" "TerraFailComputeSubnetwork" {
+  name          = "TerraFailComputeSubnetwork"
   ip_cidr_range = "10.2.0.0/16"
   region        = "us-central1"
-  network       = google_compute_network.custom-test.id
+  network       = google_compute_network.TerraFailComputeSubnetwork_network.id
   purpose       = "INTERNAL_HTTPS_LOAD_BALANCER"
   secondary_ip_range {
-    range_name    = "tf-test-secondary-range-update1"
+    range_name    = "TerraFailComputeSubnetwork_ip_range"
     ip_cidr_range = "192.168.10.0/24"
   }
 }
 
-resource "google_compute_subnetwork_iam_binding" "sac_compute_subnetwork_binding" {
-  project    = google_compute_subnetwork.sac_compute_subnetwork.project
-  region     = google_compute_subnetwork.sac_compute_subnetwork.region
-  subnetwork = google_compute_subnetwork.sac_compute_subnetwork.name
+resource "google_compute_subnetwork_iam_binding" "TerraFailComputeSubnetwork_iam_binding" {
+  project    = google_compute_subnetwork.TerraFailComputeSubnetwork.project
+  region     = google_compute_subnetwork.TerraFailComputeSubnetwork.region
+  subnetwork = google_compute_subnetwork.TerraFailComputeSubnetwork.name
   role       = "roles/compute.networkUser"
   members = [
     "allUsers",
   ]
 }
 
-resource "google_compute_subnetwork_iam_member" "member" {
-  project    = google_compute_subnetwork.sac_compute_subnetwork.project
-  region     = google_compute_subnetwork.sac_compute_subnetwork.region
-  subnetwork = google_compute_subnetwork.sac_compute_subnetwork.name
+resource "google_compute_subnetwork_iam_member" "TerraFailComputeSubnetwork_iam_member" {
+  project    = google_compute_subnetwork.TerraFailComputeSubnetwork.project
+  region     = google_compute_subnetwork.TerraFailComputeSubnetwork.region
+  subnetwork = google_compute_subnetwork.TerraFailComputeSubnetwork.name
   role       = "roles/compute.networkUser"
   member     = "allUsers"
 }
@@ -34,7 +34,7 @@ resource "google_compute_subnetwork_iam_member" "member" {
 # ---------------------------------------------------------------------
 # Network
 # ---------------------------------------------------------------------
-resource "google_compute_network" "custom-test" {
-  name                    = "test-network"
+resource "google_compute_network" "TerraFailComputeSubnetwork_network" {
+  name                    = "TerraFailComputeSubnetwork_network"
   auto_create_subnetworks = false
 }

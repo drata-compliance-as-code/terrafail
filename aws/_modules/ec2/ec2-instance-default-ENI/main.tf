@@ -3,12 +3,12 @@
 # ---------------------------------------------------------------------
 # EC2-Instance
 # ---------------------------------------------------------------------
-resource "aws_instance" "aws_ec2_instance_sac_default" {
+resource "aws_instance" "TerraFailEC2Instance" {
   ami       = data.aws_ami.ubuntu.id
-  subnet_id = aws_subnet.ec2_instance_subnet_default.id
+  subnet_id = aws_subnet.TerraFailEC2Instance_subnet.id
 
   launch_template {
-    id = aws_launch_template.aws_ec2_launch_template_sac_default.id
+    id = aws_launch_template.TerraFailEC2Instance_launch_template.id
   }
 
   associate_public_ip_address = true
@@ -41,8 +41,8 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"]
 }
 
-resource "aws_launch_template" "aws_ec2_launch_template_sac_default" {
-  name                                 = "ec2-instance-launch-template-sac-default"
+resource "aws_launch_template" "TerraFailEC2Instance_launch_template" {
+  name                                 = "TerraFailEC2Instance_launch_template"
   default_version                      = 1
   disable_api_stop                     = false
   disable_api_termination              = false
@@ -65,8 +65,8 @@ resource "aws_launch_template" "aws_ec2_launch_template_sac_default" {
 # ---------------------------------------------------------------------
 # Network
 # ---------------------------------------------------------------------
-resource "aws_subnet" "ec2_instance_subnet_default" {
-  vpc_id     = aws_vpc.ec2_instance_vpc_default.id
+resource "aws_subnet" "TerraFailEC2Instance_subnet" {
+  vpc_id     = aws_vpc.TerraFailEC2Instance_vpc.id
   cidr_block = "10.0.1.0/24"
 
   tags = {
@@ -74,14 +74,14 @@ resource "aws_subnet" "ec2_instance_subnet_default" {
   }
 }
 
-resource "aws_vpc" "ec2_instance_vpc_default" {
+resource "aws_vpc" "TerraFailEC2Instance_vpc" {
   cidr_block = "10.0.0.0/16"
 }
 
-resource "aws_security_group" "ec2_instance_security_group_default" {
-  name                   = "ec2-instance-security-group-default"
+resource "aws_security_group" "TerraFailEC2Instance_security_group" {
+  name                   = "TerraFailEC2Instance_security_group"
   description            = "Allow TLS inbound traffic"
-  vpc_id                 = aws_vpc.ec2_instance_vpc_default.id
+  vpc_id                 = aws_vpc.TerraFailEC2Instance_vpc.id
   revoke_rules_on_delete = false
 
   ingress {

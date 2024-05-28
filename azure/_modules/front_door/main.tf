@@ -1,30 +1,30 @@
 
 
-resource "azurerm_resource_group" "front_door_rg" {
-  name     = "sac-cdn-front-door-resource-group"
+resource "azurerm_resource_group" "TerraFailFrontDoor_rg" {
+  name     = "TerraFailFrontDoor_rg"
   location = "East US 2"
 }
 
 # ---------------------------------------------------------------------
 # FrontDoor
 # ---------------------------------------------------------------------
-resource "azurerm_cdn_frontdoor_profile" "sac_testing_frontdoor_profile" {
-  name                = "sac-frontdoor-cdn-profile"
-  resource_group_name = azurerm_resource_group.front_door_rg.name
+resource "azurerm_cdn_frontdoor_profile" "TerraFailFrontDoor_profile" {
+  name                = "TerraFailFrontDoor_profile"
+  resource_group_name = azurerm_resource_group.TerraFailFrontDoor_rg.name
   sku_name            = "Premium_AzureFrontDoor"
 }
 
-resource "azurerm_cdn_frontdoor_security_policy" "sac_frontdoor_security_policy" {
-  name                     = "sac-testing-fd-security-policy"
-  cdn_frontdoor_profile_id = azurerm_cdn_frontdoor_profile.sac_testing_frontdoor_profile.id
+resource "azurerm_cdn_frontdoor_security_policy" "TerraFailFrontDoor_policy" {
+  name                     = "TerraFailFrontDoor_policy"
+  cdn_frontdoor_profile_id = azurerm_cdn_frontdoor_profile.TerraFailFrontDoor_profile.id
 
   security_policies {
     firewall {
-      cdn_frontdoor_firewall_policy_id = azurerm_cdn_frontdoor_firewall_policy.sac_frontdoor_firewall_policy.id
+      cdn_frontdoor_firewall_policy_id = azurerm_cdn_frontdoor_firewall_policy.TerraFailFrontDoor_firewall_policy.id
 
       association {
         domain {
-          cdn_frontdoor_domain_id = azurerm_cdn_frontdoor_endpoint.sac_frontdoor_endpoint.id
+          cdn_frontdoor_domain_id = azurerm_cdn_frontdoor_endpoint.TerraFailFrontDoor_endpoint.id
         }
         patterns_to_match = ["/*"]
       }
@@ -32,15 +32,15 @@ resource "azurerm_cdn_frontdoor_security_policy" "sac_frontdoor_security_policy"
   }
 }
 
-resource "azurerm_cdn_frontdoor_firewall_policy" "sac_frontdoor_firewall_policy" {
-  name                = "examplecdnfdwafpolicy"
-  resource_group_name = azurerm_resource_group.front_door_rg.name
-  sku_name            = azurerm_cdn_frontdoor_profile.sac_testing_frontdoor_profile.sku_name
+resource "azurerm_cdn_frontdoor_firewall_policy" "TerraFailFrontDoor_firewall_policy" {
+  name                = "TerraFailFrontDoor_firewall_policy"
+  resource_group_name = azurerm_resource_group.TerraFailFrontDoor_rg.name
+  sku_name            = azurerm_cdn_frontdoor_profile.TerraFailFrontDoor_profile.sku_name
   enabled             = true
   mode                = "Detection"
 
   depends_on = [
-    azurerm_cdn_frontdoor_profile.sac_testing_frontdoor_profile
+    azurerm_cdn_frontdoor_profile.TerraFailFrontDoor_profile
   ]
 
   custom_rule {
@@ -84,12 +84,12 @@ resource "azurerm_cdn_frontdoor_firewall_policy" "sac_frontdoor_firewall_policy"
   }
 }
 
-resource "azurerm_cdn_frontdoor_endpoint" "sac_frontdoor_endpoint" {
-  name                     = "sac-cdn-frontdoor-endpoint"
-  cdn_frontdoor_profile_id = azurerm_cdn_frontdoor_profile.sac_testing_frontdoor_profile.id
+resource "azurerm_cdn_frontdoor_endpoint" "TerraFailFrontDoor_endpoint" {
+  name                     = "TerraFailFrontDoor_endpoint"
+  cdn_frontdoor_profile_id = azurerm_cdn_frontdoor_profile.TerraFailFrontDoor_profile.id
 
   tags = {
-    ENV = "testing"
+    ENV = "sandbox"
   }
 }
 

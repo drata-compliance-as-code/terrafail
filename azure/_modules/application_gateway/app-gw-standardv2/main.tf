@@ -3,10 +3,10 @@
 # ---------------------------------------------------------------------
 # Application Gateway
 # ---------------------------------------------------------------------
-resource "azurerm_application_gateway" "sac_application_gateway_standardv2_predefined" {
-  name                = "sac-application-gateway"
-  resource_group_name = azurerm_resource_group.app_gateway_resource_group.name
-  location            = azurerm_resource_group.app_gateway_resource_group.location
+resource "azurerm_application_gateway" "TerraFailAppGateway" {
+  name                = "TerraFailAppGateway"
+  resource_group_name = azurerm_resource_group.TerraFailAppGateway_rg.name
+  location            = azurerm_resource_group.TerraFailAppGateway_rg.location
 
   identity {
     type         = "UserAssigned"
@@ -28,7 +28,7 @@ resource "azurerm_application_gateway" "sac_application_gateway_standardv2_prede
   }
 
   gateway_ip_configuration {
-    name      = "sac-testing-gateway-config"
+    name      = "TerraFailAppGateway_ip_config"
     subnet_id = azurerm_subnet.app_gateway_subnet.id
   }
 
@@ -62,7 +62,7 @@ resource "azurerm_application_gateway" "sac_application_gateway_standardv2_prede
   }
 
   request_routing_rule {
-    name                       = "demo-test-routing-rule"
+    name                       = "TerraFailAppGateway_routing_rule"
     rule_type                  = "Basic"
     http_listener_name         = "http-listener-1"
     backend_address_pool_name  = "backend-address-pool"

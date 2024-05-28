@@ -1,21 +1,15 @@
-provider "google" {
-  credentials = file("")
-  project     = "tfcloud-testing"
-  region      = "us-east1"
-}
-
 # ---------------------------------------------------------------------
 # App Engine
 # ---------------------------------------------------------------------
-resource "google_app_engine_application" "sac_app_engine" {
+resource "google_app_engine_application" "TerraFailAppEngine" {
   location_id = "us-east1"
-  project     = "tfcloud-testing"
+  project     = "terrafail"
 }
 
-resource "google_app_engine_flexible_app_version" "sac_flexible_app" {
-  project    = "tfcloud-testing"
+resource "google_app_engine_flexible_app_version" "TerraFailAppEngine_version_flex" {
+  project    = "terrafail"
   version_id = "v2"
-  service    = google_app_engine_application.sac_app_engine.id
+  service    = google_app_engine_application.TerraFailAppEngine.id
   runtime    = "java8"
   automatic_scaling {
     cool_down_period = "120s"
@@ -38,10 +32,10 @@ resource "google_app_engine_flexible_app_version" "sac_flexible_app" {
   }
 }
 
-resource "google_app_engine_standard_app_version" "sac_standard_app" {
-  project    = "tfcloud-testing"
+resource "google_app_engine_standard_app_version" "TerraFailAppEngine_version_standard" {
+  project    = "terrafail"
   version_id = "v1"
-  service    = google_app_engine_application.sac_app_engine.id
+  service    = google_app_engine_application.TerraFailAppEngine.id
   runtime    = "java8"
   entrypoint {
     shell = "python ./app.py"
@@ -56,8 +50,8 @@ resource "google_app_engine_standard_app_version" "sac_standard_app" {
   }
 }
 
-resource "google_app_engine_firewall_rule" "sac_app_firewall_rule" {
-  project      = "tfcloud-testing"
+resource "google_app_engine_firewall_rule" "TerraFailAppEngine_firewall_rule" {
+  project      = "terrafail"
   action       = "ALLOW"
   source_range = "*"
 }

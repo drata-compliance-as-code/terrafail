@@ -1,21 +1,21 @@
 
 
-resource "azurerm_resource_group" "app_gateway_resource_group" {
-  name     = "sac-app-gateway-group"
+resource "azurerm_resource_group" "TerraFailAppGateway_rg" {
+  name     = "TerraFailAppGateway_rg"
   location = "East US 2"
 }
 
 # ---------------------------------------------------------------------
 # Application Gateway
 # ---------------------------------------------------------------------
-resource "azurerm_application_gateway" "sac_application_gateway_wafv2" {
-  name                = "sac-application-gateway"
-  resource_group_name = azurerm_resource_group.app_gateway_resource_group.name
-  location            = azurerm_resource_group.app_gateway_resource_group.location
+resource "azurerm_application_gateway" "TerraFailAppGateway" {
+  name                = "TerraFailAppGateway"
+  resource_group_name = azurerm_resource_group.TerraFailAppGateway_rg.name
+  location            = azurerm_resource_group.TerraFailAppGateway_rg.location
 
   identity {
     type         = "UserAssigned"
-    identity_ids = [azurerm_user_assigned_identity.app_gateway_identity.id]
+    identity_ids = [azurerm_user_assigned_identity.TerraFailAppGateway_user_identity.id]
   }
 
   sku {
@@ -42,8 +42,8 @@ resource "azurerm_application_gateway" "sac_application_gateway_wafv2" {
   }
 
   gateway_ip_configuration {
-    name      = "sac-testing-gateway-config"
-    subnet_id = azurerm_subnet.app_gateway_subnet.id
+    name      = "TerraFailAppGateway_ip_config"
+    subnet_id = azurerm_subnet.TerraFailAppGateway_subnet.id
   }
 
   backend_http_settings {
@@ -76,7 +76,7 @@ resource "azurerm_application_gateway" "sac_application_gateway_wafv2" {
   }
 
   request_routing_rule {
-    name                       = "demo-test-routing-rule"
+    name                       = "TerraFailAppGateway_routing_rule"
     rule_type                  = "Basic"
     http_listener_name         = "http-listener-1"
     backend_address_pool_name  = "backend-address-pool"
@@ -92,10 +92,10 @@ resource "azurerm_application_gateway" "sac_application_gateway_wafv2" {
 # ---------------------------------------------------------------------
 # Managed Identity
 # ---------------------------------------------------------------------
-resource "azurerm_user_assigned_identity" "app_gateway_identity" {
-  location            = azurerm_resource_group.app_gateway_resource_group.location
-  name                = "sac-app-gw-identity"
-  resource_group_name = azurerm_resource_group.app_gateway_resource_group.name
+resource "azurerm_user_assigned_identity" "TerraFailAppGateway_user_identity" {
+  location            = azurerm_resource_group.TerraFailAppGateway_rg.location
+  name                = "TerraFailAppGateway_user_identity"
+  resource_group_name = azurerm_resource_group.TerraFailAppGateway_rg.name
 }
 
 data "azurerm_client_config" "current" {
@@ -104,24 +104,24 @@ data "azurerm_client_config" "current" {
 # ---------------------------------------------------------------------
 # Network
 # ---------------------------------------------------------------------
-resource "azurerm_subnet" "app_gateway_subnet" {
-  name                 = "sac-app-gateway-subnet"
-  resource_group_name  = azurerm_resource_group.app_gateway_resource_group.name
-  virtual_network_name = azurerm_virtual_network.app_gateway_virtual_network.name
+resource "azurerm_subnet" "TerraFailAppGateway_subnet" {
+  name                 = "TerraFailAppGateway_subnet"
+  resource_group_name  = azurerm_resource_group.TerraFailAppGateway_rg.name
+  virtual_network_name = azurerm_virtual_network.TerraFailAppGateway_virtual_network.name
   address_prefixes     = ["10.0.1.0/24"]
 }
 
-resource "azurerm_virtual_network" "app_gateway_virtual_network" {
-  name                = "sac-app-gw-virtual-network"
-  location            = azurerm_resource_group.app_gateway_resource_group.location
-  resource_group_name = azurerm_resource_group.app_gateway_resource_group.name
+resource "azurerm_virtual_network" "TerraFailAppGateway_virtual_network" {
+  name                = "TerraFailAppGateway_virtual_network"
+  location            = azurerm_resource_group.TerraFailAppGateway_rg.location
+  resource_group_name = azurerm_resource_group.TerraFailAppGateway_rg.name
   address_space       = ["10.0.0.0/16"]
 }
 
-resource "azurerm_public_ip" "app_gateway_ip_config" {
-  name                = "demo-app-gateway-ipconfig"
-  resource_group_name = azurerm_resource_group.app_gateway_resource_group.name
-  location            = azurerm_resource_group.app_gateway_resource_group.location
+resource "azurerm_public_ip" "TerraFailAppGateway_ip_config" {
+  name                = "TerraFailAppGateway_ip_config"
+  resource_group_name = azurerm_resource_group.TerraFailAppGateway_rg.name
+  location            = azurerm_resource_group.TerraFailAppGateway_rg.location
   allocation_method   = "Static"
   sku                 = "Standard"
   zones               = ["2"]

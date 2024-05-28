@@ -3,17 +3,17 @@
 # ---------------------------------------------------------------------
 # RDS
 # ---------------------------------------------------------------------
-resource "aws_db_instance" "sac_db_instance" {
-  db_name                             = "sacDatabaseName"
-  identifier                          = "sac-testing-db-instance"
+resource "aws_db_instance" "TerraFailDB_instance" {
+  db_name                             = "TerraFailDB_instance"
+  identifier                          = "TerraFailDB_instance"
   allocated_storage                   = 10
   instance_class                      = "db.t3.micro"
-  username                            = "sacRDSInstanceName"
+  username                            = "terrafailusername"
   password                            = "randomPasswordThatFollowstheCharLimit"
   engine                              = "mysql"
   skip_final_snapshot                 = true
   final_snapshot_identifier           = "DELETE"
-  db_subnet_group_name                = aws_db_subnet_group.sac_rds_subnet_group.name
+  db_subnet_group_name                = aws_db_subnet_group.TerraFailDB_subnet_group.name
   deletion_protection                 = false
   engine_version                      = "8.0"
   iam_database_authentication_enabled = false
@@ -22,25 +22,25 @@ resource "aws_db_instance" "sac_db_instance" {
   storage_encrypted                   = false
 }
 
-resource "aws_db_proxy_default_target_group" "sac_proxy_target_group" {
-  db_proxy_name = aws_db_proxy.sac_rds_db_proxy.name
+resource "aws_db_proxy_default_target_group" "TerraFailDB_proxy_target_group" {
+  db_proxy_name = aws_db_proxy.TerraFailDB_proxy.name
 }
 
-resource "aws_db_proxy_target" "sac_instance_proxy_target" {
-  db_proxy_name          = aws_db_proxy.sac_rds_db_proxy.name
-  target_group_name      = aws_db_proxy_default_target_group.sac_proxy_target_group.name
-  db_instance_identifier = aws_db_instance.sac_db_instance.id
+resource "aws_db_proxy_target" "TerraFailDB_proxy_target" {
+  db_proxy_name          = aws_db_proxy.TerraFailDB_proxy.name
+  target_group_name      = aws_db_proxy_default_target_group.TerraFailDB_proxy_target_group.name
+  db_instance_identifier = aws_db_instance.TerraFailDB_instance.id
 }
 
-resource "aws_db_option_group" "sac_rds_option_group" {
-  name                     = "sac-rds-option-group"
+resource "aws_db_option_group" "TerraFailDB_option_group" {
+  name                     = "TerraFailDB_option_group"
   option_group_description = "Terraform Option Group"
   engine_name              = "mysql"
   major_engine_version     = "8.0"
 }
 
-resource "aws_db_parameter_group" "sac_rds_parameter_group" {
-  name   = "sac-rds-param-group"
+resource "aws_db_parameter_group" "TerraFailDB_parameter_group" {
+  name   = "TerraFailDB_parameter_group"
   family = "mysql5.6"
 
   parameter {
@@ -49,72 +49,72 @@ resource "aws_db_parameter_group" "sac_rds_parameter_group" {
   }
 }
 
-resource "aws_db_proxy" "sac_rds_db_proxy" {
-  name           = "sac-rds-db-proxy"
-  role_arn       = aws_iam_role.db_proxy_role.arn
-  vpc_subnet_ids = [aws_subnet.rds_subnet_1.id, aws_subnet.rds_subnet_2.id]
+resource "aws_db_proxy" "TerraFailDB_proxy" {
+  name           = "TerraFailDB_proxy"
+  role_arn       = aws_iam_role.TerraFailDB_role.arn
+  vpc_subnet_ids = [aws_subnet.TerraFailDB_subnet.id, aws_subnet.TerraFailDB_subnet_2.id]
   engine_family  = "MYSQL"
   debug_logging  = true
   require_tls    = false
 
   auth {
-    secret_arn = aws_secretsmanager_secret.sac_secrets_manager.arn
+    secret_arn = aws_secretsmanager_secret.TerraFailDB_secret.arn
     iam_auth   = "DISABLED"
   }
 }
 
-resource "aws_db_subnet_group" "sac_rds_subnet_group" {
-  name        = "sac-rds-subnet-group"
+resource "aws_db_subnet_group" "TerraFailDB_subnet_group" {
+  name        = "TerraFailDB_subnet_group"
   description = "Our main group of subnets"
-  subnet_ids  = [aws_subnet.rds_subnet_1.id, aws_subnet.rds_subnet_2.id]
+  subnet_ids  = [aws_subnet.TerraFailDB_subnet.id, aws_subnet.TerraFailDB_subnet_2.id]
 }
 
 # ---------------------------------------------------------------------
 # Network
 # ---------------------------------------------------------------------
-resource "aws_vpc" "rds_vpc" {
+resource "aws_vpc" "TerraFailDB_vpc" {
   cidr_block = "10.0.0.0/16"
   tags = {
-    Name = "sac-rds-vpc"
+    Name = "TerraFailDB_vpc"
   }
 }
 
-resource "aws_internet_gateway" "public_rds_gateway" {
+resource "aws_internet_gateway" "TerraFailDB_gateway" {
   tags = {
-    Name = "main"
+    Name = "TerraFailDB_gateway"
   }
 }
 
-resource "aws_internet_gateway_attachment" "public_rds_gateway_attachment" {
-  internet_gateway_id = aws_internet_gateway.public_rds_gateway.id
-  vpc_id              = aws_vpc.rds_vpc.id
+resource "aws_internet_gateway_attachment" "TerraFailDB_gateway_attachment" {
+  internet_gateway_id = aws_internet_gateway.TerraFailDB_gateway.id
+  vpc_id              = aws_vpc.TerraFailDB_vpc.id
 }
 
-resource "aws_subnet" "rds_subnet_1" {
-  vpc_id            = aws_vpc.rds_vpc.id
+resource "aws_subnet" "TerraFailDB_subnet" {
+  vpc_id            = aws_vpc.TerraFailDB_vpc.id
   cidr_block        = "10.0.0.0/24"
   availability_zone = "us-east-2c"
 
   tags = {
-    Name = "Main"
+    Name = "TerraFailDB_subnet"
   }
 }
 
-resource "aws_subnet" "rds_subnet_2" {
-  vpc_id            = aws_vpc.rds_vpc.id
+resource "aws_subnet" "TerraFailDB_subnet_2" {
+  vpc_id            = aws_vpc.TerraFailDB_vpc.id
   cidr_block        = "10.0.2.0/24"
   availability_zone = "us-east-2b"
 
   tags = {
-    Name = "Main"
+    Name = "TerraFailDB_subnet_2"
   }
 }
 
 # ---------------------------------------------------------------------
 # IAM
 # ---------------------------------------------------------------------
-resource "aws_iam_role" "db_proxy_role" {
-  name = "rds_role"
+resource "aws_iam_role" "TerraFailDB_role" {
+  name = "TerraFailDB_role"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -129,17 +129,17 @@ resource "aws_iam_role" "db_proxy_role" {
     ]
   })
   tags = {
-    key = "tag-value"
+    key = "TerraFailDB_role"
   }
 }
 
 # ---------------------------------------------------------------------
 # SecretsManager
 # ---------------------------------------------------------------------
-resource "aws_secretsmanager_secret" "sac_secrets_manager" {
-  name                    = "sac-testing-secrets-manager-02"
-  description             = "Default config2"
-  kms_key_id              = aws_kms_key.sac_kms_key.id
+resource "aws_secretsmanager_secret" "TerraFailDB_secret" {
+  name                    = "TerraFailDB_secret"
+  description             = "TerraFailDB_secret description"
+  kms_key_id              = aws_kms_key.TerraFailDB_key.id
   recovery_window_in_days = 10
 
   tags = {
@@ -147,8 +147,8 @@ resource "aws_secretsmanager_secret" "sac_secrets_manager" {
   }
 }
 
-resource "aws_secretsmanager_secret_policy" "sac_secrets_manager_policy" {
-  secret_arn = aws_secretsmanager_secret.sac_secrets_manager.arn
+resource "aws_secretsmanager_secret_policy" "TerraFailDB_secret_policy" {
+  secret_arn = aws_secretsmanager_secret.TerraFailDB_secret.arn
 
   policy = <<POLICY
 {
@@ -169,13 +169,13 @@ POLICY
 # ---------------------------------------------------------------------
 # KMS
 # ---------------------------------------------------------------------
-resource "aws_kms_key" "sac_kms_key" {
-  description             = "This key is used to encrypt dynamoDB objects"
+resource "aws_kms_key" "TerraFailDB_key" {
+  description             = "TerraFailDB key description"
   deletion_window_in_days = 10
   enable_key_rotation     = true
   key_usage               = "ENCRYPT_DECRYPT"
 
   tags = {
-    Name = "kms-key-1"
+    Name = "TerraFailDB_key"
   }
 }

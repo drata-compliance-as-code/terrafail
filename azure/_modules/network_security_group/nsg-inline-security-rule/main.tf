@@ -1,20 +1,20 @@
 
 
-resource "azurerm_resource_group" "sac_nsg_resource_group" {
-  name     = "sac-testing-nsg-resource-group"
+resource "azurerm_resource_group" "TerraFailNSG_rg" {
+  name     = "TerraFailNSG_rg"
   location = "East US 2"
 }
 
 # ---------------------------------------------------------------------
 # Network
 # ---------------------------------------------------------------------
-resource "azurerm_network_security_group" "sac_network_security_group_inbound" {
-  name                = "sac-testing-network-security-group-inbound"
-  location            = azurerm_resource_group.sac_nsg_resource_group.location
-  resource_group_name = azurerm_resource_group.sac_nsg_resource_group.name
+resource "azurerm_network_security_group" "TerraFailNSG_inbound" {
+  name                = "TerraFailNSG_inbound"
+  location            = azurerm_resource_group.TerraFailNSG_rg.location
+  resource_group_name = azurerm_resource_group.TerraFailNSG_rg.name
 
   security_rule {
-    name                       = "sac-testing-network-security-rule-inbound"
+    name                       = "TerraFailNSG_inbound"
     priority                   = 100
     direction                  = "Inbound"
     access                     = "Allow"
@@ -26,13 +26,13 @@ resource "azurerm_network_security_group" "sac_network_security_group_inbound" {
   }
 }
 
-resource "azurerm_network_security_group" "sac_network_security_group_outbound" {
-  name                = "sac-testing-network-security-group-outbound"
-  location            = azurerm_resource_group.sac_nsg_resource_group.location
-  resource_group_name = azurerm_resource_group.sac_nsg_resource_group.name
+resource "azurerm_network_security_group" "TerraFailNSG_outbound" {
+  name                = "TerraFailNSG_outbound"
+  location            = azurerm_resource_group.TerraFailNSG_rg.location
+  resource_group_name = azurerm_resource_group.TerraFailNSG_rg.name
 
   security_rule {
-    name                       = "sac-testing-network-security-rule-outbound"
+    name                       = "TerraFailNSG_outbound_rule"
     priority                   = 100
     direction                  = "Outbound"
     access                     = "Allow"

@@ -1,17 +1,17 @@
 
 
-resource "azurerm_resource_group" "sac_vm_group" {
-  name     = "sac-vm-group-0"
+resource "azurerm_resource_group" "TerraFailVM_rg" {
+  name     = "TerraFailVM_rg"
   location = "East US"
 }
 
 # ---------------------------------------------------------------------
 # Virtual Machine
 # ---------------------------------------------------------------------
-resource "azurerm_linux_virtual_machine" "sac_linux_vm" {
-  name                            = "sac-testing-linux-vm"
-  resource_group_name             = azurerm_resource_group.sac_vm_group.name
-  location                        = azurerm_resource_group.sac_vm_group.location
+resource "azurerm_linux_virtual_machine" "TerraFailVM_linux" {
+  name                            = "TerraFailVM_linux"
+  resource_group_name             = azurerm_resource_group.TerraFailVM_rg.name
+  location                        = azurerm_resource_group.TerraFailVM_rg.location
   size                            = "Standard_A1_v2"
   admin_username                  = "adminuser"
   admin_password                  = "$uper$ecretP@$$w0rd"
@@ -20,7 +20,7 @@ resource "azurerm_linux_virtual_machine" "sac_linux_vm" {
 
 
   network_interface_ids = [
-    azurerm_network_interface.sac_vm_network_interface.id,
+    azurerm_network_interface.TerraFailVM_linux_network_interface.id,
   ]
   encryption_at_host_enabled = false
 
@@ -37,17 +37,17 @@ resource "azurerm_linux_virtual_machine" "sac_linux_vm" {
   }
 }
 
-resource "azurerm_windows_virtual_machine" "sac_windows_vm" {
-  name                = "sac-windows-vm"
-  resource_group_name = azurerm_resource_group.sac_vm_group.name
-  location            = azurerm_resource_group.sac_vm_group.location
+resource "azurerm_windows_virtual_machine" "TerraFailVM_windows" {
+  name                = "TerraFailVM_windows"
+  resource_group_name = azurerm_resource_group.TerraFailVM_rg.name
+  location            = azurerm_resource_group.TerraFailVM_rg.location
   size                = "Standard_DS2_v2"
   admin_username      = "adminuser"
   admin_password      = "$uper$ecretP@$$w0rd"
   secure_boot_enabled = false
 
   network_interface_ids = [
-    azurerm_network_interface.sac_windows_network_interface.id,
+    azurerm_network_interface.TerraFailVM_windows_network_interface.id,
   ]
   encryption_at_host_enabled = false
 
@@ -71,48 +71,48 @@ resource "azurerm_windows_virtual_machine" "sac_windows_vm" {
 # ---------------------------------------------------------------------
 # Network
 # ---------------------------------------------------------------------
-resource "azurerm_virtual_network" "sac_vm_virtual_network" {
-  name                = "example-network"
+resource "azurerm_virtual_network" "TerraFailVM_virtual_network" {
+  name                = "TerraFailVM_virtual_network"
   address_space       = ["10.0.0.0/16"]
-  location            = azurerm_resource_group.sac_vm_group.location
-  resource_group_name = azurerm_resource_group.sac_vm_group.name
+  location            = azurerm_resource_group.TerraFailVM_rg.location
+  resource_group_name = azurerm_resource_group.TerraFailVM_rg.name
 }
 
-resource "azurerm_subnet" "sac_vm_subnet" {
-  name                 = "internal"
-  resource_group_name  = azurerm_resource_group.sac_vm_group.name
-  virtual_network_name = azurerm_virtual_network.sac_vm_virtual_network.name
+resource "azurerm_subnet" "TerraFailVM_subnet" {
+  name                 = "TerraFailVM_subnet"
+  resource_group_name  = azurerm_resource_group.TerraFailVM_rg.name
+  virtual_network_name = azurerm_virtual_network.TerraFailVM_virtual_network.name
   address_prefixes     = ["10.0.2.0/24"]
 }
 
-resource "azurerm_network_interface" "sac_vm_network_interface" {
-  name                = "vm-nic"
-  location            = azurerm_resource_group.sac_vm_group.location
-  resource_group_name = azurerm_resource_group.sac_vm_group.name
+resource "azurerm_network_interface" "TerraFailVM_linux_network_interface" {
+  name                = "TerraFailVM_linux_network_interface"
+  location            = azurerm_resource_group.TerraFailVM_rg.location
+  resource_group_name = azurerm_resource_group.TerraFailVM_rg.name
 
   ip_configuration {
     name                          = "internal"
-    subnet_id                     = azurerm_subnet.sac_vm_subnet.id
+    subnet_id                     = azurerm_subnet.TerraFailVM_subnet.id
     private_ip_address_allocation = "Dynamic"
   }
 }
 
-resource "azurerm_network_interface" "sac_windows_network_interface" {
-  name                = "windows-nic"
-  location            = azurerm_resource_group.sac_vm_group.location
-  resource_group_name = azurerm_resource_group.sac_vm_group.name
+resource "azurerm_network_interface" "TerraFailVM_windows_network_interface" {
+  name                = "TerraFailVM_windows_network_interface"
+  location            = azurerm_resource_group.TerraFailVM_rg.location
+  resource_group_name = azurerm_resource_group.TerraFailVM_rg.name
 
   ip_configuration {
     name                          = "internal"
-    subnet_id                     = azurerm_subnet.sac_vm_subnet.id
+    subnet_id                     = azurerm_subnet.TerraFailVM_subnet.id
     private_ip_address_allocation = "Dynamic"
   }
 }
 
-resource "azurerm_availability_set" "sac_vm_availability_set" {
-  name                = "sac-testing-aset"
-  location            = azurerm_resource_group.sac_vm_group.location
-  resource_group_name = azurerm_resource_group.sac_vm_group.name
+resource "azurerm_availability_set" "TerraFailVM_availability_set" {
+  name                = "TerraFailVM_availability_set"
+  location            = azurerm_resource_group.TerraFailVM_rg.location
+  resource_group_name = azurerm_resource_group.TerraFailVM_rg.name
 
   tags = {
     environment = "Production"
@@ -124,24 +124,24 @@ resource "azurerm_availability_set" "sac_vm_availability_set" {
 # ---------------------------------------------------------------------
 data "azurerm_client_config" "current" {}
 
-resource "azurerm_key_vault" "sac_vm_keyvault" {
-  name                        = "sac-vm-vault-insecure"
-  location                    = azurerm_resource_group.sac_vm_group.location
-  resource_group_name         = azurerm_resource_group.sac_vm_group.name
+resource "azurerm_key_vault" "TerraFailVM_vault" {
+  name                        = "TerraFailVM_vault"
+  location                    = azurerm_resource_group.TerraFailVM_rg.location
+  resource_group_name         = azurerm_resource_group.TerraFailVM_rg.name
   tenant_id                   = data.azurerm_client_config.current.tenant_id
   sku_name                    = "standard"
   enabled_for_disk_encryption = true
   purge_protection_enabled    = true
 }
 
-resource "azurerm_key_vault_key" "sac_vm_keyvault_key" {
-  name         = "sac-vm-key-1"
-  key_vault_id = azurerm_key_vault.sac_vm_keyvault.id
+resource "azurerm_key_vault_key" "TerraFailVM_vault_key" {
+  name         = "TerraFailVM_vault_key"
+  key_vault_id = azurerm_key_vault.TerraFailVM_vault.id
   key_type     = "RSA"
   key_size     = 2048
 
   depends_on = [
-    azurerm_key_vault_access_policy.user
+    azurerm_key_vault_access_policy.TerraFailVM_vault_user_access_policy
   ]
 
   key_opts = [
@@ -154,11 +154,11 @@ resource "azurerm_key_vault_key" "sac_vm_keyvault_key" {
   ]
 }
 
-resource "azurerm_key_vault_access_policy" "disk" {
-  key_vault_id = azurerm_key_vault.sac_vm_keyvault.id
+resource "azurerm_key_vault_access_policy" "TerraFailVM_vault_disk_access_policy" {
+  key_vault_id = azurerm_key_vault.TerraFailVM_vault.id
 
-  tenant_id = azurerm_disk_encryption_set.sac_vm_disk_encryption_set.identity.0.tenant_id
-  object_id = azurerm_disk_encryption_set.sac_vm_disk_encryption_set.identity.0.principal_id
+  tenant_id = azurerm_disk_encryption_set.TerraFailVM_disk_encryption_set.identity.0.tenant_id
+  object_id = azurerm_disk_encryption_set.TerraFailVM_disk_encryption_set.identity.0.principal_id
 
   key_permissions = [
     "Create",
@@ -175,8 +175,8 @@ resource "azurerm_key_vault_access_policy" "disk" {
   ]
 }
 
-resource "azurerm_key_vault_access_policy" "user" {
-  key_vault_id = azurerm_key_vault.sac_vm_keyvault.id
+resource "azurerm_key_vault_access_policy" "TerraFailVM_vault_user_access_policy" {
+  key_vault_id = azurerm_key_vault.TerraFailVM_vault.id
 
   tenant_id = data.azurerm_client_config.current.tenant_id
   object_id = data.azurerm_client_config.current.object_id
@@ -195,11 +195,11 @@ resource "azurerm_key_vault_access_policy" "user" {
   ]
 }
 
-resource "azurerm_disk_encryption_set" "sac_vm_disk_encryption_set" {
-  name                = "des"
-  resource_group_name = azurerm_resource_group.sac_vm_group.name
-  location            = azurerm_resource_group.sac_vm_group.location
-  key_vault_key_id    = azurerm_key_vault_key.sac_vm_keyvault_key.id
+resource "azurerm_disk_encryption_set" "TerraFailVM_disk_encryption_set" {
+  name                = "TerraFailVM_disk_encryption_set"
+  resource_group_name = azurerm_resource_group.TerraFailVM_rg.name
+  location            = azurerm_resource_group.TerraFailVM_rg.location
+  key_vault_key_id    = azurerm_key_vault_key.TerraFailVM_vault_key.id
 
   identity {
     type = "SystemAssigned"
@@ -209,8 +209,8 @@ resource "azurerm_disk_encryption_set" "sac_vm_disk_encryption_set" {
 # ---------------------------------------------------------------------
 # Role
 # ---------------------------------------------------------------------
-resource "azurerm_role_assignment" "example-disk" {
-  scope                = azurerm_key_vault.sac_vm_keyvault.id
+resource "azurerm_role_assignment" "TerraFailVM_role" {
+  scope                = azurerm_key_vault.TerraFailVM_vault.id
   role_definition_name = "Key Vault Crypto Service Encryption User"
-  principal_id         = azurerm_disk_encryption_set.sac_vm_disk_encryption_set.identity.0.principal_id
+  principal_id         = azurerm_disk_encryption_set.TerraFailVM_disk_encryption_set.identity.0.principal_id
 }
