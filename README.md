@@ -4,7 +4,7 @@
 
 ![TerraFail](readme/drata-logo.png)
 
-TerraFail is an insecure by design Infrastructure as Code (IaC) repository developed by security experts at [Drata](https://www.drata.com). This repository is packed full of deployable code templates that can be used to spin up a variety of applications across any of the 3 major cloud providers: AWS, Azure, and Google Cloud.
+TerraFail is an insecure by design Infrastructure as Code (IaC) repository developed by security and compliance experts at [Drata](https://www.drata.com). This repository is packed full of deployable code templates that can be used to spin up a variety of applications across any of the 3 major cloud providers: AWS, Azure, and Google Cloud.
 
 ## Table of Contents
 
@@ -92,9 +92,9 @@ Let's go over how to set-up **Code Review Pro** to enable automated remediation 
 ## Documentation
 
 > [!NOTE]
-> Documentation is currently only available to Drata customers. To view our docs you will need to be acting as an authenticated user.
+> Documentation is available to all Drata users.
 
-To learn more about the IaC misconfigurations and vulnerabilities Compliance as Code tests are validating, take a trip to our [documentation](https://docs.drata.com/docs) and read all about it. Here you will find an intro to Compliance as Code, more information regarding our support, and details about relevant controls and frameworks to tie it all together.
+To learn more about the IaC misconfigurations and vulnerabilities Compliance as Code tests are validating, and how this impacts your compliance posture, [request a demo] (https://drata.com/demo).
 
 To view documentation specific to a given finding, follow the documentation link in the UI, here's an example for encryption at rest:
 ![GitHubCodeConnection](readme/result_documentation.png)
