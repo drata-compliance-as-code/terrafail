@@ -87,17 +87,16 @@ Let's go over how to set-up **Code Review Pro** to enable automated remediation 
 
    ![GitHubCodeConnection](readme/remediation_pr.png)
 
-4. **Sit back, relax, enjoy an easy breezy code review after a long day of fighting IaC compliance issues!**
+4. **Sit back, relax, and enjoy an easy breezy code review after a long day of fighting IaC compliance issues!**
 
 ## Documentation
 
-> [!NOTE]
-> Documentation is available to all Drata users.
-
-To learn more about the IaC misconfigurations and vulnerabilities Compliance as Code tests are validating, and how this impacts your compliance posture, [request a demo] (https://drata.com/demo).
+Documentation is available to all Drata users. To learn more about the IaC misconfigurations and vulnerabilities Compliance as Code tests are validating, and how this impacts your compliance posture, [request a demo](https://drata.com/demo).
 
 To view documentation specific to a given finding, follow the documentation link in the UI, here's an example for encryption at rest:
+
 ![GitHubCodeConnection](readme/result_documentation.png)
+
 ![GitHubCodeConnection](readme/documentation.png)
 
 Click on the guidance links to read up on security best practices or navigate directly to the IaC provider links to learn how to fix the vulnerabilities in your code.
