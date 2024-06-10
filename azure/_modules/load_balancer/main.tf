@@ -9,6 +9,7 @@ resource "azurerm_resource_group" "TerraFailLB_rg" {
 # LoadBalancer
 # ---------------------------------------------------------------------
 resource "azurerm_lb" "TerraFailLB" {
+  # Drata: Configure [azurerm_lb.frontend_ip_configuration.zones] to improve infrastructure availability and resilience
   # Drata: Set [azurerm_lb.tags] to ensure that organization-wide tagging conventions are followed.
   name                = "TerraFailLB"
   location            = azurerm_resource_group.TerraFailLB_rg.location
