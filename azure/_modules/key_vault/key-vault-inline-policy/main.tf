@@ -36,6 +36,7 @@ resource "azurerm_key_vault" "TerraFailKeyVault" {
 }
 
 resource "azurerm_key_vault_key" "TerraFailKeyVault_key" {
+  # Drata: Set [azurerm_key_vault_key.tags] to ensure that organization-wide tagging conventions are followed.
   name         = "TerraFailKeyVault"
   key_vault_id = azurerm_key_vault.TerraFailKeyVault.id
   key_type     = "EC"
