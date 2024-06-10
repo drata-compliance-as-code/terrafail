@@ -21,6 +21,7 @@ resource "google_spanner_instance_iam_member" "TerraFailSpanner_instance_iam_mem
   instance = "your-instance-name"
   role     = "roles/spanner.databaseAdmin"
   member   = "allUsers"
+  # Drata: Explicitly scope [google_spanner_instance_iam_member.member] in adherence with the principal of least privilege. Avoid the use of overly permissive allow-all access patterns such as ([allusers, allauthenticatedusers])
 }
 
 resource "google_spanner_database" "TerraFailSpanner_database" {
