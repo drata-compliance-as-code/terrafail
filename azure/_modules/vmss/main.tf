@@ -66,7 +66,7 @@ resource "azurerm_windows_virtual_machine_scale_set" "TerraFailVMSS_windows" {
   instances                  = 1
   admin_username             = "adminuser"
   admin_password             = "P@55w0rd1234!"
-  encryption_at_host_enabled = false
+  encryption_at_host_enabled = true
   upgrade_mode               = "Automatic"
 
   automatic_instance_repair {
