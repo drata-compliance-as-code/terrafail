@@ -9,7 +9,7 @@ resource "azurerm_resource_group" "TerraFailAppGateway_rg" {
 # Application Gateway
 # ---------------------------------------------------------------------
 resource "azurerm_application_gateway" "TerraFailAppGateway" {
-  name                = "TerraFailAppGateway"
+  name                = "AppGwSslPolicy20170401S"
   resource_group_name = azurerm_resource_group.TerraFailAppGateway_rg.name
   location            = azurerm_resource_group.TerraFailAppGateway_rg.location
 
