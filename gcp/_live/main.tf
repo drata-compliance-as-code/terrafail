@@ -30,7 +30,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/google"
-      version = "5.30.0" # Configure the AWS provider version
+      version = "5.30.0" # Configure the Google provider version
     }
   }
 
