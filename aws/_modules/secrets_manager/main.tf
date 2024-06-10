@@ -109,6 +109,7 @@ resource "aws_vpc" "TerraFailSecretsManager_vpc" {
 # IAM
 # ---------------------------------------------------------------------
 resource "aws_iam_role" "TerraFailSecretsManager_role" {
+  # Drata: Set [aws_iam_role.tags] to ensure that organization-wide tagging conventions are followed.
   name               = "TerraFailSecretsManager_role"
   assume_role_policy = <<EOF
 {
