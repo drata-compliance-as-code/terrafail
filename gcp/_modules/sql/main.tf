@@ -20,7 +20,7 @@ resource "google_sql_database_instance" "TerraFailSQL_instance" {
       require_ssl  = false
     }
     backup_configuration {
-      enabled                        = false
+      enabled                        = true
       point_in_time_recovery_enabled = false
     }
   }
