@@ -16,7 +16,7 @@ resource "azurerm_api_management" "TerraFailAPI" {
   publisher_email               = "TerraFailAPI@fail.io"
   sku_name                      = "Premium_1"
   client_certificate_enabled    = false
-  min_api_version               = "2014-02-14"
+  min_api_version               = "2019-12-01"
   public_network_access_enabled = false
 
   virtual_network_configuration {
