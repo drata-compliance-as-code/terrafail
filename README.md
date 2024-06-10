@@ -1,14 +1,14 @@
-# TerraFail: Turning Terrable Code into Valuable Lessons
+# TerraFail: Turning Terrable Code Compliant
 
 ## Welcome to TerraFail!
 
-![TerraFail](readme/drata-logo.png)
+![TerraFail](readme/drata_logo.png)
 
 TerraFail is an insecure by design Infrastructure as Code (IaC) repository developed by security and compliance experts at [Drata](https://www.drata.com). This repository is packed full of deployable code templates that can be used to spin up a variety of applications across any of the 3 major cloud providers: AWS, Azure, and Google Cloud.
 
 ## Table of Contents
 
-- [TerraFail: Turning Terrable Code into Valuable Lessons](#terrafail-turning-terrable-code-into-valuable-lessons)
+- [TerraFail: Turning Terrable Code Compliant](#terrafail-turning-terrable-code-compliant)
   - [Welcome to TerraFail!](#welcome-to-terrafail)
   - [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
