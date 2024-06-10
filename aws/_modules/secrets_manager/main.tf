@@ -45,7 +45,7 @@ resource "aws_lambda_function" "TerraFailSecretsManager_lambda" {
   role                           = aws_iam_role.TerraFailSecretsManager_role.arn
   filename                       = "my-deployment-package.zip"
   handler                        = "index.handler"
-  runtime                        = "dotnet6"
+  runtime                        = "dotnet8"
   reserved_concurrent_executions = 2
   kms_key_arn                    = aws_kms_key.TerraFailSecretsManager_key.arn
 
