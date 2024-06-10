@@ -31,6 +31,7 @@ resource "aws_security_group" "TerraFailSecurityGroup" {
     to_port          = 443
     protocol         = "tcp"
     cidr_blocks      = ["0.0.0.0/0"]
+    # Drata: Ensure that [aws_security_group.ingress.cidr_blocks] is explicitly defined and narrowly scoped to only allow traffic from trusted sources
     # Drata: Ensure that [aws_security_group.egress.cidr_blocks] is explicitly defined and narrowly scoped to only allow traffic to trusted sources
     ipv6_cidr_blocks = ["::/0"]
   }
