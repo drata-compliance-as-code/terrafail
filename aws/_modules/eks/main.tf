@@ -200,6 +200,7 @@ resource "aws_security_group" "TerraFailEKS_security_group" {
 # KMS
 # ---------------------------------------------------------------------
 resource "aws_kms_key" "TerraFailEKS_key" {
+  # Drata: Define [aws_kms_key.policy] to restrict access to your resource. Follow the principal of minimum necessary access, ensuring permissions are scoped to trusted entities. Exclude this finding if access to Keys is managed using IAM policies instead of a Key policy
   # Drata: Set [aws_kms_key.tags] to ensure that organization-wide tagging conventions are followed.
   description              = "KMS key to encrypt/decrypt"
   deletion_window_in_days  = 10
