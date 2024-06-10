@@ -9,6 +9,7 @@ resource "azurerm_resource_group" "TerraFailCosmosDB_rg" {
 # CosmosDB
 # ---------------------------------------------------------------------
 resource "azurerm_cosmosdb_account" "TerraFailCosmosDB_account" {
+  # Drata: Set [azurerm_cosmosdb_account.tags] to ensure that organization-wide tagging conventions are followed.
   name                              = "TerraFailCosmosDB_account"
   resource_group_name               = azurerm_resource_group.TerraFailCosmosDB_rg.name
   location                          = azurerm_resource_group.TerraFailCosmosDB_rg.location
