@@ -4,6 +4,7 @@
 # CloudFront
 # ---------------------------------------------------------------------
 resource "aws_cloudfront_distribution" "TerraFailCloudfront_distribution" {
+  # Drata: Configure [aws_cloudfront_distribution.logging_config.bucket] to ensure that security-relevant events are logged to detect malicious activity
   # Drata: Set [aws_cloudfront_distribution.tags] to ensure that organization-wide tagging conventions are followed.
   # Drata: Ensure that [aws_cloudfront_distribution.web_acl_id] is defined to inspect incoming requests and protect against common web application attacks. Exclude this finding if custom Web ACL policies are attached through AWS WAF resource
   enabled = true
