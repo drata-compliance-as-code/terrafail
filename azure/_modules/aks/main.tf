@@ -7,6 +7,7 @@ resource "azurerm_resource_group" "TerraFailAKS_rg" {
 # AKS
 # ---------------------------------------------------------------------
 resource "azurerm_kubernetes_cluster" "TerraFailAKS_cluster" {
+  # Drata: Ensure that [azurerm_kubernetes_cluster.api_server_authorized_ip_ranges] is explicitly defined and narrowly scoped to only allow trusted sources to access AKS Control Plane
   name                = "TerraFailAKS_cluster"
   location            = azurerm_resource_group.TerraFailAKS_rg.location
   resource_group_name = azurerm_resource_group.TerraFailAKS_rg.name
