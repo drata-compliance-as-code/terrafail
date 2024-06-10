@@ -93,6 +93,7 @@ resource "azurerm_public_ip" "TerraFailAppGateway_ip_config" {
 # KeyVault
 # ---------------------------------------------------------------------
 resource "azurerm_key_vault" "TerraFailAppGateway_vault" {
+  # Drata: Set [azurerm_key_vault.tags] to ensure that organization-wide tagging conventions are followed.
   # Drata: Set [azurerm_key_vault.public_network_access_enabled] to false to prevent unintended public access. Ensure that only trusted users and IP addresses are explicitly allowed access, if a publicly accessible service is required for your business use case this finding can be excluded
   name                        = "TerraFailAppGateway_vault"
   location                    = azurerm_resource_group.TerraFailAppGateway_rg.location
