@@ -3,6 +3,7 @@
 # SQS
 # ---------------------------------------------------------------------
 resource "aws_sqs_queue" "TerraFailSQS" {
+  # Drata: Set [aws_sqs_queue.tags] to ensure that organization-wide tagging conventions are followed.
   name                      = "TerraFailSQS"
   kms_master_key_id         = aws_kms_key.TerraFailSQS_key.id
   delay_seconds             = 90
