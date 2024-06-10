@@ -161,6 +161,7 @@ resource "azurerm_key_vault_access_policy" "TerraFailVM_vault_disk_access_policy
   object_id = azurerm_disk_encryption_set.TerraFailVM_disk_encryption_set.identity.0.principal_id
 
   key_permissions = [
+    # Drata: Explicitly define permissionss for [azurerm_key_vault_access_policy.key_permissions] in adherence with the principal of least privilege. Avoid the use of overly permissive allow-all access patterns such as ([all, delete, purge])
     "Create",
     "Delete",
     "Get",
