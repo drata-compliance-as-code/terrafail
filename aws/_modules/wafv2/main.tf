@@ -4,6 +4,7 @@
 # WAFv2
 # ---------------------------------------------------------------------
 resource "aws_wafv2_ip_set" "TerraFailWAF_ip_set" {
+  # Drata: Set [aws_wafv2_ip_set.tags] to ensure that organization-wide tagging conventions are followed.
   name               = "TerraFailWAF_ip_set"
   description        = "TerraFailWAF_ip_set description"
   scope              = "REGIONAL"
