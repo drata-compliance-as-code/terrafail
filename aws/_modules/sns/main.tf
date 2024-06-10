@@ -2,6 +2,7 @@
 # SNS
 # ---------------------------------------------------------------------
 resource "aws_sns_topic" "TerraFailSNS" {
+  # Drata: Set [aws_sns_topic.tags] to ensure that organization-wide tagging conventions are followed.
   name         = "TerraFailSNS"
   display_name = "TerraFailSNS"
   policy       = <<EOF
