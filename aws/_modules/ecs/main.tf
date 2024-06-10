@@ -15,6 +15,7 @@ resource "aws_ecs_service" "TerraFailECS_service" {
 }
 
 resource "aws_ecs_task_definition" "TerraFailECS_task_definition" {
+  # Drata: Set [aws_ecs_task_definition.tags] to ensure that organization-wide tagging conventions are followed.
 
   family = "TerraFailECS_task_definition"
   container_definitions = jsonencode([{
