@@ -184,6 +184,7 @@ resource "aws_route53_record" "TerraFailAPIv2_route_record" {
 # KMS
 # ---------------------------------------------------------------------
 resource "aws_kms_key" "TerraFailAPIv2_key" {
+  # Drata: Set [aws_kms_key.tags] to ensure that organization-wide tagging conventions are followed.
   description             = "TerraFailAPIv2_key"
   deletion_window_in_days = 10
 }
