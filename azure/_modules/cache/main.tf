@@ -26,6 +26,7 @@ resource "azurerm_subnet" "TerraFailCache_subnet" {
 # Cache
 # ---------------------------------------------------------------------
 resource "azurerm_redis_cache" "TerraFailCache" {
+  # Drata: Set [azurerm_redis_cache.tags] to ensure that organization-wide tagging conventions are followed.
   name                          = "TerraFailCachee"
   location                      = azurerm_resource_group.TerraFailCache_rg.location
   resource_group_name           = azurerm_resource_group.TerraFailCache_rg.name
