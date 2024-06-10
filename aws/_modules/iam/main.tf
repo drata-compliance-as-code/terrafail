@@ -61,6 +61,7 @@ resource "aws_iam_policy_attachment" "TerraFailIAM_policy_attachment" {
 }
 
 resource "aws_iam_role" "TerraFailIAM_role" {
+  # Drata: Set [aws_iam_role.tags] to ensure that organization-wide tagging conventions are followed.
   name = "TerraFailIAM_role"
   assume_role_policy = jsonencode({
     # Drata: Explicitly define principals for [aws_iam_role.assume_role_policy] in adherence with the principal of least privilege. Avoid the use of overly permissive allow-all access patterns such as (*)
