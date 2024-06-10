@@ -174,6 +174,7 @@ resource "aws_iam_policy" "TerraFailIAM_role_policy_custom" {
 }
 
 resource "aws_iam_user" "TerraFailIAM_user" {
+  # Drata: Set [aws_iam_user.tags] to ensure that organization-wide tagging conventions are followed.
   name = "TerraFailIAM_user"
   path = "/system/"
 }
