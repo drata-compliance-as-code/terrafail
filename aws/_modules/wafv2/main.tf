@@ -91,6 +91,7 @@ resource "aws_TerraFailWAF_web_acl" "TerraFailWAF_web_acl" {
 }
 
 resource "aws_wafv2_regex_pattern_set" "TerraFailWAF_regex_pattern_set" {
+  # Drata: Set [aws_wafv2_regex_pattern_set.tags] to ensure that organization-wide tagging conventions are followed.
   name        = "TerraFailWAF_regex_pattern_set"
   description = "TerraFailWAF_regex_pattern_set description"
   scope       = "REGIONAL"
