@@ -113,6 +113,7 @@ resource "aws_iam_role" "TerraFailRDS_role" {
 # SecretsManager
 # ---------------------------------------------------------------------
 resource "aws_secretsmanager_secret" "TerraFailRDS_secret" {
+  # Drata: Explicitly define actions for [aws_secretsmanager_secret.policy] in adherence with the principal of least privilege. Avoid the use of overly permissive allow-all access patterns such as (*)
   name                    = "TerraFailRDS_secret"
   description             = "Default config2"
   kms_key_id              = aws_kms_key.TerraFailRDS_key.id
