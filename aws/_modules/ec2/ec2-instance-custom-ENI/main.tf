@@ -20,7 +20,7 @@ resource "aws_instance" "TerraFailEC2Instance" {
   ebs_block_device {
     delete_on_termination = false
     device_name           = "/dev/sdf"
-    encrypted             = false
+    encrypted             = true
     volume_size           = 5
 
     tags = {
