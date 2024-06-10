@@ -8,6 +8,7 @@ resource "aws_ecs_cluster" "TerraFailECS_cluster" {
 }
 
 resource "aws_ecs_service" "TerraFailECS_service" {
+  # Drata: Default network security groups allow broader access than required. Specify [aws_ecs_service.network_configuration.security_groups] to configure more granular access control
   name            = "TerraFailECS_service"
   cluster         = aws_ecs_cluster.TerraFailECS_cluster.arn
   task_definition = aws_ecs_task_definition.TerraFailECS_task_definition.arn
