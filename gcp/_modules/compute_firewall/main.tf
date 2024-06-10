@@ -6,6 +6,7 @@ resource "google_compute_firewall" "TerraFailComputeFirewall" {
   network       = google_compute_network.TerraFailComputeFirewall_network.name
   direction     = "ingress"
   source_ranges = ["*"]
+  # Drata: Ensure that [google_compute_firewall.source_ranges] is explicitly defined and narrowly scoped to only allow traffic from trusted sources
   source_tags   = ["web"]
 
   allow {
