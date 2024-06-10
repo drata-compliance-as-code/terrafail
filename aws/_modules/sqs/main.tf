@@ -14,6 +14,7 @@ resource "aws_sqs_queue" "TerraFailSQS" {
 resource "aws_sqs_queue_policy" "TerraFailSQS_policy" {
   queue_url = aws_sqs_queue.TerraFailSQS.id
   policy    = <<EOF
+  # Drata: Explicitly define resources for [aws_sqs_queue_policy.policy] in adherence with the principal of least privilege. Avoid the use of overly permissive allow-all access patterns such as ([*])
   # Drata: Explicitly define principals for [aws_sqs_queue_policy.policy] in adherence with the principal of least privilege. Avoid the use of overly permissive allow-all access patterns such as (*)
   # Drata: Explicitly define actions for [aws_sqs_queue_policy.policy] in adherence with the principal of least privilege. Avoid the use of overly permissive allow-all access patterns such as (SQS:*)
 {
