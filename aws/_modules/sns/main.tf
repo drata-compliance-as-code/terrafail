@@ -5,6 +5,7 @@ resource "aws_sns_topic" "TerraFailSNS" {
   name         = "TerraFailSNS"
   display_name = "TerraFailSNS"
   policy       = <<EOF
+  # Drata: Define [aws_sns_topic.policy] to restrict access to your resource. Follow the principal of minimum necessary access, ensuring permissions are scoped to trusted entities
 {
     "Version": "2012-10-17",
     "Statement": [
