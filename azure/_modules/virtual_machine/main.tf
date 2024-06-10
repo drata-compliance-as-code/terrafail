@@ -52,7 +52,7 @@ resource "azurerm_windows_virtual_machine" "TerraFailVM_windows" {
   encryption_at_host_enabled = false
 
   winrm_listener {
-    protocol = "Http"
+    protocol = "Https"
   }
 
   os_disk {
