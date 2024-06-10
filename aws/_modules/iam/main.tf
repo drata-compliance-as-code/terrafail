@@ -7,6 +7,7 @@ resource "aws_iam_group_policy" "TerraFailIAM_group_policy" {
   name  = "TerraFailIAM_group_policy"
   group = aws_iam_group.TerraFailIAM_group.name
   policy = jsonencode({
+    # Drata: Explicitly define actions for [aws_iam_group_policy.policy] in adherence with the principal of least privilege. Avoid the use of overly permissive allow-all access patterns such as (*)
     Version = "2012-10-17"
     Statement = [
       {
