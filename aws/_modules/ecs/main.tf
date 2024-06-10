@@ -4,6 +4,7 @@
 # ECS
 # ---------------------------------------------------------------------
 resource "aws_ecs_cluster" "TerraFailECS_cluster" {
+  # Drata: Set [aws_ecs_cluster.tags] to ensure that organization-wide tagging conventions are followed.
   name = "TerraFailECS_cluster"
 }
 
