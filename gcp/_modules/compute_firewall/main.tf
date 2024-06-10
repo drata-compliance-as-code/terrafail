@@ -22,7 +22,7 @@ resource "google_compute_firewall_policy_rule" "TerraFailComputeFirewall_rule" {
   firewall_policy = google_compute_firewall_policy.default.name
   description     = "Resource created for Terraform acceptance testing"
   priority        = 9000
-  enable_logging  = false
+  enable_logging  = true
   action          = "allow"
   direction       = "EGRESS"
   disabled        = false
