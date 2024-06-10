@@ -2,6 +2,7 @@
 # Spanner
 # ---------------------------------------------------------------------
 resource "google_spanner_instance" "TerraFailSpanner_instance" {
+  # Drata: Set [configId] to ensure that organization-wide label conventions are followed.
   config        = "regional-us-east1"
   display_name  = "TerraFailSpanner_instance"
   num_nodes     = 1
