@@ -9,6 +9,7 @@ resource "azurerm_resource_group" "TerraFailSQL_rg" {
 # SQL Database
 # ---------------------------------------------------------------------
 resource "azurerm_mssql_database" "TerraFailSQL_database" {
+  # Drata: Set [azurerm_mssql_database.tags] to ensure that organization-wide tagging conventions are followed.
   name                                = "TerraFailSQL_database"
   server_id                           = azurerm_mssql_server.TerraFailSQL_server.id
   zone_redundant                      = false
