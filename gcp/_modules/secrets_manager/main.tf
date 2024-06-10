@@ -20,6 +20,7 @@ resource "google_secret_manager_secret_iam_binding" "TerraFailSecretManager_iam_
   secret_id = google_secret_manager_secret.TerraFailSecretManager.secret_id
   role      = "roles/secretmanager.secretAccessor"
   members = [
+    # Drata: Explicitly scope [google_secret_manager_secret_iam_binding.members] in adherence with the principal of least privilege. Avoid the use of overly permissive allow-all access patterns such as ([allusers, allauthenticatedusers])
     "allUsers",
   ]
 }
