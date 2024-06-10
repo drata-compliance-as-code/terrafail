@@ -35,6 +35,7 @@ resource "google_spanner_database_iam_binding" "TerraFailSpanner_database_iam_bi
   database = "TerraFailSpanner_database"
   role     = "roles/compute.networkUser"
   members = [
+    # Drata: Explicitly scope [google_spanner_database_iam_binding.members] in adherence with the principal of least privilege. Avoid the use of overly permissive allow-all access patterns such as ([allusers, allauthenticatedusers])
     "allUsers",
   ]
 }
