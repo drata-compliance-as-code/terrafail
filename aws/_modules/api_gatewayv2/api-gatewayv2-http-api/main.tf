@@ -184,6 +184,7 @@ resource "aws_route53_record" "TerraFailAPIv2_route_record" {
 # KMS
 # ---------------------------------------------------------------------
 resource "aws_kms_key" "TerraFailAPIv2_key" {
+  # Drata: Define [aws_kms_key.policy] to restrict access to your resource. Follow the principal of minimum necessary access, ensuring permissions are scoped to trusted entities. Exclude this finding if access to Keys is managed using IAM policies instead of a Key policy
   # Drata: Set [aws_kms_key.tags] to ensure that organization-wide tagging conventions are followed.
   description             = "TerraFailAPIv2_key"
   deletion_window_in_days = 10
