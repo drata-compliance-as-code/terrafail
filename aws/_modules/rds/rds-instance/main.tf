@@ -64,6 +64,7 @@ resource "aws_db_proxy" "TerraFailDB_proxy" {
 }
 
 resource "aws_db_subnet_group" "TerraFailDB_subnet_group" {
+  # Drata: Set [aws_db_subnet_group.tags] to ensure that organization-wide tagging conventions are followed.
   name        = "TerraFailDB_subnet_group"
   description = "Our main group of subnets"
   subnet_ids  = [aws_subnet.TerraFailDB_subnet.id, aws_subnet.TerraFailDB_subnet_2.id]
