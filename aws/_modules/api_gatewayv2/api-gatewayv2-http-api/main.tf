@@ -19,6 +19,7 @@ resource "aws_apigatewayv2_api_mapping" "TerraFailAPIv2_mapping" {
 }
 
 resource "aws_apigatewayv2_domain_name" "TerraFailAPIv2_domain" {
+  # Drata: Set [aws_apigatewayv2_domain_name.tags] to ensure that organization-wide tagging conventions are followed.
   domain_name = "thisisthedarkside.com"
 
   domain_name_configuration {
