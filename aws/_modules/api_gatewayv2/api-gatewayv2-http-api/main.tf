@@ -40,6 +40,7 @@ resource "aws_apigatewayv2_integration" "TerraFailAPIv2_integration" {
 }
 
 resource "aws_apigatewayv2_stage" "TerraFailAPIv2_stage" {
+  # Drata: Set [aws_apigatewayv2_stage.tags] to ensure that organization-wide tagging conventions are followed.
   api_id = aws_apigatewayv2_api.TerraFailAPIv2.id
   name   = "TerraFailAPIv2_stage"
 }
