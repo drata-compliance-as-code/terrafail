@@ -68,6 +68,7 @@ resource "aws_vpc" "TerraFailECS_vpc" {
 }
 
 resource "aws_security_group" "TerraFailECS_security_group" {
+  # Drata: Set [aws_security_group.tags] to ensure that organization-wide tagging conventions are followed.
   name                   = "TerraFailECS_security_group"
   description            = "Allow TLS inbound traffic"
   vpc_id                 = aws_vpc.TerraFailECS_vpc.id
