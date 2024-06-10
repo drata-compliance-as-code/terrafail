@@ -29,6 +29,7 @@ resource "google_compute_subnetwork_iam_member" "TerraFailComputeSubnetwork_iam_
   subnetwork = google_compute_subnetwork.TerraFailComputeSubnetwork.name
   role       = "roles/compute.networkUser"
   member     = "allUsers"
+  # Drata: Explicitly scope [google_compute_subnetwork_iam_member.member] in adherence with the principal of least privilege. Avoid the use of overly permissive allow-all access patterns such as (['allusers', 'allauthenticatedusers'])
 }
 
 # ---------------------------------------------------------------------
