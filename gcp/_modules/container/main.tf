@@ -21,7 +21,7 @@ resource "google_container_cluster" "TerraFailContainer_cluster" {
   datapath_provider = "LEGACY_DATAPATH"
   network_policy {
     provider = "PROVIDER_UNSPECIFIED"
-    enabled  = false
+    enabled  = true
   }
 }
 
