@@ -2,6 +2,7 @@
 # KMS
 # ---------------------------------------------------------------------
 resource "google_kms_crypto_key" "TerraFailKMS" {
+  # Drata: Configure [google_kms_crypto_key.rotation_period] to minimize the risk of key exposure by ensuring that sensitive values are periodically rotated
   # Drata: Set [configId] to ensure that organization-wide label conventions are followed.
   name     = "TerraFailKMS"
   key_ring = google_kms_key_ring.TerraFailKMS_ring.id
