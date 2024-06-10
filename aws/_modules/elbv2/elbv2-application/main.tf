@@ -261,6 +261,7 @@ resource "aws_iam_instance_profile" "TerraFailLB_instance_profile" {
 }
 
 resource "aws_iam_role" "TerraFailLB_role" {
+  # Drata: Set [aws_iam_role.tags] to ensure that organization-wide tagging conventions are followed.
   name = "TerraFailLB_role"
   path = "/"
 
