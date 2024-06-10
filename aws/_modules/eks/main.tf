@@ -81,6 +81,7 @@ resource "aws_iam_role_policy_attachment" "TerraFailEKS_AmazonEC2ContainerRegist
 }
 
 resource "aws_iam_role" "TerraFailEKS_role" {
+  # Drata: Set [aws_iam_role.tags] to ensure that organization-wide tagging conventions are followed.
   name = "TerraFailEKS_role"
 
   assume_role_policy = <<POLICY
