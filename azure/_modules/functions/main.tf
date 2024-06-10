@@ -81,6 +81,7 @@ resource "azurerm_storage_account" "TerraFailFunction_storage_linux" {
   }
 }
 resource "azurerm_storage_account" "TerraFailFunction_storage_windows" {
+  # Drata: Set [azurerm_storage_account.enable_https_traffic_only] to true to ensure secure protocols are being used to encrypt resource traffic
   name                     = "TerraFailFunction_storage_windows"
   resource_group_name      = azurerm_resource_group.TerraFailFunction_rg.name
   location                 = azurerm_resource_group.TerraFailFunction_rg.location
