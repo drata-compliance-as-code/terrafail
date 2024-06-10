@@ -20,6 +20,7 @@ resource "aws_rds_cluster" "TerraFailRDS_cluster" {
 }
 
 resource "aws_db_option_group" "TerraFailRDS_option_group" {
+  # Drata: Set [aws_db_option_group.tags] to ensure that organization-wide tagging conventions are followed.
   name                     = "TerraFailRDS_option_group"
   option_group_description = "Terraform Option Group"
   engine_name              = "mysql"
