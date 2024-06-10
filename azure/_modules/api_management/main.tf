@@ -67,6 +67,7 @@ resource "azurerm_subnet" "TerraFailAPI_subnet" {
 }
 
 resource "azurerm_virtual_network" "TerraFailAPI_virtual_network" {
+  # Drata: Set [azurerm_virtual_network.tags] to ensure that organization-wide tagging conventions are followed.
   name                = "TerraFailAPI_virtual_network"
   location            = azurerm_resource_group.TerraFailAPI_rg.location
   resource_group_name = azurerm_resource_group.TerraFailAPI_rg.name
