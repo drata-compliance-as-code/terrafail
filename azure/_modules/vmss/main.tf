@@ -59,6 +59,7 @@ resource "azurerm_linux_virtual_machine_scale_set" "TerraFailVMSS_linux" {
 }
 
 resource "azurerm_windows_virtual_machine_scale_set" "TerraFailVMSS_windows" {
+  # Drata: Configure [azurerm_windows_virtual_machine_scale_set.zones] to improve infrastructure availability and resilience
   name                       = "TerraFailVMSS_windows"
   resource_group_name        = azurerm_resource_group.TerraFailVMSS_rg.name
   location                   = azurerm_resource_group.TerraFailVMSS_rg.location
