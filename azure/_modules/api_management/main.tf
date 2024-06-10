@@ -30,7 +30,7 @@ resource "azurerm_api_management_api" "TerraFailAPI_api" {
   api_management_name = azurerm_api_management.TerraFailAPI.name
   revision            = "1"
   display_name        = "TerraFailAPI_api"
-  protocols           = ["http"]
+  protocols           = ["http"] # Drata: protocols should be set to any of [https]
 }
 
 resource "azurerm_api_management_backend" "TerraFailAPI_backend" {
