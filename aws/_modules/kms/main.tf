@@ -9,6 +9,7 @@ resource "aws_kms_alias" "TerraFailKMS_alias" {
 }
 
 resource "aws_kms_key" "TerraFailKMS_key" {
+  # Drata: Set [aws_kms_key.tags] to ensure that organization-wide tagging conventions are followed.
   description             = "KMS key template"
   deletion_window_in_days = 10
   key_usage               = "ENCRYPT_DECRYPT"
