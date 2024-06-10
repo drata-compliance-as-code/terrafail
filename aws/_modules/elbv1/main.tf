@@ -4,6 +4,7 @@
 # ELBv1
 # ---------------------------------------------------------------------
 resource "aws_elb" "TerraFailELB" {
+  # Drata: Configure [aws_elb.access_logs.enabled] to ensure that security-relevant events are logged to detect malicious activity
   # Drata: Set [aws_elb.tags] to ensure that organization-wide tagging conventions are followed.
   # Drata: Default network security groups allow broader access than required. Specify [aws_elb.security_groups] to configure more granular access control
   name     = "TerraFailELB"
