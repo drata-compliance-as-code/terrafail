@@ -64,6 +64,7 @@ resource "aws_lb" "TerraFailAPIv2_lb" {
 }
 
 resource "aws_lb_listener" "TerraFailAPIv2_listener" {
+  # Drata: Set [aws_lb_listener.protocol] to one of ['HTTPS', 'TLS'] to ensure secure protocols are being used to encrypt resource traffic
   load_balancer_arn = aws_lb.TerraFailAPIv2_lb.arn
   port              = 99
 
