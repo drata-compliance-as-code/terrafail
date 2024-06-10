@@ -47,4 +47,5 @@ resource "google_bigquery_table_iam_member" "TerraFailBigQuery_table_iam_member"
   table_id   = google_bigquery_table.TerraFailBigQuery_table.table_id
   role       = "roles/bigquery.dataOwner"
   member     = "allUsers"
+  # Drata: Explicitly scope [google_bigquery_table_iam_member.member] in adherence with the principal of least privilege. Avoid the use of overly permissive allow-all access patterns such as ([allusers, allauthenticatedusers])
 }
