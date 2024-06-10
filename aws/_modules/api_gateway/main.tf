@@ -115,7 +115,7 @@ resource "aws_lambda_function" "TerraFailAPI_lambda_function" {
   function_name = "TerraFailAPI_lambda_function"
   role          = aws_iam_role.TerraFailAPI_iam_role.arn
 
-  runtime = "nodejs12.x"
+  runtime = "nodejs18"
   handler = "index.test"
 }
 
