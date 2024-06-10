@@ -36,7 +36,7 @@ resource "google_app_engine_standard_app_version" "TerraFailAppEngine_version_st
   project    = "terrafail"
   version_id = "v1"
   service    = google_app_engine_application.TerraFailAppEngine.id
-  runtime    = "java8"
+  runtime    = "java21"
   entrypoint {
     shell = "python ./app.py"
   }
