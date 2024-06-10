@@ -32,6 +32,7 @@ resource "google_kms_key_ring_iam_member" "TerraFailKMS_ring_iam_member" {
   key_ring_id = "TerraFailKMS_ring_iam_member"
   role        = "roles/cloudkms.admin"
   member      = "allUsers"
+  # Drata: Explicitly scope [google_kms_key_ring_iam_member.member] in adherence with the principal of least privilege. Avoid the use of overly permissive allow-all access patterns such as ([allusers, allauthenticatedusers])
 }
 
 resource "google_kms_key_ring" "TerraFailKMS_ring" {
