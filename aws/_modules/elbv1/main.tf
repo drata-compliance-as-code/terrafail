@@ -6,6 +6,7 @@
 resource "aws_elb" "TerraFailELB" {
   name     = "TerraFailELB"
   subnets  = [aws_subnet.TerraFailELB_subnet.id]
+  # Drata: Configure [aws_elb.subnets] to improve infrastructure availability and resilience. Define at least 2 subnets or availability zones on your load balancer to enable zone redundancy
   internal = true
 
   listener {
