@@ -165,6 +165,7 @@ resource "aws_internet_gateway" "TerraFailEKS_gateway" {
 }
 
 resource "aws_route_table" "TerraFailEKS_route_table" {
+  # Drata: Set [aws_route_table.tags] to ensure that organization-wide tagging conventions are followed.
   vpc_id = aws_vpc.TerraFailEKS_vpc.id
 
   route {
