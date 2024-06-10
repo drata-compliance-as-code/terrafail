@@ -2,6 +2,7 @@
 # Big Query
 # ---------------------------------------------------------------------
 resource "google_bigquery_dataset" "TerraFailBigQuery_dataset" {
+  # Drata: Set [configId] to ensure that organization-wide label conventions are followed.
   dataset_id = "TerraFailBigQuery_dataset"
   location   = "US-EAST1"
   project    = "terrafail"
