@@ -4,6 +4,7 @@
 # DynamoDB
 # ---------------------------------------------------------------------
 resource "aws_dynamodb_table" "TerraFailDynamoDB" {
+  # Drata: Set [aws_dynamodb_table.tags] to ensure that organization-wide tagging conventions are followed.
   name           = "TerraFailDynamoDB"
   billing_mode   = "PROVISIONED"
   hash_key       = "UserId"
