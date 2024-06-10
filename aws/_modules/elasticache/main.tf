@@ -4,6 +4,7 @@
 # ElastiCache
 # ---------------------------------------------------------------------
 resource "aws_elasticache_cluster" "TerraFailElasticache_cluster_mem" {
+  # Drata: Default network security groups allow broader access than required. Specify [aws_elasticache_cluster.security_group_ids] to configure more granular access control
   cluster_id           = "TerraFailElasticache_cluster_mem"
   engine               = "memcached"
   node_type            = "cache.t3.small"
