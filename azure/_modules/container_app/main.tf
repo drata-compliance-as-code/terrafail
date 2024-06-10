@@ -15,7 +15,7 @@ resource "azurerm_container_app" "TerraFailContainerApp" {
   revision_mode                = "Single"
 
   ingress {
-    allow_insecure_connections = true
+    allow_insecure_connections = false
     transport                  = "auto"
     target_port                = 6784
 
