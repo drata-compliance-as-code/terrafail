@@ -67,6 +67,6 @@ resource "aws_s3_bucket_public_access_block" "TerraFailS3_bucket_access" {
 resource "aws_s3_bucket_versioning" "TerraFailS3_bucket_versioning" {
   bucket = aws_s3_bucket.TerraFailS3_bucket.id
   versioning_configuration {
-    status = "Disabled"
+    status = "Enabled"
   }
 }
