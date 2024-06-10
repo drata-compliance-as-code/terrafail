@@ -26,6 +26,7 @@ resource "aws_elasticache_cluster" "TerraFailElasticache_cluster_red" {
 }
 
 resource "aws_elasticache_replication_group" "TerraFailElasticache_replication_group" {
+  # Drata: Specify [aws_elasticache_replication_group.snapshot_retention_limit] to ensure sensitive data is only available when necessary. Setting snapshot retention to 0 will disable automatic backups
   # Drata: Set [aws_elasticache_replication_group.tags] to ensure that organization-wide tagging conventions are followed.
   # Drata: Default network security groups allow broader access than required. Specify [aws_elasticache_replication_group.security_group_ids] to configure more granular access control
   preferred_cache_cluster_azs = ["us-east-2b", "us-east-2c"]
