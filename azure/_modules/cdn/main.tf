@@ -16,6 +16,7 @@ resource "azurerm_cdn_profile" "TerraFailCDN_profile" {
 }
 
 resource "azurerm_cdn_endpoint" "TerraFailCDN_endpoint" {
+  # Drata: Set [azurerm_cdn_endpoint.tags] to ensure that organization-wide tagging conventions are followed.
   name                = "TerraFailCDN_endpoint"
   profile_name        = azurerm_cdn_profile.TerraFailCDN_profile.name
   location            = azurerm_resource_group.TerraFailCDN_rg.location
