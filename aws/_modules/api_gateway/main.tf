@@ -57,6 +57,7 @@ resource "aws_api_gateway_deployment" "TerraFailAPI_deployment" {
 }
 
 resource "aws_api_gateway_domain_name" "TerraFailAPI_domain_name" {
+  # Drata: Set [aws_api_gateway_domain_name.tags] to ensure that organization-wide tagging conventions are followed.
   certificate_arn = aws_acm_certificate_validation.TerraFailAPI_cert.certificate_arn
   domain_name     = "www.thisisthedarkside.com"
   security_policy = "tls_1_1"
