@@ -80,6 +80,7 @@ resource "aws_iam_role" "TerraFailIAM_role" {
 resource "aws_iam_role_policy" "TerraFailIAM_role_policy" {
   name = "TerraFailIAM_role_policy"
   policy = jsonencode({
+    # Drata: Explicitly define actions for [aws_iam_role.inline_policy.policy] in adherence with the principal of least privilege. Avoid the use of overly permissive allow-all access patterns such as (*)
     Version = "2012-10-17"
     Statement = [
       {
