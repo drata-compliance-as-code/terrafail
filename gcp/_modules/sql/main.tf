@@ -17,7 +17,7 @@ resource "google_sql_database_instance" "TerraFailSQL_instance" {
         value = "*"
       }
       ipv4_enabled = true
-      require_ssl  = false
+      require_ssl  = true
     }
     backup_configuration {
       enabled                        = true
