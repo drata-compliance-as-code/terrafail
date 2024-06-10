@@ -54,4 +54,5 @@ resource "google_app_engine_firewall_rule" "TerraFailAppEngine_firewall_rule" {
   project      = "terrafail"
   action       = "ALLOW"
   source_range = "*"
+  # Drata: Ensure that [google_app_engine_firewall_rule.source_range] is explicitly defined and narrowly scoped to only allow traffic from trusted sources
 }
