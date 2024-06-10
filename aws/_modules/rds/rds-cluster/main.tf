@@ -10,6 +10,7 @@ resource "aws_rds_cluster" "TerraFailRDS_cluster" {
   master_username                     = "terrafailusername"
   master_password                     = "randomlydecidedpassword41characters"
   backup_retention_period             = 1
+  # Drata: Specify [aws_rds_cluster.backup_retention_period] to ensure sensitive data is only available when necessary. It is recommended to configure a non-default value appropriate for your specific use-case. AWS defaults to 7 days
   final_snapshot_identifier           = "DELETE"
   skip_final_snapshot                 = true
   deletion_protection                 = false
