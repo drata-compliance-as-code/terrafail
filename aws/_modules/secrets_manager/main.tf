@@ -81,6 +81,7 @@ resource "aws_sns_topic" "TerraFailSecretsManager_topic" {
 # Network
 # ---------------------------------------------------------------------
 resource "aws_security_group" "TerraFailSecretsManager_security_group" {
+  # Drata: Set [aws_security_group.tags] to ensure that organization-wide tagging conventions are followed.
   vpc_id = aws_vpc.TerraFailSecretsManager_vpc.id
   egress {
     from_port        = 0
