@@ -7,6 +7,7 @@ resource "azurerm_resource_group" "TerraFailAKS_rg" {
 # AKS
 # ---------------------------------------------------------------------
 resource "azurerm_kubernetes_cluster" "TerraFailAKS_cluster" {
+  # Drata: Set [azurerm_kubernetes_cluster.tags] to ensure that organization-wide tagging conventions are followed.
   # Drata: Set [azurerm_kubernetes_cluster.network_profile.network_policy] to any of ['azure', 'calico', 'cilium'] to define access policy specifications for communication between Pods
   # Drata: Ensure that [azurerm_kubernetes_cluster.api_server_authorized_ip_ranges] is explicitly defined and narrowly scoped to only allow trusted sources to access AKS Control Plane
   name                = "TerraFailAKS_cluster"
