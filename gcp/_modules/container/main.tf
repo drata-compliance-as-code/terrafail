@@ -2,6 +2,7 @@
 # Container
 # ---------------------------------------------------------------------
 resource "google_container_cluster" "TerraFailContainer_cluster" {
+  # Drata: Set [configId] to ensure that organization-wide label conventions are followed.
   name                    = "TerraFailContainer_cluster"
   initial_node_count      = 3
   enable_kubernetes_alpha = true
