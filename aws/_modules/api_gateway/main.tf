@@ -111,6 +111,7 @@ resource "aws_api_gateway_stage" "TerraFailAPI_stage" {
 # Lambda
 # ---------------------------------------------------------------------
 resource "aws_lambda_function" "TerraFailAPI_lambda_function" {
+  # Drata: Configure [aws_lambda_function.vpc_config] to improve network monitoring capabilities and ensure network communication is restricted to trusted sources. Exclude this finding if there is a need for your Lambda Function to access external endpoints
   filename      = "${path.module}/foo.zip"
   function_name = "TerraFailAPI_lambda_function"
   role          = aws_iam_role.TerraFailAPI_iam_role.arn
