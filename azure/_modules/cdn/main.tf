@@ -9,6 +9,7 @@ resource "azurerm_resource_group" "TerraFailCDN_rg" {
 # CDN
 # ---------------------------------------------------------------------
 resource "azurerm_cdn_profile" "TerraFailCDN_profile" {
+  # Drata: Set [azurerm_cdn_profile.tags] to ensure that organization-wide tagging conventions are followed.
   name                = "TerraFailCDN_profile"
   location            = azurerm_resource_group.TerraFailCDN_rg.location
   resource_group_name = azurerm_resource_group.TerraFailCDN_rg.name
