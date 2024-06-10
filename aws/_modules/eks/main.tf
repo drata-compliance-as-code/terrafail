@@ -200,6 +200,7 @@ resource "aws_security_group" "TerraFailEKS_security_group" {
 # KMS
 # ---------------------------------------------------------------------
 resource "aws_kms_key" "TerraFailEKS_key" {
+  # Drata: Set [aws_kms_key.tags] to ensure that organization-wide tagging conventions are followed.
   description              = "KMS key to encrypt/decrypt"
   deletion_window_in_days  = 10
   key_usage                = "ENCRYPT_DECRYPT"
