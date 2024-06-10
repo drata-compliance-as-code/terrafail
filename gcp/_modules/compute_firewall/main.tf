@@ -2,6 +2,7 @@
 # Compute Firewall
 # ---------------------------------------------------------------------
 resource "google_compute_firewall" "TerraFailComputeFirewall" {
+  # Drata: Configure [google_compute_firewall.log_config] to ensure that security-relevant events are logged to detect malicious activity
   name          = "TerraFailComputeFirewall"
   network       = google_compute_network.TerraFailComputeFirewall_network.name
   direction     = "ingress"
