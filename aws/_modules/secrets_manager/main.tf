@@ -74,6 +74,7 @@ resource "aws_lambda_permission" "TerraFailSecretsManager_permission" {
 # SNS
 # ---------------------------------------------------------------------
 resource "aws_sns_topic" "TerraFailSecretsManager_topic" {
+  # Drata: Define [aws_sns_topic.policy] to restrict access to your resource. Follow the principal of minimum necessary access, ensuring permissions are scoped to trusted entities
   # Drata: Set [aws_sns_topic.tags] to ensure that organization-wide tagging conventions are followed.
   name = "TerraFailSecretsManager_topic"
 }
