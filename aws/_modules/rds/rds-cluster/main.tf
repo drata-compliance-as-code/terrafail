@@ -4,6 +4,7 @@
 # RDS
 # ---------------------------------------------------------------------
 resource "aws_rds_cluster" "TerraFailRDS_cluster" {
+  # Drata: Set [aws_rds_cluster.tags] to ensure that organization-wide tagging conventions are followed.
   cluster_identifier                  = "TerraFailRDS_cluster"
   database_name                       = "terrafailrdsdb"
   engine                              = "aurora-mysql"
