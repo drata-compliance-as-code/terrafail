@@ -39,6 +39,7 @@ resource "aws_lambda_permission" "TerraFailLambda_permission" {
   action        = "*"
   function_name = aws_lambda_function.TerraFailLambda_function.arn
   principal     = "*"
+  # Drata: Explicitly define principals for [aws_lambda_permission.principal] in adherence with the principal of least privilege. Avoid the use of overly permissive allow-all access patterns such as (*)
 }
 
 resource "aws_TerraFailLambda_layer_version_version_permission" "TerraFailTerraFailLambda_layer_version_permission" {
