@@ -26,6 +26,7 @@ resource "aws_lambda_event_source_mapping" "TerraFailLambda_event_source_mapping
 }
 
 resource "aws_lambda_function" "TerraFailLambda_function" {
+  # Drata: Configure [aws_lambda_function.vpc_config] to improve network monitoring capabilities and ensure network communication is restricted to trusted sources. Exclude this finding if there is a need for your Lambda Function to access external endpoints
   function_name                  = "TerraFailLambda_function"
   role                           = aws_iam_role.TerraFailLambda_role.arn
   filename                       = "my-deployment-package.zip"
