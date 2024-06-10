@@ -30,7 +30,7 @@ resource "aws_lambda_function" "TerraFailLambda_function" {
   role                           = aws_iam_role.TerraFailLambda_role.arn
   filename                       = "my-deployment-package.zip"
   handler                        = "index.handler"
-  runtime                        = "dotnetcore3.1"
+  runtime                        = "dotnet8"
   reserved_concurrent_executions = 0
   layers                         = [aws_TerraFailLambda_layer_version_version.TerraFailLambda_layer_version.arn]
 }
