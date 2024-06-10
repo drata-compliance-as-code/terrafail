@@ -11,7 +11,7 @@ resource "google_container_cluster" "TerraFailContainer_cluster" {
     evaluation_mode = "DISABLED"
   }
   database_encryption {
-    state    = "DECRYPTED"
+    state    = "ENCRYPTED"
     key_name = "projects/my-project/locations/global/keyRings/my-ring/cryptoKeys/my-key"
   }
   node_config {
