@@ -158,6 +158,7 @@ resource "aws_iam_role_policy" "TerraFailAPIv2_iam_policy" {
   role = aws_iam_role.TerraFailAPIv2_role.id
 
   policy = jsonencode({
+    # Drata: Explicitly define resources for [aws_iam_role.inline_policy.policy] in adherence with the principal of least privilege. Avoid the use of overly permissive allow-all access patterns such as ([*])
     Version = "2012-10-17",
     Statement = [
       {
