@@ -63,6 +63,7 @@ resource "aws_api_gateway_domain_name" "TerraFailAPI_domain_name" {
 }
 
 resource "aws_api_gateway_api_key" "TerraFailAPI_key" {
+  # Drata: Set [aws_api_gateway_api_key.tags] to ensure that organization-wide tagging conventions are followed.
   name        = "TerraFailAPI_key"
   description = "TerraFailAPI_key description"
   enabled     = true
