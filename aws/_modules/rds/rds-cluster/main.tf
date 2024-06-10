@@ -42,7 +42,7 @@ resource "aws_db_proxy" "TerraFailRDS_proxy" {
   vpc_subnet_ids = [aws_subnet.TerraFailRDS_subnet.id, aws_subnet.TerraFailRDS_subnet_2.id]
   engine_family  = "MYSQL"
   debug_logging  = true
-  require_tls    = false
+  require_tls    = true
 
   auth {
     secret_arn = aws_secretsmanager_secret.TerraFailRDS_secret.arn
