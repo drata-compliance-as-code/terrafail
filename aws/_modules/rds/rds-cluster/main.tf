@@ -15,7 +15,7 @@ resource "aws_rds_cluster" "TerraFailRDS_cluster" {
   deletion_protection                 = false
   db_subnet_group_name                = aws_db_subnet_group.TerraFailRDS_subnet_group.name
   engine_version                      = "8.0.mysql_aurora.3.03.0"
-  storage_encrypted                   = false
+  storage_encrypted                   = true
   iam_database_authentication_enabled = false
 }
 
