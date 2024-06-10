@@ -60,6 +60,7 @@ resource "aws_s3_bucket" "TerraFailCloudfront_bucket" {
   acl    = "private"
 
   tags = {
+    # Drata: Set [aws_s3_bucket.tags] to ensure that organization-wide tagging conventions are followed.
     Name        = "My bucket"
     Environment = "Dev"
   }
