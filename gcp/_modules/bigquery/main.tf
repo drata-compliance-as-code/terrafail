@@ -38,6 +38,7 @@ resource "google_bigquery_table_iam_binding" "TerraFailBigQuery_table_iam_bindin
   table_id   = google_bigquery_table.TerraFailBigQuery_table.table_id
   role       = "roles/bigquery.dataOwner"
   members = [
+    # Drata: Explicitly scope [google_bigquery_table_iam_binding.members] in adherence with the principal of least privilege. Avoid the use of overly permissive allow-all access patterns such as ([allusers, allauthenticatedusers])
     "allUsers",
   ]
 }
