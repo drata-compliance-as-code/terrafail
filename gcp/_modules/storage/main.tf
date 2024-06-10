@@ -9,7 +9,7 @@ resource "google_storage_bucket" "TerraFailStorage" {
     enabled = false
   }
   retention_policy {
-    retention_period = 267840
+    retention_period = 2678400
   }
   cors {
     method = ["GET", "HEAD", "PUT", "POST", "DELETE"]
