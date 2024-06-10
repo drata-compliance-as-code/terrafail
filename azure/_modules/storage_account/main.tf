@@ -9,6 +9,7 @@ resource "azurerm_resource_group" "TerraFailStorage_rg" {
 # Storage Account
 # ---------------------------------------------------------------------
 resource "azurerm_storage_account" "TerraFailStorage" {
+  # Drata: Set [azurerm_storage_account.tags] to ensure that organization-wide tagging conventions are followed.
   name                              = "TerraFailStorage"
   resource_group_name               = azurerm_resource_group.TerraFailStorage_resource_group.name
   location                          = azurerm_resource_group.TerraFailStorage_resource_group.location
