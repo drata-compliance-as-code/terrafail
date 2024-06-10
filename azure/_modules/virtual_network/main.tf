@@ -7,6 +7,7 @@ resource "azurerm_resource_group" "TerraFailVNet_rg" {
 # Virtual Network
 # ---------------------------------------------------------------------
 resource "azurerm_virtual_network" "TerraFailVNet" {
+  # Drata: Set [azurerm_virtual_network.tags] to ensure that organization-wide tagging conventions are followed.
   name                = "TerraFailVNet"
   location            = azurerm_resource_group.TerraFailVNet_rg.location
   resource_group_name = azurerm_resource_group.TerraFailVNet_rg.name
