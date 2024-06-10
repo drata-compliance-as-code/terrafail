@@ -4,6 +4,7 @@
 # S3
 # ---------------------------------------------------------------------
 resource "aws_s3_bucket" "TerraFailS3_bucket" {
+  # Drata: Set [aws_s3_bucket.tags] to ensure that organization-wide tagging conventions are followed.
   force_destroy       = false
   object_lock_enabled = false
 }
