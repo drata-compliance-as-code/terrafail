@@ -33,7 +33,7 @@ resource "aws_elasticache_replication_group" "TerraFailElasticache_replication_g
   num_cache_clusters          = 2
   parameter_group_name        = "default.redis7"
   port                        = 6379
-  multi_az_enabled            = false
+  multi_az_enabled            = true
   automatic_failover_enabled  = true
   at_rest_encryption_enabled  = true
   transit_encryption_enabled  = true
