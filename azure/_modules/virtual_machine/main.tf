@@ -125,6 +125,7 @@ resource "azurerm_availability_set" "TerraFailVM_availability_set" {
 data "azurerm_client_config" "current" {}
 
 resource "azurerm_key_vault" "TerraFailVM_vault" {
+  # Drata: Set [azurerm_key_vault.public_network_access_enabled] to false to prevent unintended public access. Ensure that only trusted users and IP addresses are explicitly allowed access, if a publicly accessible service is required for your business use case this finding can be excluded
   name                        = "TerraFailVM_vault"
   location                    = azurerm_resource_group.TerraFailVM_rg.location
   resource_group_name         = azurerm_resource_group.TerraFailVM_rg.name
