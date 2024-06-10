@@ -3,6 +3,7 @@
 # ---------------------------------------------------------------------
 
 resource "google_compute_instance" "TerraFailComputeInstance" {
+  # Drata: Set [configId] to ensure that organization-wide label conventions are followed.
   name         = "TerraFailComputeInstance"
   machine_type = "e2-medium"
   zone         = "us-east1-b"
