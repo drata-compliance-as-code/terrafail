@@ -101,6 +101,7 @@ POLICY
 }
 
 resource "aws_iam_role" "TerraFailEKS_ec2_role" {
+  # Drata: Set [aws_iam_role.tags] to ensure that organization-wide tagging conventions are followed.
   name = "TerraFailEKS_ec2_role"
 
   assume_role_policy = <<POLICY
