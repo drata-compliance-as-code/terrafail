@@ -19,6 +19,7 @@ resource "google_cloud_tasks_queue_iam_member" "TerraFailCloudTasks_iam_member" 
 }
 
 resource "google_cloud_tasks_queue" "TerraFailCloudTasks_queue" {
+  # Drata: Configure [google_cloud_tasks_queue.stackdriver_logging_config] to ensure that security-relevant events are logged to detect malicious activity
   name     = "TerraFailCloudTasks_queue"
   location = "us-central1"
   app_engine_routing_override {
