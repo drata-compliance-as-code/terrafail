@@ -95,6 +95,7 @@ resource "azurerm_virtual_network" "TerraFailCosmosDB_virtual_network" {
 }
 
 resource "azurerm_storage_account" "TerraFailCosmosDB_storage" {
+  # Drata: Set [azurerm_storage_account.enable_https_traffic_only] to true to ensure secure protocols are being used to encrypt resource traffic
   name                     = "TerraFailCosmosDB_storage"
   location                 = azurerm_resource_group.TerraFailCosmosDB_rg.location
   resource_group_name      = azurerm_resource_group.TerraFailCosmosDB_rg.name
