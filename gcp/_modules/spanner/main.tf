@@ -6,7 +6,7 @@ resource "google_spanner_instance" "TerraFailSpanner_instance" {
   display_name  = "TerraFailSpanner_instance"
   num_nodes     = 1
   project       = "terrafail"
-  force_destroy = true
+  force_destroy = false
 }
 
 resource "google_spanner_instance_iam_binding" "TerraFailSpanner_instance_iam_binding" {
