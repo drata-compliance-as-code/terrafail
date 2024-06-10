@@ -8,6 +8,7 @@ resource "aws_ecs_cluster" "TerraFailECS_cluster" {
 }
 
 resource "aws_ecs_service" "TerraFailECS_service" {
+  # Drata: Set [aws_ecs_service.tags] to ensure that organization-wide tagging conventions are followed.
   # Drata: Default network security groups allow broader access than required. Specify [aws_ecs_service.network_configuration.security_groups] to configure more granular access control
   name            = "TerraFailECS_service"
   cluster         = aws_ecs_cluster.TerraFailECS_cluster.arn
