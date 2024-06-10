@@ -123,6 +123,7 @@ resource "aws_subnet" "TerraFailLB_subnet_default" {
 }
 
 resource "aws_vpc" "TerraFailLB_vpc" {
+  # Drata: Set [aws_vpc.tags] to ensure that organization-wide tagging conventions are followed.
   cidr_block = "10.0.0.0/16"
 }
 
