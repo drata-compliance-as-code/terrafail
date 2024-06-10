@@ -1,11 +1,13 @@
-on: push
+on:
+    push:
+        branches:
+        - main
 jobs:
     drata-iac-scan:
         runs-on: ubuntu-latest
         name: compliance-as-code-action
         steps:
-        - name: Checkout repo
-            uses: actions/checkout@v4
+        - uses: actions/checkout@v4
         - name: Drata Github Action
             id: drata
             uses: drata/compliance-as-code-action@v1.0.0
