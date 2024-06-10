@@ -33,6 +33,7 @@ resource "aws_elb" "TerraFailELB" {
 # Network
 # ---------------------------------------------------------------------
 resource "aws_security_group" "TerraFailELB_security_group" {
+  # Drata: Set [aws_security_group.tags] to ensure that organization-wide tagging conventions are followed.
   name                   = "TerraFailELB_security_group"
   description            = "Allow TLS inbound traffic"
   vpc_id                 = aws_vpc.TerraFailELB_vpc.id
