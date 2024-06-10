@@ -36,6 +36,7 @@ resource "google_pubsub_topic_iam_member" "TerraFailPubsub_iam_member" {
   topic   = google_pubsub_topic.TerraFailPubsub.name
   role    = "roles/viewer"
   member  = "allUsers"
+  # Drata: Explicitly scope [google_pubsub_topic_iam_member.member] in adherence with the principal of least privilege. Avoid the use of overly permissive allow-all access patterns such as ([allusers, allauthenticatedusers])
 }
 
 resource "google_pubsub_subscription_iam_binding" "TerraFailPubsub_sub_iam_binding" {
