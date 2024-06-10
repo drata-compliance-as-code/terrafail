@@ -36,7 +36,7 @@ resource "aws_ecs_task_definition" "TerraFailECS_task_definition" {
 
   cpu          = 1024
   memory       = 2048
-  network_mode = "none"
+  network_mode = "awsvpc"
 
   volume {
     name = "myEfsVolume"
