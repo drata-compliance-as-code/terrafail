@@ -26,6 +26,7 @@ resource "google_bigquery_dataset_iam_member" "TerraFailBigQuery_iam_member" {
 }
 
 resource "google_bigquery_table" "TerraFailBigQuery_table" {
+  # Drata: Set [configId] to ensure that organization-wide label conventions are followed.
   dataset_id = google_bigquery_dataset.TerraFailBigQuery_dataset.dataset_id
   table_id   = "bigQ"
   time_partitioning {
