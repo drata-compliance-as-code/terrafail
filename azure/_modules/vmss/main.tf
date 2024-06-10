@@ -283,6 +283,7 @@ resource "azurerm_network_security_group" "TerraFailVMSS_nsg" {
 }
 
 resource "azurerm_virtual_network" "TerraFailVMSS_vnet" {
+  # Drata: Set [azurerm_virtual_network.tags] to ensure that organization-wide tagging conventions are followed.
   name                = "TerraFailVMSS_vnet"
   address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.TerraFailVMSS_rg.location
