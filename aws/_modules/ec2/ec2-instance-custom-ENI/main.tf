@@ -24,6 +24,7 @@ resource "aws_instance" "TerraFailEC2Instance" {
     volume_size           = 5
 
     tags = {
+      # Drata: Set [aws_instance.tags] to ensure that organization-wide tagging conventions are followed.
       "key" = "value"
     }
   }
