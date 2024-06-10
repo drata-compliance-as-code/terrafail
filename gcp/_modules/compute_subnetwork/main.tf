@@ -2,6 +2,7 @@
 # Compute Subnetwork
 # ---------------------------------------------------------------------
 resource "google_compute_subnetwork" "TerraFailComputeSubnetwork" {
+  # Drata: Configure [google_compute_subnetwork.log_config] to ensure that security-relevant events are logged to detect malicious activity
   name          = "TerraFailComputeSubnetwork"
   ip_cidr_range = "10.2.0.0/16"
   region        = "us-central1"
