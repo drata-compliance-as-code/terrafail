@@ -27,6 +27,7 @@ resource "google_pubsub_topic_iam_binding" "TerraFailPubsub_iam_binding" {
   topic   = google_pubsub_topic.TerraFailPubsub.name
   role    = "roles/viewer"
   members = [
+    # Drata: Explicitly scope [google_pubsub_topic_iam_binding.members] in adherence with the principal of least privilege. Avoid the use of overly permissive allow-all access patterns such as ([allusers, allauthenticatedusers])
     "allUsers",
   ]
 }
