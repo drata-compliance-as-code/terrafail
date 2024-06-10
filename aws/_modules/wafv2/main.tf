@@ -12,6 +12,7 @@ resource "aws_wafv2_ip_set" "TerraFailWAF_ip_set" {
 }
 
 resource "aws_wafv2_rule_group" "TerraFailWAF_rule_group" {
+  # Drata: Set [aws_wafv2_rule_group.tags] to ensure that organization-wide tagging conventions are followed.
   name     = "TerraFailWAF_rule_group"
   scope    = "REGIONAL"
   capacity = 2
