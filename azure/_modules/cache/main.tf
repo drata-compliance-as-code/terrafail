@@ -9,6 +9,7 @@ resource "azurerm_resource_group" "TerraFailCache_rg" {
 # Network
 # ---------------------------------------------------------------------
 resource "azurerm_virtual_network" "TerraFailCache_virtual_network" {
+  # Drata: Set [azurerm_virtual_network.tags] to ensure that organization-wide tagging conventions are followed.
   name                = "TerraFailCache_virtual_network"
   address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.TerraFailCache_rg.location
