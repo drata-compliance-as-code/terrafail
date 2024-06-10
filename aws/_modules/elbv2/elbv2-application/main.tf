@@ -248,6 +248,7 @@ resource "aws_launch_template" "TerraFailLB_launch_template" {
 # KMS
 # ---------------------------------------------------------------------
 resource "aws_kms_key" "TerraFailLB_key" {
+  # Drata: Set [aws_kms_key.tags] to ensure that organization-wide tagging conventions are followed.
   description             = "TerraFailLB_key"
   deletion_window_in_days = 10
 }
