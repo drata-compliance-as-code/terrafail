@@ -55,6 +55,7 @@ resource "aws_apigatewayv2_route" "TerraFailAPIv2_route" {
 # ELBV2
 # ---------------------------------------------------------------------
 resource "aws_lb" "TerraFailAPIv2_lb" {
+  # Drata: Default network security groups allow broader access than required. Specify [aws_lb.security_groups] to configure more granular access control
   name                       = "TerraFailAPIv2_lb"
   load_balancer_type         = "application"
   drop_invalid_header_fields = true
