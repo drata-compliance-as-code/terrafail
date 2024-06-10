@@ -6,7 +6,7 @@
 resource "aws_elb" "TerraFailELB" {
   name     = "TerraFailELB"
   subnets  = [aws_subnet.TerraFailELB_subnet.id]
-  internal = false
+  internal = true
 
   listener {
     instance_port     = 8000
