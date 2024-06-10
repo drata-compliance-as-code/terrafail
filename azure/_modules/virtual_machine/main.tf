@@ -49,7 +49,7 @@ resource "azurerm_windows_virtual_machine" "TerraFailVM_windows" {
   network_interface_ids = [
     azurerm_network_interface.TerraFailVM_windows_network_interface.id,
   ]
-  encryption_at_host_enabled = false
+  encryption_at_host_enabled = true
 
   winrm_listener {
     protocol = "Https"
