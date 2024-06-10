@@ -178,6 +178,7 @@ resource "azurerm_disk_encryption_set" "TerraFailVMSS_disk_encryption_set" {
 data "azurerm_client_config" "current" {}
 
 resource "azurerm_key_vault" "TerraFailVMSS_vault" {
+  # Drata: Set [azurerm_key_vault.enable_rbac_authorization] to true to configure resource authentication using role based access control (RBAC). RBAC allows for more granularity when defining permissions for users and workloads that can access a resource
   # Drata: Set [azurerm_key_vault.tags] to ensure that organization-wide tagging conventions are followed.
   # Drata: Set [azurerm_key_vault.public_network_access_enabled] to false to prevent unintended public access. Ensure that only trusted users and IP addresses are explicitly allowed access, if a publicly accessible service is required for your business use case this finding can be excluded
   name                        = "TerraFailVMSS_vault"
