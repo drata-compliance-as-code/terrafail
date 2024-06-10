@@ -7,6 +7,7 @@ resource "azurerm_resource_group" "TerraFailHealthcare_rg" {
 # Healthcare API
 # ---------------------------------------------------------------------
 resource "azurerm_healthcare_service" "TerraFailHealthcare" {
+  # Drata: Set [azurerm_healthcare_service.tags] to ensure that organization-wide tagging conventions are followed.
   name                = "TerraFailHealthcare"
   resource_group_name = azurerm_resource_group.TerraFailHealthcare_rg.name
   location            = azurerm_resource_group.TerraFailHealthcare_rg.location
