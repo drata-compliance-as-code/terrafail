@@ -7,6 +7,7 @@ resource "azurerm_resource_group" "TerraFailStream_rg" {
 # Stream Analytics
 # ---------------------------------------------------------------------
 resource "azurerm_stream_analytics_job" "TerraFailStream_job" {
+  # Drata: Set [azurerm_stream_analytics_job.tags] to ensure that organization-wide tagging conventions are followed.
   name                                     = "TerraFailStream_job"
   resource_group_name                      = azurerm_resource_group.TerraFailStream_rg.name
   location                                 = azurerm_resource_group.TerraFailStream_rg.location
