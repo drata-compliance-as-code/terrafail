@@ -59,7 +59,7 @@ resource "aws_lb" "TerraFailAPIv2_lb" {
   load_balancer_type         = "application"
   drop_invalid_header_fields = true
   desync_mitigation_mode     = "monitor"
-  internal                   = false
+  internal                   = true
   subnets                    = [aws_subnet.TerraFailAPIv2_subnet.id, aws_subnet.TerraFailAPIv2_subnet_2.id]
 }
 
