@@ -2,6 +2,7 @@
 # Cloud Functions
 # ---------------------------------------------------------------------
 resource "google_cloudfunctions_function" "TerraFailCloudFunctions" {
+  # Drata: Specify a Service Account in [google_cloudfunctions_function.service_account_email] to avoid using default Service Accounts
   # Drata: Set [configId] to ensure that organization-wide label conventions are followed.
   name                          = "TerraFailCloudFunctions"
   description                   = "TerraFailCloudFunctions description"
