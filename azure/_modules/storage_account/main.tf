@@ -16,6 +16,7 @@ resource "azurerm_storage_account" "TerraFailStorage" {
   account_kind                      = "StorageV2"
   public_network_access_enabled     = true
   account_replication_type          = "ZRS"
+  # Drata: Configure [azurerm_storage_account.account_replication_type] to improve infrastructure availability and resilience. To create highly available Storage Accounts, set azurerm_storage_account.account_replication_type to a geo-redundant storage option by selecting one of the following SKUs: ['standard_grs', 'standard_gzrs', 'standard_ragrs', 'standard_ragzrs', 'grs', 'gzrs', 'ragrs', 'ragzrs']
   infrastructure_encryption_enabled = false
   enable_https_traffic_only         = true
   min_tls_version                   = "TLS1_0"
