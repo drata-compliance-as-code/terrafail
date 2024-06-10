@@ -32,7 +32,7 @@ resource "aws_apigatewayv2_integration" "TerraFailAPIv2_integration" {
   api_id             = aws_apigatewayv2_api.TerraFailAPIv2.id
   integration_type   = "HTTP_PROXY"
   integration_method = "PATCH"
-  connection_type    = "INTERNET"
+  connection_type    = "VPC_LINK"
   integration_uri    = aws_lb_listener.TerraFailAPIv2_listener.arn
   tls_config {
     server_name_to_verify = "thisisthedarkside.com"
