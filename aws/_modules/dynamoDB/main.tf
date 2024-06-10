@@ -33,7 +33,7 @@ resource "aws_dynamodb_table" "TerraFailDynamoDB" {
 
 
   point_in_time_recovery {
-    enabled = false
+    enabled = true
   }
 
   timeouts {
