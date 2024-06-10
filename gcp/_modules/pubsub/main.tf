@@ -8,6 +8,7 @@ resource "google_pubsub_topic" "TerraFailPubsub" {
 }
 
 resource "google_pubsub_subscription" "TerraFailPubsub_subscription" {
+  # Drata: Set [configId] to ensure that organization-wide label conventions are followed.
   name                       = "TerraFailPubsub_subscription"
   topic                      = google_pubsub_topic.TerraFailPubsub.name
   message_retention_duration = "1200s"
