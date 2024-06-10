@@ -50,7 +50,7 @@ resource "azurerm_application_gateway" "TerraFailAppGateway" {
     name                  = "backend-http-settings"
     cookie_based_affinity = "Disabled"
     port                  = 63
-    protocol              = "Https"
+    protocol              = "https"
     request_timeout       = 0
 
     connection_draining {
