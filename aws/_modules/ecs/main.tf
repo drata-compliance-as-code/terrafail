@@ -42,7 +42,7 @@ resource "aws_ecs_task_definition" "TerraFailECS_task_definition" {
     name = "myEfsVolume"
     efs_volume_configuration {
       file_system_id     = aws_efs_file_system.TerraFailECS_efs.id
-      transit_encryption = "DISABLED"
+      transit_encryption = "ENABLED"
 
       authorization_config {
         iam = "DISABLED"
