@@ -12,7 +12,7 @@ resource "aws_elb" "TerraFailELB" {
     instance_port     = 8000
     instance_protocol = "HTTP"
     lb_port           = 80
-    lb_protocol       = "HTTP"
+    lb_protocol       = "HTTPS"
   }
 
   health_check {
