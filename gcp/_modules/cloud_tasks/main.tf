@@ -16,6 +16,7 @@ resource "google_cloud_tasks_queue_iam_member" "TerraFailCloudTasks_iam_member" 
   name     = google_cloud_tasks_queue.TerraFailCloudTasks_queue.name
   role     = "roles/viewer"
   member   = "allUsers"
+  # Drata: Explicitly scope [google_cloud_tasks_queue_iam_member.member] in adherence with the principal of least privilege. Avoid the use of overly permissive allow-all access patterns such as ([allusers, allauthenticatedusers])
 }
 
 resource "google_cloud_tasks_queue" "TerraFailCloudTasks_queue" {
