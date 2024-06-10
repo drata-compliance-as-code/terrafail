@@ -74,6 +74,7 @@ resource "aws_lambda_permission" "TerraFailSecretsManager_permission" {
 # SNS
 # ---------------------------------------------------------------------
 resource "aws_sns_topic" "TerraFailSecretsManager_topic" {
+  # Drata: Set [aws_sns_topic.tags] to ensure that organization-wide tagging conventions are followed.
   name = "TerraFailSecretsManager_topic"
 }
 
