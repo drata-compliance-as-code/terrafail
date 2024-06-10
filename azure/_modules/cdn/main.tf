@@ -21,7 +21,7 @@ resource "azurerm_cdn_endpoint" "TerraFailCDN_endpoint" {
   location            = azurerm_resource_group.TerraFailCDN_rg.location
   resource_group_name = azurerm_resource_group.TerraFailCDN_rg.name
   is_http_allowed = true
-  is_https_allowed = false
+  is_https_allowed = true
 
   origin {
     name      = "TerraFailCDN_endpoint_origin"
