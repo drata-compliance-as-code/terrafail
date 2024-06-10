@@ -3,6 +3,7 @@
 # ElasticSearch
 # ---------------------------------------------------------------------
 resource "aws_elasticsearch_domain" "TerraFailElasticache_domain" {
+  # Drata: Set [aws_elasticsearch_domain.tags] to ensure that organization-wide tagging conventions are followed.
   domain_name           = "TerraFailElasticache_domain"
   elasticsearch_version = "7.10"
 
