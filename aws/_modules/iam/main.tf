@@ -139,6 +139,7 @@ resource "aws_iam_role" "TerraFailIAM_role_managed" {
   })
 
   managed_policy_arns = ["arn:aws:iam::aws:policy/AdministratorAccess"]
+  # Drata: Ensure that [aws_iam_role.managed_policy_arns] does not contain arn:aws:iam::aws:policy/AdministratorAccess
 }
 
 resource "aws_iam_role" "TerraFailIAM_role_custom" {
