@@ -13,6 +13,7 @@ resource "aws_secretsmanager_secret_rotation" "TerraFailSecretsManager_rotation"
 }
 
 resource "aws_secretsmanager_secret" "TerraFailSecretsManager_secret" {
+  # Drata: Explicitly define actions for [aws_secretsmanager_secret.policy] in adherence with the principal of least privilege. Avoid the use of overly permissive allow-all access patterns such as (*)
   # Drata: Set [aws_secretsmanager_secret.tags] to ensure that organization-wide tagging conventions are followed.
   name                    = "TerraFailSecretsManager_secret"
   description             = "TerraFailSecretsManager_secret description"
