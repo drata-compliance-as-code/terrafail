@@ -9,6 +9,7 @@ resource "azurerm_resource_group" "TerraFailLB_rg" {
 # LoadBalancer
 # ---------------------------------------------------------------------
 resource "azurerm_lb" "TerraFailLB" {
+  # Drata: Set [azurerm_lb.tags] to ensure that organization-wide tagging conventions are followed.
   name                = "TerraFailLB"
   location            = azurerm_resource_group.TerraFailLB_rg.location
   resource_group_name = azurerm_resource_group.TerraFailLB_rg.name
