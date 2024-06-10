@@ -3,6 +3,5 @@
 terraform.tfstate
 terraform.tfstate.backup
 errored.tfstate
-!tfsec_results.txt
 .DS_Store
 .vscode

@@ -24,7 +24,9 @@ The purpose of this repository is to tell a tale of poor security posture while 
 _Before proceeding, please read the following disclaimer:_
 
 > [!CAUTION]
-> TerraFail contains multiple examples of common IaC misconfigurations. These were developed with the intention of showcasing the impact of Drata's Compliance as Code engine on improving organizational security posture. Use at your own discretion; Drata is not responsible for any damages.
+> TerraFail contains multiple examples of intentionally insecure code displaying common IaC misconfigurations. These were developed with the intention of showcasing the impact of Drata's Compliance as Code engine on improving organizational security posture. The code and configurations in this repository are intended for educational purposes only. Do not use this code or these configurations in production environments. The authors of this repository take no responsibility for any damages that may result from the use of the code or configurations in this repository.
+>
+> USE THIS REPOSITORY AT YOUR OWN RISK.
 
 **Please use caution when using this codebase and ensure that you have appropriate permissions to deploy resources in your cloud environment. Always follow best practices for securing your cloud infrastructure and consult with your organization's security team before deploying any code to live environments.**
 
