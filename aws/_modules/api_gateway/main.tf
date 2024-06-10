@@ -123,6 +123,7 @@ resource "aws_lambda_function" "TerraFailAPI_lambda_function" {
 # IAM
 # ---------------------------------------------------------------------
 resource "aws_iam_role" "TerraFailAPI_iam_role" {
+  # Drata: Set [aws_iam_role.tags] to ensure that organization-wide tagging conventions are followed.
   name = "TerraFailAPI_iam_role"
 
   assume_role_policy = <<EOF
