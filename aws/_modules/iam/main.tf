@@ -95,6 +95,7 @@ resource "aws_iam_role_policy" "TerraFailIAM_role_policy" {
 resource "aws_iam_role" "TerraFailIAM_role_inline" {
   name = "TerraFailIAM_role_inline"
   assume_role_policy = jsonencode({
+    # Drata: Explicitly define principals for [aws_iam_role.assume_role_policy] in adherence with the principal of least privilege. Avoid the use of overly permissive allow-all access patterns such as (*)
     Version = "2012-10-17"
     Statement = [
       {
