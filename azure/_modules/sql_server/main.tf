@@ -46,7 +46,7 @@ resource "azurerm_mssql_elasticpool" "TerraFailSQL_elasticpool" {
 
 resource "azurerm_mssql_server_extended_auditing_policy" "TerraFailSQL_server_auditing_policy" {
   server_id         = azurerm_mssql_server.TerraFailSQL_server.id
-  enabled           = false
+  enabled           = true
   retention_in_days = 365
 }
 
