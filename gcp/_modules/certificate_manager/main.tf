@@ -27,6 +27,7 @@ resource "google_certificate_manager_certificate_map_entry" "TerraFailCertManage
 }
 
 resource "google_certificate_manager_dns_authorization" "TerraFailCertManager_dns_authorization" {
+  # Drata: Set [configId] to ensure that organization-wide label conventions are followed.
   name        = "TerraFailCertManager_dns_authorization"
   description = "TerraFailCertManager dns authorization"
   domain      = "subdomain.hashicorptest.com"
