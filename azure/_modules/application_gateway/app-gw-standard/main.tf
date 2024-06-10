@@ -20,7 +20,7 @@ resource "azurerm_application_gateway" "TerraFailAppGateway" {
 
   sku {
     name     = "Standard_Small"
-    tier     = "Standard" # Drata: sku.tier should be set to any of Standard_V2, WAF_V2
+    tier     = "Standard" # Drata: sku.tier should be set to any of Standard_V2, WAF_V2 # Drata: sku.tier should be set to any of Standard_V2, WAF_V2
     capacity = 2
   }
 
