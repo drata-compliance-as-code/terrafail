@@ -14,6 +14,7 @@ resource "google_certificate_manager_certificate" "TerraFailCertManager" {
 }
 
 resource "google_certificate_manager_certificate_map" "TerraFailCertManager_map" {
+  # Drata: Set [configId] to ensure that organization-wide label conventions are followed.
   name        = "TerraFailCertManager_map"
   description = "TerraFailCertManager certificate map"
 }
