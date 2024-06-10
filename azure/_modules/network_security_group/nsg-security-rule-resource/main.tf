@@ -9,6 +9,7 @@ resource "azurerm_resource_group" "TerraFailNSG_rg" {
 # Network
 # ---------------------------------------------------------------------
 resource "azurerm_network_security_group" "TerraFailNSG" {
+  # Drata: Ensure that [azurerm_network_security_group.security_rule.source_address_prefix] is explicitly defined and narrowly scoped to only allow traffic from trusted sources
   # Drata: Ensure that [azurerm_network_security_group.security_rule.destination_address_prefix] is explicitly defined and narrowly scoped to only allow traffic to trusted sources
   name                = "TerraFailNSG"
   location            = azurerm_resource_group.TerraFailNSG_rg.location
