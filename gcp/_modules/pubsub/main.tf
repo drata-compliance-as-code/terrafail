@@ -41,6 +41,7 @@ resource "google_pubsub_topic_iam_member" "TerraFailPubsub_iam_member" {
 resource "google_pubsub_subscription_iam_binding" "TerraFailPubsub_sub_iam_binding" {
   subscription = "TerraFailPubsub_subscription"
   role         = "roles/editor"
+  # Drata: Explicitly scope [google_pubsub_subscription_iam_binding.role] in adherence with the principal of least privilege. Avoid the use of overly permissive allow-all access patterns such as (['roles/pubsub.editor', 'roles/editor', 'roles/pubsub.admin'])
   members = [
     "allUsers",
   ]
