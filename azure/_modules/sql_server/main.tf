@@ -25,7 +25,7 @@ resource "azurerm_mssql_elasticpool" "TerraFailSQL_elasticpool" {
   location            = azurerm_resource_group.TerraFailSQL_rg.location
   server_name         = azurerm_mssql_server.TerraFailSQL_server.name
   max_size_gb         = 10
-  zone_redundant      = false
+  zone_redundant      = true
 
   tags = {
     key = "value"
