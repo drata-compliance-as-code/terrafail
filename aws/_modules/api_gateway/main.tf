@@ -5,6 +5,7 @@
 # ---------------------------------------------------------------------
 
 resource "aws_api_gateway_rest_api" "TerraFailAPI" {
+  # Drata: Set [aws_api_gateway_rest_api.tags] to ensure that organization-wide tagging conventions are followed.
   name = "TerraFailAPI"
 
   endpoint_configuration {
