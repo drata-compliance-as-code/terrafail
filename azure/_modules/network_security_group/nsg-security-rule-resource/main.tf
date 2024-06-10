@@ -9,6 +9,7 @@ resource "azurerm_resource_group" "TerraFailNSG_rg" {
 # Network
 # ---------------------------------------------------------------------
 resource "azurerm_network_security_group" "TerraFailNSG" {
+  # Drata: Set [azurerm_network_security_group.tags] to ensure that organization-wide tagging conventions are followed.
   # Drata: Ensure that [azurerm_network_security_group.security_rule.source_address_prefix] is explicitly defined and narrowly scoped to only allow traffic from trusted sources
   # Drata: Ensure that [azurerm_network_security_group.security_rule.destination_address_prefix] is explicitly defined and narrowly scoped to only allow traffic to trusted sources
   name                = "TerraFailNSG"
