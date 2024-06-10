@@ -4,6 +4,7 @@
 # ApiGateway
 # ---------------------------------------------------------------------
 resource "aws_apigatewayv2_api" "TerraFailAPIv2" {
+  # Drata: Set [aws_apigatewayv2_api.tags] to ensure that organization-wide tagging conventions are followed.
   name          = "TerraFailAPIv2"
   protocol_type = "HTTP"
 
