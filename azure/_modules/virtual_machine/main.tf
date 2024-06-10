@@ -38,6 +38,7 @@ resource "azurerm_linux_virtual_machine" "TerraFailVM_linux" {
 }
 
 resource "azurerm_windows_virtual_machine" "TerraFailVM_windows" {
+  # Drata: Set [azurerm_windows_virtual_machine.tags] to ensure that organization-wide tagging conventions are followed.
   name                = "TerraFailVM_windows"
   resource_group_name = azurerm_resource_group.TerraFailVM_rg.name
   location            = azurerm_resource_group.TerraFailVM_rg.location
