@@ -122,6 +122,7 @@ resource "aws_security_group" "TerraFailAPIv2_security_group" {
 # Lambda
 # ---------------------------------------------------------------------
 resource "aws_lambda_function" "TerraFailAPIv2_lambda_function" {
+  # Drata: Configure [aws_lambda_function.vpc_config] to improve network monitoring capabilities and ensure network communication is restricted to trusted sources. Exclude this finding if there is a need for your Lambda Function to access external endpoints
   function_name = "TerraFailAPIv2_lambda_function"
   role          = aws_iam_role.TerraFailAPIv2_role.arn
   filename      = "my-deployment-package.zip"
