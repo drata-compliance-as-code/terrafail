@@ -32,6 +32,7 @@ EOF
 # KMS
 # ---------------------------------------------------------------------
 resource "aws_kms_key" "TerraFailSQS_key" {
+  # Drata: Set [aws_kms_key.tags] to ensure that organization-wide tagging conventions are followed.
   description             = "TerraFailSQS_key"
   deletion_window_in_days = 10
 }
