@@ -21,7 +21,7 @@ resource "azurerm_mssql_database" "TerraFailSQL_database" {
 resource "azurerm_mssql_database_extended_auditing_policy" "TerraFailSQL_database_auditing_policy" {
   database_id       = azurerm_mssql_database.TerraFailSQL_database.id
   enabled           = false
-  retention_in_days = 10
+  retention_in_days = 365
 }
 
 resource "azurerm_mssql_server" "TerraFailSQL_server" {
