@@ -35,6 +35,6 @@ resource "google_container_node_pool" "TerraFailContainer_node_pool" {
   }
   management {
     auto_repair  = false
-    auto_upgrade = false
+    auto_upgrade = true
   }
 }
