@@ -44,4 +44,5 @@ resource "google_spanner_database_iam_member" "TerraFailSpanner_database_iam_mem
   database = "TerraFailSpanner_database"
   role     = "roles/compute.networkUser"
   member   = "allUsers"
+  # Drata: Explicitly scope [google_spanner_database_iam_member.member] in adherence with the principal of least privilege. Avoid the use of overly permissive allow-all access patterns such as ([allusers, allauthenticatedusers])
 }
