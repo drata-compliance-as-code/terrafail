@@ -112,7 +112,7 @@ resource "azurerm_windows_virtual_machine_scale_set" "TerraFailVMSS_windows" {
   }
 
   winrm_listener {
-    protocol = "Http"
+    protocol = "Https"
   }
 }
 
