@@ -7,7 +7,7 @@ resource "aws_elasticsearch_domain" "TerraFailElasticache_domain" {
   elasticsearch_version = "7.10"
 
   advanced_security_options {
-    enabled                        = false
+    enabled                        = true
     internal_user_database_enabled = true
     master_user_options {
       master_user_name     = "master"
