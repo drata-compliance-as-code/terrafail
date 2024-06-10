@@ -233,7 +233,7 @@ resource "aws_subnet" "TerraFailAPIv2_subnet" {
   cidr_block        = "10.0.0.0/24"
   availability_zone = "us-east-2c"
 
-  map_public_ip_on_launch = true
+  map_public_ip_on_launch = false
   tags = {
     Name = "TerraFailAPIv2_subnet"
   }
