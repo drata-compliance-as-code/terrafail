@@ -89,6 +89,7 @@ resource "aws_api_gateway_method" "TerraFailAPI_method" {
 }
 
 resource "aws_api_gateway_usage_plan" "TerraFailAPI_usage_plan" {
+  # Drata: Set [aws_api_gateway_usage_plan.tags] to ensure that organization-wide tagging conventions are followed.
   name = "TerraFailAPI_usage_plan"
 
   api_stages {
