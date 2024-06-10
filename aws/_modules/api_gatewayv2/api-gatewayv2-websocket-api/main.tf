@@ -126,7 +126,7 @@ resource "aws_lambda_function" "TerraFailAPIv2_lambda_function" {
   role          = aws_iam_role.TerraFailAPIv2_role.arn
   filename      = "my-deployment-package.zip"
   handler       = "index.handler"
-  runtime = "dotnet6"
+  runtime = "dotnet8"
   reserved_concurrent_executions = 0
 }
 
