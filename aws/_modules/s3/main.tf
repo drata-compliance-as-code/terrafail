@@ -61,7 +61,7 @@ resource "aws_s3_bucket_public_access_block" "TerraFailS3_bucket_access" {
   block_public_acls       = false
   block_public_policy     = false
   ignore_public_acls      = false
-  restrict_public_buckets = false
+  restrict_public_buckets = true
 }
 
 resource "aws_s3_bucket_versioning" "TerraFailS3_bucket_versioning" {
