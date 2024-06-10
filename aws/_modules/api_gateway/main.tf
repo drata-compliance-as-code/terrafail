@@ -98,6 +98,7 @@ resource "aws_api_gateway_usage_plan" "TerraFailAPI_usage_plan" {
 }
 
 resource "aws_api_gateway_stage" "TerraFailAPI_stage" {
+  # Drata: Configure [aws_api_gateway_stage.access_log_settings] to ensure that security-relevant events are logged to detect malicious activity
   # Drata: Set [aws_api_gateway_stage.tags] to ensure that organization-wide tagging conventions are followed.
   deployment_id = aws_api_gateway_deployment.TerraFailAPI_deployment.id
   rest_api_id   = aws_api_gateway_rest_api.TerraFailAPI.id
