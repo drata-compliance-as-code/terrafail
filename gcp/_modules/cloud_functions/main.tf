@@ -4,7 +4,7 @@
 resource "google_cloudfunctions_function" "TerraFailCloudFunctions" {
   name                          = "TerraFailCloudFunctions"
   description                   = "TerraFailCloudFunctions description"
-  runtime                       = "nodejs16"
+  runtime                       = "nodejs18"
   available_memory_mb           = 128
   trigger_http                  = true
   entry_point                   = "helloGET"
