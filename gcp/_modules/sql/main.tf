@@ -15,6 +15,7 @@ resource "google_sql_database_instance" "TerraFailSQL_instance" {
     ip_configuration {
       authorized_networks {
         value = "*"
+      # Drata: Ensure that [google_sql_database_instance.settings.ip_configuration.authorized_networks.value] is explicitly defined and narrowly scoped to only allow trusted sources to access SQL Database
       }
       ipv4_enabled = true
       require_ssl  = true
