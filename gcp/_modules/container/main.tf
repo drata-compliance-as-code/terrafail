@@ -26,6 +26,7 @@ resource "google_container_cluster" "TerraFailContainer_cluster" {
 }
 
 resource "google_container_node_pool" "TerraFailContainer_node_pool" {
+  # Drata: Set [configId] to ensure that organization-wide label conventions are followed.
   name       = "TerraFailContainer_node_pool"
   cluster    = google_container_cluster.TerraFailContainer_cluster.name
   node_count = 1
