@@ -36,6 +36,7 @@ resource "aws_s3_bucket_ownership_controls" "TerraFailS3_bucket_ownership" {
 resource "aws_s3_bucket_policy" "TerraFailS3_bucket_policy" {
   bucket = aws_s3_bucket.TerraFailS3_bucket.id
   policy = <<EOF
+  # Drata: Explicitly define actions for [aws_s3_bucket_policy.policy] in adherence with the principal of least privilege. Avoid the use of overly permissive allow-all access patterns such as (*)
   # Drata: Configure [aws_s3_bucket_policy.policy] to ensure secure protocols are being used to encrypt resource traffic
 {
 "Version": "2012-10-17",
