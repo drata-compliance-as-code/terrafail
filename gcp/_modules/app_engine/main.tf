@@ -10,7 +10,7 @@ resource "google_app_engine_flexible_app_version" "TerraFailAppEngine_version_fl
   project    = "terrafail"
   version_id = "v2"
   service    = google_app_engine_application.TerraFailAppEngine.id
-  runtime    = "java8"
+  runtime    = "java21"
   automatic_scaling {
     cool_down_period = "120s"
     cpu_utilization {
