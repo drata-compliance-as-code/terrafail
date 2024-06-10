@@ -83,6 +83,7 @@ resource "aws_subnet" "TerraFailEC2Instance_subnet" {
 }
 
 resource "aws_vpc" "TerraFailEC2Instance_vpc" {
+  # Drata: Set [aws_vpc.tags] to ensure that organization-wide tagging conventions are followed.
   cidr_block = "10.0.0.0/16"
 }
 
