@@ -27,6 +27,7 @@ resource "azurerm_network_security_group" "TerraFailNSG_inbound" {
 }
 
 resource "azurerm_network_security_group" "TerraFailNSG_outbound" {
+  # Drata: Set [azurerm_network_security_group.tags] to ensure that organization-wide tagging conventions are followed.
   name                = "TerraFailNSG_outbound"
   location            = azurerm_resource_group.TerraFailNSG_rg.location
   resource_group_name = azurerm_resource_group.TerraFailNSG_rg.name
