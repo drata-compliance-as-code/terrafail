@@ -23,6 +23,7 @@ resource "google_bigquery_dataset_iam_member" "TerraFailBigQuery_iam_member" {
   dataset_id = google_bigquery_dataset.TerraFailBigQuery_dataset.dataset_id
   role       = "roles/bigquery.dataEditor"
   member     = "allUsers"
+  # Drata: Explicitly scope [google_bigquery_dataset_iam_member.member] in adherence with the principal of least privilege. Avoid the use of overly permissive allow-all access patterns such as ([allusers, allauthenticatedusers])
 }
 
 resource "google_bigquery_table" "TerraFailBigQuery_table" {
