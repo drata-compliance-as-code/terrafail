@@ -22,6 +22,6 @@ EOF
 
 resource "aws_sns_topic_subscription" "TerraFailSNS_subscription" {
   topic_arn = aws_sns_topic.TerraFailSNS.arn
-  protocol  = "http"
+  protocol  = "https"
   endpoint  = "www.thisisthedarkside.com"
 }
