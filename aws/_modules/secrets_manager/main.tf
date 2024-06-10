@@ -154,6 +154,7 @@ resource "aws_iam_role_policy" "TerraFailSecretsManager_iam_policy" {
 # KMS
 # ---------------------------------------------------------------------
 resource "aws_kms_key" "TerraFailSecretsManager_key" {
+  # Drata: Define [aws_kms_key.policy] to restrict access to your resource. Follow the principal of minimum necessary access, ensuring permissions are scoped to trusted entities. Exclude this finding if access to Keys is managed using IAM policies instead of a Key policy
   description             = "TerraFailSecretsManager key description"
   deletion_window_in_days = 10
   enable_key_rotation     = true
