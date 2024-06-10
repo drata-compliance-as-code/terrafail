@@ -60,6 +60,7 @@ resource "aws_TerraFailLambda_layer_version_version" "TerraFailLambda_layer_vers
 # Kinesis
 # ---------------------------------------------------------------------
 resource "aws_kinesis_stream" "TerraFailLambda_stream" {
+  # Drata: Set [aws_kinesis_stream.encryption_type] to KMS to ensure transparent data encryption is enabled
   name             = "TerraFailLambda_stream"
   shard_count      = 1
   retention_period = 48
