@@ -8,7 +8,7 @@ resource "google_cloudfunctions_function" "TerraFailCloudFunctions" {
   available_memory_mb           = 128
   trigger_http                  = true
   entry_point                   = "helloGET"
-  ingress_settings              = "ALLOW_ALL"
+  ingress_settings              = "ALLOW_INTERNAL_AND_GCLB"
   vpc_connector_egress_settings = "ALL_TRAFFIC"
 }
 
