@@ -3,6 +3,7 @@
 # Network ACL
 # ---------------------------------------------------------------------
 resource "aws_network_acl" "TerraFailACL" {
+  # Drata: Set [aws_network_acl.tags] to ensure that organization-wide tagging conventions are followed.
   vpc_id = aws_vpc.TerraFailACL_vpc.id
 
   egress {
