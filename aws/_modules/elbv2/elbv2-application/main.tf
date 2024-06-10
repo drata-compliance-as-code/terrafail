@@ -7,7 +7,7 @@ resource "aws_lb" "TerraFailLB" {
   load_balancer_type         = "application"
   drop_invalid_header_fields = true
   desync_mitigation_mode     = "monitor"
-  internal                   = false
+  internal                   = true
 
   subnet_mapping {
     subnet_id = aws_subnet.TerraFailLB_subnet.id
