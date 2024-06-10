@@ -33,6 +33,7 @@ resource "aws_db_proxy_target" "TerraFailDB_proxy_target" {
 }
 
 resource "aws_db_option_group" "TerraFailDB_option_group" {
+  # Drata: Set [aws_db_option_group.tags] to ensure that organization-wide tagging conventions are followed.
   name                     = "TerraFailDB_option_group"
   option_group_description = "Terraform Option Group"
   engine_name              = "mysql"
