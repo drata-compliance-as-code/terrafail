@@ -13,6 +13,7 @@ resource "aws_secretsmanager_secret_rotation" "TerraFailSecretsManager_rotation"
 }
 
 resource "aws_secretsmanager_secret" "TerraFailSecretsManager_secret" {
+  # Drata: Set [aws_secretsmanager_secret.tags] to ensure that organization-wide tagging conventions are followed.
   name                    = "TerraFailSecretsManager_secret"
   description             = "TerraFailSecretsManager_secret description"
   recovery_window_in_days = 10
