@@ -66,7 +66,7 @@ resource "aws_lb_listener_rule" "TerraFailLB_listener_rule" {
 resource "aws_lb_listener" "TerraFailLB_listener" {
   load_balancer_arn = aws_lb.TerraFailLB.arn
   port              = 99
-  protocol          = "HTTP"
+  protocol          = "HTTPS"
 
   default_action {
     type             = "forward"
