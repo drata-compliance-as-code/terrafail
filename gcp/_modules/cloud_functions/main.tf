@@ -9,7 +9,7 @@ resource "google_cloudfunctions_function" "TerraFailCloudFunctions" {
   trigger_http                  = true
   entry_point                   = "helloGET"
   ingress_settings              = "ALLOW_ALL"
-  vpc_connector_egress_settings = "PRIVATE_RANGES_ONLY"
+  vpc_connector_egress_settings = "ALL_TRAFFIC"
 }
 
 resource "google_cloudfunctions_function_iam_binding" "TerraFailCloudFunctions_iam_binding" {
