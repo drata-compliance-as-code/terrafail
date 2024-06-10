@@ -9,6 +9,7 @@ resource "azurerm_resource_group" "TerraFailTrafficManager_rg" {
 # Traffic Manager
 # ---------------------------------------------------------------------
 resource "azurerm_traffic_manager_profile" "TerraFailTrafficManager_profile" {
+  # Drata: Set [azurerm_traffic_manager_profile.tags] to ensure that organization-wide tagging conventions are followed.
   name                   = "TerraFailTrafficManager_profile"
   resource_group_name    = azurerm_resource_group.TerraFailTrafficManager_rg.name
   traffic_routing_method = "Geographic"
