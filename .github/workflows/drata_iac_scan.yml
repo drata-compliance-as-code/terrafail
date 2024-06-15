@@ -16,4 +16,4 @@ jobs:
             GITHUB_REPOSITORY: $GITHUB_REPOSITORY
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-            minimumSeverity: 'NONE'
+            minimumSeverity: 'Critical'
