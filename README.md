@@ -102,3 +102,4 @@ To view documentation specific to a given finding, follow the documentation link
 ![GitHubCodeConnection](readme/documentation.png)
 
 Click on the guidance links to read up on security best practices or navigate directly to the IaC provider links to learn how to fix the vulnerabilities in your code.
+
