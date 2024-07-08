@@ -59,7 +59,7 @@ resource "aws_api_gateway_deployment" "TerraFailAPI_deployment" {
 resource "aws_api_gateway_domain_name" "TerraFailAPI_domain_name" {
   certificate_arn = aws_acm_certificate_validation.TerraFailAPI_cert.certificate_arn
   domain_name     = "www.thisisthedarkside.com"
-  security_policy = "tls_1_1"
+  security_policy = "tls_1_2"
 }
 
 resource "aws_api_gateway_api_key" "TerraFailAPI_key" {
