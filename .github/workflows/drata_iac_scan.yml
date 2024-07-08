@@ -1,4 +1,7 @@
-on: push
+on: 
+  push:
+    branches:
+      - main
 jobs:
   drata-iac-scan:
     runs-on: ubuntu-latest
