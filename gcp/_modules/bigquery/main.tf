@@ -15,7 +15,7 @@ resource "google_bigquery_dataset_iam_binding" "TerraFailBigQuery_iam_binding" {
   dataset_id = google_bigquery_dataset.TerraFailBigQuery_dataset.dataset_id
   role       = "roles/bigquery.dataViewer"
   members = [
-    "allUsers",
+    "user@terrafail.com",
   ]
 }
 

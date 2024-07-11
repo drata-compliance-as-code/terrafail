@@ -19,8 +19,8 @@ resource "azurerm_application_gateway" "TerraFailAppGateway" {
   }
 
   sku {
-    name     = "Standard_Small"
-    tier     = "Standard"
+    name     = "Standard_v2"
+    tier     = "Standard_v2"
     capacity = 1
   }
 
@@ -50,7 +50,7 @@ resource "azurerm_application_gateway" "TerraFailAppGateway" {
     name                  = "backend-http-settings"
     cookie_based_affinity = "Disabled"
     port                  = 63
-    protocol              = "http"
+    protocol              = "Https"
     request_timeout       = 0
 
     connection_draining {
@@ -63,7 +63,7 @@ resource "azurerm_application_gateway" "TerraFailAppGateway" {
     name                           = "http-listener-1"
     frontend_ip_configuration_name = "ip_config_1"
     frontend_port_name             = "front_end_port_1"
-    protocol                       = "HTTP"
+    protocol                       = "Http"
   }
 
   ssl_policy {
@@ -100,6 +100,7 @@ resource "azurerm_key_vault" "TerraFailAppGateway_vault" {
   tenant_id                   = data.azurerm_client_config.current.tenant_id
   soft_delete_retention_days  = 7
   purge_protection_enabled    = false
+  enable_rbac_authorization   = true
 
   sku_name = "standard"
 }

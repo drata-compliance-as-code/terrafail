@@ -11,8 +11,8 @@ resource "aws_sns_topic" "TerraFailSNS" {
         {
             "Effect": "Allow",
             "Action": "SNS:Subscribe",
-            "Resource": "*",
-            "Principal": "*"
+            "Resource": "SNS:*",
+            "Principal": "user@terrafail.com"
         }
     ]
 }

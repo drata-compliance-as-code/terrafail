@@ -87,7 +87,7 @@ resource "aws_subnet" "TerraFailAPIv2_subnet" {
   cidr_block        = "10.0.0.0/24"
   availability_zone = "us-east-2c"
 
-  map_public_ip_on_launch = true
+  map_public_ip_on_launch = false
   tags = {
     Name = "TerraFailAPIv2_subnet"
   }
@@ -128,6 +128,11 @@ resource "aws_lambda_function" "TerraFailAPIv2_lambda_function" {
   handler       = "index.handler"
   runtime = "dotnet6"
   reserved_concurrent_executions = 0
+
+  vpc_config {
+    subnet_ids         = [aws_subnet.TerraFailAPIv2_subnet.id]
+    security_group_ids = [aws_security_group.TerraFailAPIv2_security_group.id]
+  }
 }
 
 # ---------------------------------------------------------------------

@@ -17,12 +17,13 @@ resource "azurerm_linux_virtual_machine" "TerraFailVM_linux" {
   admin_password                  = "$uper$ecretP@$$w0rd"
   secure_boot_enabled             = false
   disable_password_authentication = false
+  availability_set_id = azurerm_availability_set.TerraFailVM_availability_set.id
 
 
   network_interface_ids = [
     azurerm_network_interface.TerraFailVM_linux_network_interface.id,
   ]
-  encryption_at_host_enabled = false
+  encryption_at_host_enabled = true
 
   os_disk {
     caching              = "ReadWrite"
@@ -132,6 +133,7 @@ resource "azurerm_key_vault" "TerraFailVM_vault" {
   sku_name                    = "standard"
   enabled_for_disk_encryption = true
   purge_protection_enabled    = true
+  enable_rbac_authorization   = true
 }
 
 resource "azurerm_key_vault_key" "TerraFailVM_vault_key" {
@@ -162,9 +164,7 @@ resource "azurerm_key_vault_access_policy" "TerraFailVM_vault_disk_access_policy
 
   key_permissions = [
     "Create",
-    "Delete",
     "Get",
-    "Purge",
     "Recover",
     "Update",
     "List",
@@ -183,9 +183,7 @@ resource "azurerm_key_vault_access_policy" "TerraFailVM_vault_user_access_policy
 
   key_permissions = [
     "Create",
-    "Delete",
     "Get",
-    "Purge",
     "Recover",
     "Update",
     "List",

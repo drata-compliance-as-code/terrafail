@@ -22,8 +22,8 @@ resource "aws_kms_key" "TerraFailKMS_key" {
     {
       "Sid": "Describe the policy statement",
       "Effect": "Allow",
-      "Principal": "*",
-      "Action": "*",
+      "Principal": "user@terrafail.com",
+      "Action": "KMS:*",
       "Resource": "*",
       "Condition": {
         "StringEquals": {

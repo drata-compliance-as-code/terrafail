@@ -42,6 +42,11 @@ resource "aws_apigatewayv2_integration" "TerraFailAPIv2_integration" {
 resource "aws_apigatewayv2_stage" "TerraFailAPIv2_stage" {
   api_id = aws_apigatewayv2_api.TerraFailAPIv2.id
   name   = "TerraFailAPIv2_stage"
+
+  access_log_settings { # SaC Testing - Severity: High - Set access_log_settings to undefined
+    destination_arn = aws_cloudwatch_log_group.sac_api_gatewayv2_cloudwatch_log_group.arn
+    format          = "$context.requestId"
+  }
 }
 
 resource "aws_apigatewayv2_route" "TerraFailAPIv2_route" {
@@ -66,6 +71,7 @@ resource "aws_lb" "TerraFailAPIv2_lb" {
 resource "aws_lb_listener" "TerraFailAPIv2_listener" {
   load_balancer_arn = aws_lb.TerraFailAPIv2_lb.arn
   port              = 99
+  protocol = "HTTPS"
 
   default_action {
     type             = "forward"
@@ -186,6 +192,48 @@ resource "aws_route53_record" "TerraFailAPIv2_route_record" {
 resource "aws_kms_key" "TerraFailAPIv2_key" {
   description             = "TerraFailAPIv2_key"
   deletion_window_in_days = 10
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Describe the policy statement",
+      "Effect": "Allow",
+      "Principal": {
+          "AWS" : ["${data.aws_caller_identity.current.arn}"]
+        },
+      "Action" : [
+          "kms:Create",
+          "kms:Describe",
+          "kms:Enable",
+          "kms:List",
+          "kms:Put",
+          "kms:Update",
+          "kms:Revoke",
+          "kms:Disable",
+          "kms:Get",
+          "kms:Delete",
+          "kms:TagResource",
+          "kms:UntagResource",
+          "kms:ScheduleKeyDeletion",
+          "kms:CancelKeyDeletion",
+          "kms:Encrypt",
+          "kms:Decrypt",
+          "kms:ReEncrypt",
+          "kms:GenerateDataKey",
+          "kms:DescribeKey"
+        ],
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "kms:KeySpec": "SYMMETRIC_DEFAULT"
+        }
+      }
+    }
+  ]
+}
+EOF
 }
 
 # ---------------------------------------------------------------------
@@ -233,7 +281,7 @@ resource "aws_subnet" "TerraFailAPIv2_subnet" {
   cidr_block        = "10.0.0.0/24"
   availability_zone = "us-east-2c"
 
-  map_public_ip_on_launch = true
+  map_public_ip_on_launch = false
   tags = {
     Name = "TerraFailAPIv2_subnet"
   }

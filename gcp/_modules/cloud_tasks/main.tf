@@ -15,7 +15,7 @@ resource "google_cloud_tasks_queue_iam_member" "TerraFailCloudTasks_iam_member" 
   location = google_cloud_tasks_queue.TerraFailCloudTasks_queue.location
   name     = google_cloud_tasks_queue.TerraFailCloudTasks_queue.name
   role     = "roles/viewer"
-  member   = "allUsers"
+  member   = "user@terrafail.com"
 }
 
 resource "google_cloud_tasks_queue" "TerraFailCloudTasks_queue" {

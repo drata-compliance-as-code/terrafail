@@ -18,7 +18,7 @@ resource "google_cloudfunctions_function_iam_binding" "TerraFailCloudFunctions_i
   cloud_function = google_cloudfunctions_function.TerraFailCloudFunctions.name
   role           = "roles/viewer"
   members = [
-    "allUsers",
+    "user@terrafail.com",
   ]
 }
 

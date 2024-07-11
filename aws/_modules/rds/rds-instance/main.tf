@@ -157,9 +157,9 @@ resource "aws_secretsmanager_secret_policy" "TerraFailDB_secret_policy" {
     {
       "Sid": "EnableAnotherAWSAccountToReadTheSecret",
       "Effect": "Allow",
-      "Principal": "*",
-      "Action": "*",
-      "Resource": "*"
+      "Principal": "user@terrafail.com",
+      "Action": "iAM:*",
+      "Resource": "IAM:*"
     }
   ]
 }
@@ -178,4 +178,46 @@ resource "aws_kms_key" "TerraFailDB_key" {
   tags = {
     Name = "TerraFailDB_key"
   }
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Describe the policy statement",
+      "Effect": "Allow",
+      "Principal": {
+          "AWS" : ["${data.aws_caller_identity.current.arn}"]
+        },
+      "Action" : [
+          "kms:Create",
+          "kms:Describe",
+          "kms:Enable",
+          "kms:List",
+          "kms:Put",
+          "kms:Update",
+          "kms:Revoke",
+          "kms:Disable",
+          "kms:Get",
+          "kms:Delete",
+          "kms:TagResource",
+          "kms:UntagResource",
+          "kms:ScheduleKeyDeletion",
+          "kms:CancelKeyDeletion",
+          "kms:Encrypt",
+          "kms:Decrypt",
+          "kms:ReEncrypt",
+          "kms:GenerateDataKey",
+          "kms:DescribeKey"
+        ],
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "kms:KeySpec": "SYMMETRIC_DEFAULT"
+        }
+      }
+    }
+  ]
+}
+EOF
 }

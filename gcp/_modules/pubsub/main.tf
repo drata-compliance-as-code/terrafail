@@ -27,7 +27,7 @@ resource "google_pubsub_topic_iam_binding" "TerraFailPubsub_iam_binding" {
   topic   = google_pubsub_topic.TerraFailPubsub.name
   role    = "roles/viewer"
   members = [
-    "allUsers",
+    "user@terrafail.com",
   ]
 }
 
@@ -42,7 +42,7 @@ resource "google_pubsub_subscription_iam_binding" "TerraFailPubsub_sub_iam_bindi
   subscription = "TerraFailPubsub_subscription"
   role         = "roles/editor"
   members = [
-    "allUsers",
+    "user@terrafail.com",
   ]
 }
 

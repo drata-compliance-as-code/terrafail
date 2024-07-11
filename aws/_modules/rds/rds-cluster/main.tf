@@ -15,7 +15,7 @@ resource "aws_rds_cluster" "TerraFailRDS_cluster" {
   deletion_protection                 = false
   db_subnet_group_name                = aws_db_subnet_group.TerraFailRDS_subnet_group.name
   engine_version                      = "8.0.mysql_aurora.3.03.0"
-  storage_encrypted                   = false
+  storage_encrypted                   = true
   iam_database_authentication_enabled = false
 }
 
@@ -133,9 +133,9 @@ resource "aws_secretsmanager_secret_policy" "TerraFailRDS_secret_policy" {
     {
       "Sid": "EnableAnotherAWSAccountToReadTheSecret",
       "Effect": "Allow",
-      "Principal": "*",
+      "Principal": "user@terrafail.com",
       "Action": "*",
-      "Resource": "*"
+      "Resource": "IAM:*"
     }
   ]
 }
@@ -154,4 +154,46 @@ resource "aws_kms_key" "TerraFailRDS_key" {
   tags = {
     Name = "TerraFailRDS_key"
   }
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Describe the policy statement",
+      "Effect": "Allow",
+      "Principal": {
+          "AWS" : ["${data.aws_caller_identity.current.arn}"]
+        },
+      "Action" : [
+          "kms:Create",
+          "kms:Describe",
+          "kms:Enable",
+          "kms:List",
+          "kms:Put",
+          "kms:Update",
+          "kms:Revoke",
+          "kms:Disable",
+          "kms:Get",
+          "kms:Delete",
+          "kms:TagResource",
+          "kms:UntagResource",
+          "kms:ScheduleKeyDeletion",
+          "kms:CancelKeyDeletion",
+          "kms:Encrypt",
+          "kms:Decrypt",
+          "kms:ReEncrypt",
+          "kms:GenerateDataKey",
+          "kms:DescribeKey"
+        ],
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "kms:KeySpec": "SYMMETRIC_DEFAULT"
+        }
+      }
+    }
+  ]
+}
+EOF
 }

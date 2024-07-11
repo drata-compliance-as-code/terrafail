@@ -8,7 +8,7 @@ resource "aws_lb" "TerraFailLB" {
   load_balancer_type         = "gateway"
   drop_invalid_header_fields = true
   desync_mitigation_mode     = "monitor"
-  internal                   = false
+  internal                   = true
 
   subnet_mapping {
     subnet_id = aws_subnet.TerraFailLB_subnet_2.id
@@ -263,4 +263,46 @@ EOF
 resource "aws_kms_key" "TerraFailLB_key" {
   description             = "TerraFailLB_key"
   deletion_window_in_days = 10
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Describe the policy statement",
+      "Effect": "Allow",
+      "Principal": {
+          "AWS" : ["${data.aws_caller_identity.current.arn}"]
+        },
+      "Action" : [
+          "kms:Create",
+          "kms:Describe",
+          "kms:Enable",
+          "kms:List",
+          "kms:Put",
+          "kms:Update",
+          "kms:Revoke",
+          "kms:Disable",
+          "kms:Get",
+          "kms:Delete",
+          "kms:TagResource",
+          "kms:UntagResource",
+          "kms:ScheduleKeyDeletion",
+          "kms:CancelKeyDeletion",
+          "kms:Encrypt",
+          "kms:Decrypt",
+          "kms:ReEncrypt",
+          "kms:GenerateDataKey",
+          "kms:DescribeKey"
+        ],
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "kms:KeySpec": "SYMMETRIC_DEFAULT"
+        }
+      }
+    }
+  ]
+}
+EOF
 }

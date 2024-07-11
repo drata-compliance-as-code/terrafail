@@ -15,8 +15,9 @@ resource "azurerm_linux_virtual_machine_scale_set" "TerraFailVMSS_linux" {
   admin_username                  = "adminuser"
   disable_password_authentication = false
   admin_password                  = "P@55w0rd1234!"
-  encryption_at_host_enabled      = false
+  encryption_at_host_enabled      = true
   upgrade_mode                    = "Automatic"
+  zones = ["1", "2"]
 
   source_image_reference {
     publisher = "Canonical"
@@ -26,11 +27,11 @@ resource "azurerm_linux_virtual_machine_scale_set" "TerraFailVMSS_linux" {
   }
 
   automatic_instance_repair {
-    enabled = false
+    enabled = true
   }
 
   automatic_os_upgrade_policy {
-    enable_automatic_os_upgrade = false
+    enable_automatic_os_upgrade = true
     disable_automatic_rollback  = true
   }
 
@@ -47,8 +48,9 @@ resource "azurerm_linux_virtual_machine_scale_set" "TerraFailVMSS_linux" {
   }
 
   network_interface {
-    name    = "example"
-    primary = true
+    name                      = "example"
+    primary                   = true
+    network_security_group_id = azurerm_network_security_group.TerraFailVMSS_nsg.id
     ip_configuration {
       name                                   = "internal"
       primary                                = true
@@ -66,7 +68,7 @@ resource "azurerm_windows_virtual_machine_scale_set" "TerraFailVMSS_windows" {
   instances                  = 1
   admin_username             = "adminuser"
   admin_password             = "P@55w0rd1234!"
-  encryption_at_host_enabled = false
+  encryption_at_host_enabled = true
   upgrade_mode               = "Automatic"
 
   automatic_instance_repair {
@@ -185,6 +187,7 @@ resource "azurerm_key_vault" "TerraFailVMSS_vault" {
   sku_name                    = "standard"
   enabled_for_disk_encryption = true
   purge_protection_enabled    = true
+  enable_rbac_authorization   = true
 }
 
 resource "azurerm_key_vault_key" "TerraFailVMSS_vault_key" {
@@ -192,6 +195,12 @@ resource "azurerm_key_vault_key" "TerraFailVMSS_vault_key" {
   key_vault_id = azurerm_key_vault.TerraFailVMSS_vault.id
   key_type     = "RSA"
   key_size     = 2048
+
+  rotation_policy {
+    automatic {
+      time_before_expiry = "P30D"
+    }
+  }
 
   depends_on = [
     azurerm_key_vault_access_policy.TerraFailVMSS_vault_user_access_policy
@@ -236,9 +245,7 @@ resource "azurerm_key_vault_access_policy" "TerraFailVMSS_vault_user_access_poli
 
   key_permissions = [
     "Create",
-    "Delete",
     "Get",
-    "Purge",
     "Recover",
     "Update",
     "List",

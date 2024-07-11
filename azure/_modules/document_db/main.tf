@@ -99,7 +99,7 @@ resource "azurerm_storage_account" "TerraFailCosmosDB_storage" {
   location                 = azurerm_resource_group.TerraFailCosmosDB_rg.location
   resource_group_name      = azurerm_resource_group.TerraFailCosmosDB_rg.name
   account_tier             = "Standard"
-  account_replication_type = "LRS"
+  account_replication_type = "GRS"
 
   tags = {
     environment = "staging"
