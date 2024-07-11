@@ -30,6 +30,9 @@ resource "google_app_engine_flexible_app_version" "TerraFailAppEngine_version_fl
   handlers {
     security_level = "SECURE_DEFAULT"
   }
+  handlers {
+    security_level = "SECURE_ALWAYS"
+  }
 }
 
 resource "google_app_engine_standard_app_version" "TerraFailAppEngine_version_standard" {

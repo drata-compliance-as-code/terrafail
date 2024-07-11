@@ -19,9 +19,9 @@ resource "aws_sqs_queue_policy" "TerraFailSQS_policy" {
     "Statement": [
         {
             "Effect": "Allow",
-            "Action": "SQS:*",
-            "Resource": "S3:*",
-            "Principal": {"AWS" : "*"}
+            "Action": "KMS:ListKeys"
+            "Resource": "KMS:*",
+            "Principal": {"AWS" : "user@terrafail.com"}
         }
     ]
 }

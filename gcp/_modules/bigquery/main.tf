@@ -22,7 +22,7 @@ resource "google_bigquery_dataset_iam_binding" "TerraFailBigQuery_iam_binding" {
 resource "google_bigquery_dataset_iam_member" "TerraFailBigQuery_iam_member" {
   dataset_id = google_bigquery_dataset.TerraFailBigQuery_dataset.dataset_id
   role       = "roles/bigquery.dataEditor"
-  member     = "allUsers"
+  member     = "user@terrafail.com"
 }
 
 resource "google_bigquery_table" "TerraFailBigQuery_table" {
@@ -38,7 +38,7 @@ resource "google_bigquery_table_iam_binding" "TerraFailBigQuery_table_iam_bindin
   table_id   = google_bigquery_table.TerraFailBigQuery_table.table_id
   role       = "roles/bigquery.dataOwner"
   members = [
-    "allUsers",
+    "user@terrafail.com",
   ]
 }
 
@@ -46,5 +46,5 @@ resource "google_bigquery_table_iam_member" "TerraFailBigQuery_table_iam_member"
   dataset_id = google_bigquery_table.TerraFailBigQuery_table.dataset_id
   table_id   = google_bigquery_table.TerraFailBigQuery_table.table_id
   role       = "roles/bigquery.dataOwner"
-  member     = "allUsers"
+  member     = "user@terrafail.com"
 }

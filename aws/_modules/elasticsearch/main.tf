@@ -35,7 +35,7 @@ resource "aws_elasticsearch_domain" "TerraFailElasticache_domain" {
   }
 
   node_to_node_encryption {
-    enabled = false
+    enabled = true
   }
 }
 
@@ -77,7 +77,7 @@ resource "aws_kms_key" "TerraFailElasticache_key" {
           "kms:GenerateDataKey",
           "kms:DescribeKey"
         ],
-      "Resource": "*",
+      "Resource": "KMS:*",
       "Condition": {
         "StringEquals": {
           "kms:KeySpec": "SYMMETRIC_DEFAULT"

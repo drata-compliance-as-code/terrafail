@@ -28,5 +28,5 @@ resource "google_secret_manager_secret_iam_member" "TerraFailSecretManager_iam_m
   project   = google_secret_manager_secret.TerraFailSecretManager.project
   secret_id = google_secret_manager_secret.TerraFailSecretManager.secret_id
   role      = "roles/secretmanager.secretAccessor"
-  member    = "allUsers"
+  member    = "user@terrafail.com"
 }

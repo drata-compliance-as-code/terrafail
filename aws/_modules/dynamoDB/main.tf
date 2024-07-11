@@ -99,7 +99,7 @@ resource "aws_kms_key" "TerraFailDynamoDB_key" {
           "kms:GenerateDataKey",
           "kms:DescribeKey"
         ],
-      "Resource": "*",
+      "Resource": "KMS:*",
       "Condition": {
         "StringEquals": {
           "kms:KeySpec": "SYMMETRIC_DEFAULT"

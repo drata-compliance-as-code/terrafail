@@ -20,6 +20,7 @@ resource "aws_db_instance" "TerraFailDB_instance" {
   multi_az                            = false
   publicly_accessible                 = true
   storage_encrypted                   = false
+  backup_retention_period             = 20
 }
 
 resource "aws_db_proxy_default_target_group" "TerraFailDB_proxy_target_group" {
@@ -158,8 +159,8 @@ resource "aws_secretsmanager_secret_policy" "TerraFailDB_secret_policy" {
       "Sid": "EnableAnotherAWSAccountToReadTheSecret",
       "Effect": "Allow",
       "Principal": "user@terrafail.com",
-      "Action": "iAM:*",
-      "Resource": "IAM:*"
+      "Action": "S3:GetObject",
+      "Resource": "S3:*"
     }
   ]
 }
@@ -210,7 +211,7 @@ resource "aws_kms_key" "TerraFailDB_key" {
           "kms:GenerateDataKey",
           "kms:DescribeKey"
         ],
-      "Resource": "*",
+      "Resource": "KMS:*",
       "Condition": {
         "StringEquals": {
           "kms:KeySpec": "SYMMETRIC_DEFAULT"

@@ -51,6 +51,8 @@ resource "azurerm_storage_account" "TerraFailCache_storage" {
   account_tier                  = "Standard_v2"
   account_replication_type      = "GRS"
   public_network_access_enabled = false
+  enable_https_traffic_only     = true
+  min_tls_version               = "TLS1_2"
 }
 
 resource "azurerm_redis_firewall_rule" "TerraFailCache_firewall_rule" {

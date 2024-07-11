@@ -28,9 +28,9 @@ resource "aws_secretsmanager_secret_policy" "TerraFailSecretsManager_policy" {
     {
       "Sid": "EnableAnotherAWSAccountToReadTheSecret",
       "Effect": "Allow",
-      "Principal": "*",
-      "Action": "SNS:*",
-      "Resource": "SNS:*"
+      "Principal": "user@terraform.com",
+      "Action": "S3:GetObject",
+      "Resource": "S3:*"
     }
   ]
 }
@@ -193,7 +193,7 @@ resource "aws_kms_key" "TerraFailSecretsManager_key" {
           "kms:GenerateDataKey",
           "kms:DescribeKey"
         ],
-      "Resource": "*",
+      "Resource": "KMS:*",
       "Condition": {
         "StringEquals": {
           "kms:KeySpec": "SYMMETRIC_DEFAULT"

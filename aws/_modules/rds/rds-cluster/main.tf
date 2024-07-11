@@ -9,7 +9,7 @@ resource "aws_rds_cluster" "TerraFailRDS_cluster" {
   engine                              = "aurora-mysql"
   master_username                     = "terrafailusername"
   master_password                     = "randomlydecidedpassword41characters"
-  backup_retention_period             = 1
+  backup_retention_period             = 7
   final_snapshot_identifier           = "DELETE"
   skip_final_snapshot                 = true
   deletion_protection                 = false
@@ -134,8 +134,8 @@ resource "aws_secretsmanager_secret_policy" "TerraFailRDS_secret_policy" {
       "Sid": "EnableAnotherAWSAccountToReadTheSecret",
       "Effect": "Allow",
       "Principal": "user@terrafail.com",
-      "Action": "*",
-      "Resource": "IAM:*"
+      "Action": "S3:GetObject",
+      "Resource": "S3:*"
     }
   ]
 }
@@ -186,7 +186,7 @@ resource "aws_kms_key" "TerraFailRDS_key" {
           "kms:GenerateDataKey",
           "kms:DescribeKey"
         ],
-      "Resource": "*",
+      "Resource": "KMS:*",
       "Condition": {
         "StringEquals": {
           "kms:KeySpec": "SYMMETRIC_DEFAULT"

@@ -23,12 +23,12 @@ resource "azurerm_linux_function_app" "TerraFailFunction_linux" {
     cors {
       allowed_origins = ["*"]
     }
-    minimum_tls_version      = "1.0"
+    minimum_tls_version      = "1.2"
     remote_debugging_enabled = true
 
     ip_restriction {
       action     = "Allow"
-      ip_address = "0.0.0.0/0"
+      ip_address = "127.0.0.1/32"
     }
   }
 }
@@ -52,7 +52,7 @@ resource "azurerm_windows_function_app" "TerraFailFunction_windows" {
 
     ip_restriction {
       action     = "Allow"
-      ip_address = "0.0.0.0/0"
+      ip_address = "128.0.0.2/32"
     }
   }
 }
@@ -69,11 +69,14 @@ resource "azurerm_service_plan" "TerraFailFunction_service_plan" {
 }
 
 resource "azurerm_storage_account" "TerraFailFunction_storage_linux" {
-  name                     = "TerraFailFunction_storage_linux"
-  resource_group_name      = azurerm_resource_group.TerraFailFunction_rg.name
-  location                 = azurerm_resource_group.TerraFailFunction_rg.location
-  account_tier             = "Standard_v2"
-  account_replication_type = "GRS"
+  name                      = "TerraFailFunction_storage_linux"
+  resource_group_name       = azurerm_resource_group.TerraFailFunction_rg.name
+  location                  = azurerm_resource_group.TerraFailFunction_rg.location
+  account_tier              = "Standard_v2"
+  account_replication_type  = "GRS"
+  enable_https_traffic_only = true
+  min_tls_version           = "TLS1_2"
+  public_network_access_enabled = false
 
   identity {
     type         = "UserAssigned"
@@ -81,11 +84,14 @@ resource "azurerm_storage_account" "TerraFailFunction_storage_linux" {
   }
 }
 resource "azurerm_storage_account" "TerraFailFunction_storage_windows" {
-  name                     = "TerraFailFunction_storage_windows"
-  resource_group_name      = azurerm_resource_group.TerraFailFunction_rg.name
-  location                 = azurerm_resource_group.TerraFailFunction_rg.location
-  account_tier             = "Standard_v2"
-  account_replication_type = "LRS"
+  name                      = "TerraFailFunction_storage_windows"
+  resource_group_name       = azurerm_resource_group.TerraFailFunction_rg.name
+  location                  = azurerm_resource_group.TerraFailFunction_rg.location
+  account_tier              = "Standard_v2"
+  account_replication_type  = "LRS"
+  enable_https_traffic_only = true
+  min_tls_version           = "TLS1_2"
+  public_network_access_enabled = false
 
   identity {
     type         = "UserAssigned"

@@ -27,5 +27,5 @@ resource "google_cloudfunctions_function_iam_member" "TerraFailCloudFunctions_ia
   region         = google_cloudfunctions_function.TerraFailCloudFunctions.region
   cloud_function = google_cloudfunctions_function.TerraFailCloudFunctions.name
   role           = "roles/viewer"
-  member         = "allUsers"
+  member         = "user@terrafail.com"
 }

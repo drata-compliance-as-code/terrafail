@@ -11,7 +11,7 @@ resource "aws_iam_group_policy" "TerraFailIAM_group_policy" {
     Statement = [
       {
         Sid      = "AllowGroupToSeeBucketListInTheConsole",
-        Action   = "Get:*"
+        Action   = "S3:PutObject"
         Effect   = "Allow"
         Resource = "S3:*"
       },
@@ -47,8 +47,8 @@ resource "aws_iam_policy" "TerraFailIAM_policy" {
     Statement = [
       {
         Effect   = "Allow"
-        Action   = "Get*"
-        Resource = "ECS:*"
+        Action   = "S3:PutObject"
+        Resource = "S3:*"
       }
     ]
   })
@@ -84,8 +84,8 @@ resource "aws_iam_role_policy" "TerraFailIAM_role_policy" {
     Statement = [
       {
         Effect   = "Allow"
-        Action   = "Get:*"
-        Resource = "SNS:*"
+        Action   = "S3:PutObject"
+        Resource = "S3:*"
       }
     ]
   })
@@ -115,8 +115,8 @@ resource "aws_iam_role" "TerraFailIAM_role_inline" {
       Statement = [
         {
           Effect   = "Allow"
-          Action   = "Write:*"
-          Resource = "SQS:*"
+          Action   = "S3:PutObject"
+          Resource = "S3:*"
         }
       ]
     })
@@ -149,7 +149,7 @@ resource "aws_iam_role" "TerraFailIAM_role_custom" {
       {
         Effect = "Allow"
         Principal = {
-          AWS = "*"
+          AWS = "user@terrafail.com"
         }
         Action = "sts:AssumeRole"
       }
@@ -166,7 +166,7 @@ resource "aws_iam_policy" "TerraFailIAM_role_policy_custom" {
     Statement = [
       {
         Effect   = "Allow"
-        Action   = "Execute:*"
+        Action   = "Lmabda:InvokeFunction"
         Resource = "Lambda:*"
       }
     ]
@@ -185,9 +185,9 @@ resource "aws_iam_user_policy" "TerraFailIAM_user_policy" {
     Version = "2012-10-17"
     Statement = [
       {
-        Action   = "*"
+        Action   = "Lambda:InvokeFunction"
         Effect   = "Allow"
-        Resource = "*"
+        Resource = "Lambda:*"
       },
     ]
   })

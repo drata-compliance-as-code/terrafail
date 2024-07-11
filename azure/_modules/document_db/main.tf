@@ -95,11 +95,14 @@ resource "azurerm_virtual_network" "TerraFailCosmosDB_virtual_network" {
 }
 
 resource "azurerm_storage_account" "TerraFailCosmosDB_storage" {
-  name                     = "TerraFailCosmosDB_storage"
-  location                 = azurerm_resource_group.TerraFailCosmosDB_rg.location
-  resource_group_name      = azurerm_resource_group.TerraFailCosmosDB_rg.name
-  account_tier             = "Standard"
-  account_replication_type = "GRS"
+  name                      = "TerraFailCosmosDB_storage"
+  location                  = azurerm_resource_group.TerraFailCosmosDB_rg.location
+  resource_group_name       = azurerm_resource_group.TerraFailCosmosDB_rg.name
+  account_tier              = "Standard"
+  account_replication_type  = "GRS"
+  enable_https_traffic_only = true
+  min_tls_version           = "TLS1_2"
+  public_network_access_enabled = false
 
   tags = {
     environment = "staging"

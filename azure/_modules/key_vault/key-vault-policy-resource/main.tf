@@ -18,7 +18,7 @@ resource "azurerm_key_vault" "TerraFailKeyVault" {
   sku_name                      = "standard"
   enable_rbac_authorization     = false
   soft_delete_retention_days    = 90
-  public_network_access_enabled = true
+  public_network_access_enabled = false
 
   network_acls {
     bypass         = "AzureServices"

@@ -41,16 +41,16 @@ resource "aws_lambda_function" "TerraFailLambda_function" {
 }
 
 resource "aws_lambda_permission" "TerraFailLambda_permission" {
-  action        = "*"
+  action        = "Lambda:InvokeFunction"
   function_name = aws_lambda_function.TerraFailLambda_function.arn
-  principal     = "*"
+  principal     = "user@terrafail.com"
 }
 
 resource "aws_TerraFailLambda_layer_version_version_permission" "TerraFailTerraFailLambda_layer_version_permission" {
   layer_name     = "arn:aws:lambda:us-east-2:709695003849:layer:TerraFailLambda_layer_version_name"
   version_number = 1
   principal      = "*"
-  action         = "*"
+  action         = "Lambda:UpdateFunction"
   statement_id   = "dev-account"
 }
 
@@ -182,7 +182,7 @@ resource "aws_iam_role_policy" "TerraFailLambda_policy" {
 
         ]
         Effect   = "Allow",
-        Resource = "*"
+        Resource = "Lambda:*"
       },
     ]
   })

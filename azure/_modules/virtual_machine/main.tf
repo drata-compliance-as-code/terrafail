@@ -53,7 +53,7 @@ resource "azurerm_windows_virtual_machine" "TerraFailVM_windows" {
   encryption_at_host_enabled = false
 
   winrm_listener {
-    protocol = "Http"
+    protocol = "Https"
   }
 
   os_disk {
@@ -134,6 +134,7 @@ resource "azurerm_key_vault" "TerraFailVM_vault" {
   enabled_for_disk_encryption = true
   purge_protection_enabled    = true
   enable_rbac_authorization   = true
+  public_network_access_enabled = false
 }
 
 resource "azurerm_key_vault_key" "TerraFailVM_vault_key" {
