@@ -13,7 +13,7 @@ resource "google_spanner_instance_iam_binding" "TerraFailSpanner_instance_iam_bi
   instance = "TerraFailSpanner_instance"
   role     = "roles/spanner.databaseAdmin"
   members = [
-    "allUsers",
+    "user@terrafail.com",
   ]
 }
 
@@ -35,7 +35,7 @@ resource "google_spanner_database_iam_binding" "TerraFailSpanner_database_iam_bi
   database = "TerraFailSpanner_database"
   role     = "roles/compute.networkUser"
   members = [
-    "allUsers",
+    "user@terrafail.com",
   ]
 }
 

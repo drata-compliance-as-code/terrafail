@@ -12,6 +12,8 @@ resource "aws_elasticache_cluster" "TerraFailElasticache_cluster_mem" {
   port                 = 11211
   subnet_group_name    = aws_TerraFailTerraFailElasticache_subnet_group.TerraFailTerraFailElasticache_subnet_group.name
   az_mode              = "single-az"
+  security_group_ids       = [aws_security_group.cluster_security_group.id]
+  snapshot_retention_limit = 48
 }
 
 resource "aws_elasticache_cluster" "TerraFailElasticache_cluster_red" {

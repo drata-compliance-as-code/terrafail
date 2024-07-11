@@ -8,7 +8,7 @@ resource "aws_lb" "TerraFailLB" {
   load_balancer_type         = "network"
   drop_invalid_header_fields = true
   desync_mitigation_mode     = "monitor"
-  internal                   = true
+  internal                   = false
   subnets                    = [aws_subnet.TerraFailLB_subnet.id]
 
   access_logs {
@@ -100,15 +100,15 @@ resource "aws_security_group" "TerraFailLB_security_group" {
     from_port        = 443
     to_port          = 443
     protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
+    cidr_blocks      = ["168.0.3.0/32"]
+    ipv6_cidr_blocks = ["::/"]
   }
 
   egress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["168.0.3.0/32"]
   }
 }
 
@@ -242,4 +242,46 @@ EOF
 resource "aws_kms_key" "TerraFailLB_key" {
   description             = "TerraFailLB_key"
   deletion_window_in_days = 10
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Describe the policy statement",
+      "Effect": "Allow",
+      "Principal": {
+          "AWS" : ["${data.aws_caller_identity.current.arn}"]
+        },
+      "Action" : [
+          "kms:Create",
+          "kms:Describe",
+          "kms:Enable",
+          "kms:List",
+          "kms:Put",
+          "kms:Update",
+          "kms:Revoke",
+          "kms:Disable",
+          "kms:Get",
+          "kms:Delete",
+          "kms:TagResource",
+          "kms:UntagResource",
+          "kms:ScheduleKeyDeletion",
+          "kms:CancelKeyDeletion",
+          "kms:Encrypt",
+          "kms:Decrypt",
+          "kms:ReEncrypt",
+          "kms:GenerateDataKey",
+          "kms:DescribeKey"
+        ],
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "kms:KeySpec": "SYMMETRIC_DEFAULT"
+        }
+      }
+    }
+  ]
+}
+EOF
 }

@@ -31,6 +31,11 @@ resource "azurerm_key_vault_key" "TerraFailKeyVault_key" {
   key_vault_id = azurerm_key_vault.TerraFailKeyVault.id
   key_type     = "EC"
   key_opts     = ["sign", "verify"]
+  rotation_policy {
+    automatic {
+      time_before_expiry = "P30D"
+    }
+  }
 }
 
 resource "azurerm_key_vault_secret" "TerraFailKeyVault_secret" {
@@ -43,7 +48,7 @@ resource "azurerm_key_vault_access_policy" "TerraFailKeyVault_policy" {
   key_vault_id            = azurerm_key_vault.TerraFailKeyVault.id
   tenant_id               = data.azurerm_client_config.current.tenant_id
   object_id               = ""
-  key_permissions         = ["Delete", "Purge", "Create", "Get", "Update"]
+  key_permissions         = ["Create", "Get", "Update"]
   secret_permissions      = ["Delete", "Purge", "Get", "Set", "List"]
   certificate_permissions = ["Delete", "DeleteIssuers", "Purge", "Create", "Get", "Update"]
 }

@@ -11,9 +11,9 @@ resource "aws_iam_group_policy" "TerraFailIAM_group_policy" {
     Statement = [
       {
         Sid      = "AllowGroupToSeeBucketListInTheConsole",
-        Action   = "*"
+        Action   = "Get:*"
         Effect   = "Allow"
-        Resource = "*"
+        Resource = "S3:*"
       },
     ]
   })
@@ -32,7 +32,7 @@ resource "aws_iam_role" "TerraFailIAM_role" {
       {
         Effect = "Allow"
         Principal = {
-          AWS = "*"
+          AWS = "terrafail@user.com"
         }
         Action = "sts:AssumeRole"
       }
@@ -47,8 +47,8 @@ resource "aws_iam_policy" "TerraFailIAM_policy" {
     Statement = [
       {
         Effect   = "Allow"
-        Action   = "*"
-        Resource = "*"
+        Action   = "Get*"
+        Resource = "ECS:*"
       }
     ]
   })
@@ -68,7 +68,7 @@ resource "aws_iam_role" "TerraFailIAM_role" {
       {
         Effect = "Allow"
         Principal = {
-          AWS = "*"
+          AWS = "terrafail@user.com"
 
         }
         Action = "sts:AssumeRole"
@@ -84,8 +84,8 @@ resource "aws_iam_role_policy" "TerraFailIAM_role_policy" {
     Statement = [
       {
         Effect   = "Allow"
-        Action   = "*"
-        Resource = "*"
+        Action   = "Get:*"
+        Resource = "SNS:*"
       }
     ]
   })
@@ -100,7 +100,7 @@ resource "aws_iam_role" "TerraFailIAM_role_inline" {
       {
         Effect = "Allow"
         Principal = {
-          AWS = "*"
+          AWS = "terrafail@user.com"
         }
         Action = "sts:AssumeRole"
       }
@@ -115,8 +115,8 @@ resource "aws_iam_role" "TerraFailIAM_role_inline" {
       Statement = [
         {
           Effect   = "Allow"
-          Action   = "*"
-          Resource = "*"
+          Action   = "Write:*"
+          Resource = "SQS:*"
         }
       ]
     })
@@ -131,7 +131,7 @@ resource "aws_iam_role" "TerraFailIAM_role_managed" {
       {
         Effect = "Allow"
         Principal = {
-          AWS = "*"
+          AWS = "terrafail@user.com"
         }
         Action = "sts:AssumeRole"
       }
@@ -166,8 +166,8 @@ resource "aws_iam_policy" "TerraFailIAM_role_policy_custom" {
     Statement = [
       {
         Effect   = "Allow"
-        Action   = "*"
-        Resource = "*"
+        Action   = "Execute:*"
+        Resource = "Lambda:*"
       }
     ]
   })

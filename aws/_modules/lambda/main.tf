@@ -33,6 +33,11 @@ resource "aws_lambda_function" "TerraFailLambda_function" {
   runtime                        = "dotnetcore3.1"
   reserved_concurrent_executions = 0
   layers                         = [aws_TerraFailLambda_layer_version_version.TerraFailLambda_layer_version.arn]
+
+  vpc_config {
+    subnet_ids         = [aws_subnet.TerraFailLambda_subnet.id]
+    security_group_ids = [aws_security_group.TerraFailLambda_security_group.id]
+  }
 }
 
 resource "aws_lambda_permission" "TerraFailLambda_permission" {
@@ -83,6 +88,20 @@ resource "aws_kinesis_stream" "TerraFailLambda_stream" {
 # ---------------------------------------------------------------------
 resource "aws_sns_topic" "TerraFailLambda_topic" {
   name = "TerraFailLambda_topic"
+
+  policy = <<EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "SNS:Subscribe",
+            "Resource": "${aws_sns_topic_subscription.sac_sns_topic_subscription.arn}/*",
+            "Principal": {"AWS" : "acorn@acorn.com"}
+        }
+    ]
+}
+EOF
 }
 
 # ---------------------------------------------------------------------
@@ -94,8 +113,8 @@ resource "aws_security_group" "TerraFailLambda_security_group" {
     from_port        = 0
     to_port          = 0
     protocol         = "-1"
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
+    cidr_blocks      = ["122.0.2.0/0"]
+    ipv6_cidr_blocks = ["::/"]
   }
 }
 

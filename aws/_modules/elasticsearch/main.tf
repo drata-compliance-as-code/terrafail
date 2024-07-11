@@ -45,4 +45,46 @@ resource "aws_elasticsearch_domain" "TerraFailElasticache_domain" {
 resource "aws_kms_key" "TerraFailElasticache_key" {
   description             = "TerraFailElasticache_key"
   deletion_window_in_days = 10
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Describe the policy statement",
+      "Effect": "Allow",
+      "Principal": {
+          "AWS" : ["${data.aws_caller_identity.current.arn}"]
+        },
+      "Action" : [
+          "kms:Create",
+          "kms:Describe",
+          "kms:Enable",
+          "kms:List",
+          "kms:Put",
+          "kms:Update",
+          "kms:Revoke",
+          "kms:Disable",
+          "kms:Get",
+          "kms:Delete",
+          "kms:TagResource",
+          "kms:UntagResource",
+          "kms:ScheduleKeyDeletion",
+          "kms:CancelKeyDeletion",
+          "kms:Encrypt",
+          "kms:Decrypt",
+          "kms:ReEncrypt",
+          "kms:GenerateDataKey",
+          "kms:DescribeKey"
+        ],
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "kms:KeySpec": "SYMMETRIC_DEFAULT"
+        }
+      }
+    }
+  ]
+}
+EOF
 }

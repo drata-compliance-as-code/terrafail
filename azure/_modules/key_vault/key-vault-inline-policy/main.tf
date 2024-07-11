@@ -16,9 +16,9 @@ resource "azurerm_key_vault" "TerraFailKeyVault" {
   resource_group_name           = azurerm_resource_group.TerraFailKeyVault_rg.name
   tenant_id                     = data.azurerm_client_config.current.tenant_id
   sku_name                      = "standard"
-  enable_rbac_authorization     = false
+  enable_rbac_authorization     = true
   soft_delete_retention_days    = 90
-  public_network_access_enabled = true
+  public_network_access_enabled = false
 
   network_acls {
     bypass         = "AzureServices"
@@ -29,7 +29,7 @@ resource "azurerm_key_vault" "TerraFailKeyVault" {
     tenant_id = data.azurerm_client_config.current.tenant_id
     object_id = ""
 
-    key_permissions         = ["Delete", "Purge", "Create", "Get", "Update"]
+    key_permissions         = ["Create", "Get", "Update"]
     secret_permissions      = ["Delete", "Purge", "Get", "Set", "List"]
     certificate_permissions = ["Delete", "DeleteIssuers", "Purge", "Create", "Get", "Update"]
   }
@@ -40,6 +40,11 @@ resource "azurerm_key_vault_key" "TerraFailKeyVault_key" {
   key_vault_id = azurerm_key_vault.TerraFailKeyVault.id
   key_type     = "EC"
   key_opts     = ["sign", "verify"]
+  rotation_policy {
+    automatic {
+      time_before_expiry = "P30D"
+    }
+  }
 }
 
 resource "azurerm_key_vault_secret" "TerraFailKeyVault_secret" {

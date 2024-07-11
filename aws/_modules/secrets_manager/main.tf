@@ -29,8 +29,8 @@ resource "aws_secretsmanager_secret_policy" "TerraFailSecretsManager_policy" {
       "Sid": "EnableAnotherAWSAccountToReadTheSecret",
       "Effect": "Allow",
       "Principal": "*",
-      "Action": "*",
-      "Resource": "*"
+      "Action": "SNS:*",
+      "Resource": "SNS:*"
     }
   ]
 }
@@ -45,7 +45,7 @@ resource "aws_lambda_function" "TerraFailSecretsManager_lambda" {
   role                           = aws_iam_role.TerraFailSecretsManager_role.arn
   filename                       = "my-deployment-package.zip"
   handler                        = "index.handler"
-  runtime                        = "dotnet6"
+  runtime                        = "dotnet8"
   reserved_concurrent_executions = 2
   kms_key_arn                    = aws_kms_key.TerraFailSecretsManager_key.arn
 
@@ -86,8 +86,8 @@ resource "aws_security_group" "TerraFailSecretsManager_security_group" {
     from_port        = 0
     to_port          = 0
     protocol         = "-1"
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
+    cidr_blocks      = ["123.0.3.0/0"]
+    ipv6_cidr_blocks = ["::/1"]
   }
 }
 
@@ -161,4 +161,46 @@ resource "aws_kms_key" "TerraFailSecretsManager_key" {
   tags = {
     Name = "TerraFailSecretsManager_key"
   }
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Describe the policy statement",
+      "Effect": "Allow",
+      "Principal": {
+          "AWS" : ["${data.aws_caller_identity.current.arn}"]
+        },
+      "Action" : [
+          "kms:Create",
+          "kms:Describe",
+          "kms:Enable",
+          "kms:List",
+          "kms:Put",
+          "kms:Update",
+          "kms:Revoke",
+          "kms:Disable",
+          "kms:Get",
+          "kms:Delete",
+          "kms:TagResource",
+          "kms:UntagResource",
+          "kms:ScheduleKeyDeletion",
+          "kms:CancelKeyDeletion",
+          "kms:Encrypt",
+          "kms:Decrypt",
+          "kms:ReEncrypt",
+          "kms:GenerateDataKey",
+          "kms:DescribeKey"
+        ],
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "kms:KeySpec": "SYMMETRIC_DEFAULT"
+        }
+      }
+    }
+  ]
+}
+EOF
 }

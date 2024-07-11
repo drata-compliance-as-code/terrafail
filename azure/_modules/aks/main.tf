@@ -30,6 +30,7 @@ resource "azurerm_kubernetes_cluster" "TerraFailAKS_cluster" {
   network_profile {
     network_plugin    = "azure"
     load_balancer_sku = "standard"
+    network_policy    = "azure"
   }
 
   azure_active_directory_role_based_access_control {

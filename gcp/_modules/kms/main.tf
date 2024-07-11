@@ -24,7 +24,7 @@ resource "google_kms_key_ring_iam_binding" "TerraFailKMS_ring_iam_binding" {
   key_ring_id = "TerraFailKMS_ring_iam_binding"
   role        = "roles/cloudkms.admin"
   members = [
-    "allUsers",
+    "user@terrafail.com",
   ]
 }
 

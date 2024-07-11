@@ -19,7 +19,7 @@ resource "google_compute_subnetwork_iam_binding" "TerraFailComputeSubnetwork_iam
   subnetwork = google_compute_subnetwork.TerraFailComputeSubnetwork.name
   role       = "roles/compute.networkUser"
   members = [
-    "allUsers",
+    "user@terrafail.com",
   ]
 }
 

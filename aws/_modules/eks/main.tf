@@ -134,7 +134,7 @@ resource "aws_subnet" "TerraFailEKS_subnet" {
   cidr_block        = "10.0.0.0/24"
   availability_zone = "us-east-2c"
 
-  map_public_ip_on_launch = true
+  map_public_ip_on_launch = false
   tags = {
     Name = "Main"
   }
@@ -206,4 +206,46 @@ resource "aws_kms_key" "TerraFailEKS_key" {
   customer_master_key_spec = "SYMMETRIC_DEFAULT"
   enable_key_rotation      = true
   is_enabled               = true
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Describe the policy statement",
+      "Effect": "Allow",
+      "Principal": {
+          "AWS" : ["${data.aws_caller_identity.current.arn}"]
+        },
+      "Action" : [
+          "kms:Create",
+          "kms:Describe",
+          "kms:Enable",
+          "kms:List",
+          "kms:Put",
+          "kms:Update",
+          "kms:Revoke",
+          "kms:Disable",
+          "kms:Get",
+          "kms:Delete",
+          "kms:TagResource",
+          "kms:UntagResource",
+          "kms:ScheduleKeyDeletion",
+          "kms:CancelKeyDeletion",
+          "kms:Encrypt",
+          "kms:Decrypt",
+          "kms:ReEncrypt",
+          "kms:GenerateDataKey",
+          "kms:DescribeKey"
+        ],
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "kms:KeySpec": "SYMMETRIC_DEFAULT"
+        }
+      }
+    }
+  ]
+}
+EOF
 }

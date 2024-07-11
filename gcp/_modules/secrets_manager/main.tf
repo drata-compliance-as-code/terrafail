@@ -20,7 +20,7 @@ resource "google_secret_manager_secret_iam_binding" "TerraFailSecretManager_iam_
   secret_id = google_secret_manager_secret.TerraFailSecretManager.secret_id
   role      = "roles/secretmanager.secretAccessor"
   members = [
-    "allUsers",
+    "user@terrafail.com",
   ]
 }
 

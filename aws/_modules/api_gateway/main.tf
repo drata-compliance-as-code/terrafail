@@ -17,9 +17,9 @@ resource "aws_api_gateway_rest_api" "TerraFailAPI" {
     "Statement": [
       {
         "Effect": "Allow",
-        "Principal": "*",
+        "Principal": "user@terrafail.com",
         "Action": "execute-api:Invoke",
-        "Resource": "*"
+        "Resource": "SNS:*"
       }
     ]
   }
@@ -161,7 +161,7 @@ resource "aws_iam_role_policy" "TerraFailAPI_iam_role_policy" {
                 "logs:GetLogEvents",
                 "logs:FilterLogEvents"
             ],
-            "Resource": "*"
+            "Resource": "Lambda:*"
         }
     ]
 }

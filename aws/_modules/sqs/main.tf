@@ -20,7 +20,7 @@ resource "aws_sqs_queue_policy" "TerraFailSQS_policy" {
         {
             "Effect": "Allow",
             "Action": "SQS:*",
-            "Resource": "*",
+            "Resource": "S3:*",
             "Principal": {"AWS" : "*"}
         }
     ]

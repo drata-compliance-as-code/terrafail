@@ -72,8 +72,8 @@ resource "azurerm_storage_account" "TerraFailFunction_storage_linux" {
   name                     = "TerraFailFunction_storage_linux"
   resource_group_name      = azurerm_resource_group.TerraFailFunction_rg.name
   location                 = azurerm_resource_group.TerraFailFunction_rg.location
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
+  account_tier             = "Standard_v2"
+  account_replication_type = "GRS"
 
   identity {
     type         = "UserAssigned"
@@ -84,7 +84,7 @@ resource "azurerm_storage_account" "TerraFailFunction_storage_windows" {
   name                     = "TerraFailFunction_storage_windows"
   resource_group_name      = azurerm_resource_group.TerraFailFunction_rg.name
   location                 = azurerm_resource_group.TerraFailFunction_rg.location
-  account_tier             = "Standard"
+  account_tier             = "Standard_v2"
   account_replication_type = "LRS"
 
   identity {

@@ -6,7 +6,7 @@
 resource "aws_elb" "TerraFailELB" {
   name     = "TerraFailELB"
   subnets  = [aws_subnet.TerraFailELB_subnet.id]
-  internal = false
+  internal = true
 
   listener {
     instance_port     = 8000
@@ -44,7 +44,7 @@ resource "aws_security_group" "TerraFailELB_security_group" {
     to_port          = 443
     protocol         = "tcp"
     cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
+    ipv6_cidr_blocks = ["::/"]
   }
 
   egress {
