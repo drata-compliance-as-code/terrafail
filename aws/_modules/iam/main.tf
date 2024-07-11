@@ -32,7 +32,7 @@ resource "aws_iam_role" "TerraFailIAM_role" {
       {
         Effect = "Allow"
         Principal = {
-          AWS = "terrafail@user.com"
+          AWS = "user@terrafail.com"
         }
         Action = "sts:AssumeRole"
       }
@@ -68,7 +68,7 @@ resource "aws_iam_role" "TerraFailIAM_role" {
       {
         Effect = "Allow"
         Principal = {
-          AWS = "terrafail@user.com"
+          AWS = "user@terrafail.com"
 
         }
         Action = "sts:AssumeRole"
@@ -100,7 +100,7 @@ resource "aws_iam_role" "TerraFailIAM_role_inline" {
       {
         Effect = "Allow"
         Principal = {
-          AWS = "terrafail@user.com"
+          AWS = "user@terrafail.com"
         }
         Action = "sts:AssumeRole"
       }
@@ -131,7 +131,7 @@ resource "aws_iam_role" "TerraFailIAM_role_managed" {
       {
         Effect = "Allow"
         Principal = {
-          AWS = "terrafail@user.com"
+          AWS = "user@terrafail.com"
         }
         Action = "sts:AssumeRole"
       }

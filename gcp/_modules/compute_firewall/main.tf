@@ -46,7 +46,7 @@ resource "google_compute_firewall_policy_rule" "TerraFailComputeFirewall_rule" {
     src_address_groups        = []
     dest_address_groups       = [google_network_security_address_group.basic_global_networksecurity_address_group.id]
   }
-  target_service_accounts = ["my@service-account.com"]
+  target_service_accounts = ["user@terrafail.com"]
 }
 
 # ---------------------------------------------------------------------

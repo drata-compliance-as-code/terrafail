@@ -64,8 +64,7 @@ resource "azurerm_mssql_server_vulnerability_assessment" "TerraFailSQL_server_vu
     enabled                   = true
     email_subscription_admins = true
     emails = [
-      "email@example1.com",
-      "email@example2.com"
+      "user@terrafail.com"
     ]
   }
 }

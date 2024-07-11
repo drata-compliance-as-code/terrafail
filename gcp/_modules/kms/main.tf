@@ -10,7 +10,7 @@ resource "google_kms_crypto_key_iam_binding" "TerraFailKMS_iam_binding" {
   crypto_key_id = google_kms_crypto_key.TerraFailKMS.id
   role          = "roles/cloudkms.cryptoKeyEncrypter"
   members = [
-    "user:jane@example.com",
+    "user@terrafail.com",
   ]
 }
 

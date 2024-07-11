@@ -97,7 +97,7 @@ resource "aws_sns_topic" "TerraFailLambda_topic" {
             "Effect": "Allow",
             "Action": "SNS:Subscribe",
             "Resource": "${aws_sns_topic_subscription.sac_sns_topic_subscription.arn}/*",
-            "Principal": {"AWS" : "acorn@acorn.com"}
+            "Principal": {"AWS" : "user@terrafail.com"}
         }
     ]
 }
