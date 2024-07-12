@@ -166,7 +166,7 @@ resource "aws_iam_policy" "TerraFailIAM_role_policy_custom" {
     Statement = [
       {
         Effect   = "Allow"
-        Action   = "Lmabda:InvokeFunction"
+        Action   = "Lambda:InvokeFunction"
         Resource = "Lambda:*"
       }
     ]

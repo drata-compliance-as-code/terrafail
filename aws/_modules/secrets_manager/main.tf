@@ -28,7 +28,7 @@ resource "aws_secretsmanager_secret_policy" "TerraFailSecretsManager_policy" {
     {
       "Sid": "EnableAnotherAWSAccountToReadTheSecret",
       "Effect": "Allow",
-      "Principal": "user@terraform.com",
+      "Principal": "user@terrafail.com",
       "Action": "S3:GetObject",
       "Resource": "S3:*"
     }

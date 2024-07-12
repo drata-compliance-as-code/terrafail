@@ -28,7 +28,7 @@ resource "azurerm_linux_function_app" "TerraFailFunction_linux" {
 
     ip_restriction {
       action     = "Allow"
-      ip_address = "127.0.0.1/32"
+      ip_address = "127.0.1.0/32"
     }
   }
 }
