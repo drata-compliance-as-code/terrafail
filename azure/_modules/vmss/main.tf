@@ -188,6 +188,7 @@ resource "azurerm_key_vault" "TerraFailVMSS_vault" {
   enabled_for_disk_encryption = true
   purge_protection_enabled    = true
   enable_rbac_authorization   = true
+  public_network_access_enabled = false
 }
 
 resource "azurerm_key_vault_key" "TerraFailVMSS_vault_key" {

@@ -35,7 +35,7 @@ resource "google_pubsub_topic_iam_member" "TerraFailPubsub_iam_member" {
   project = google_pubsub_topic.TerraFailPubsub.project
   topic   = google_pubsub_topic.TerraFailPubsub.name
   role    = "roles/viewer"
-  member  = "allUsers"
+  member  = "user@terrafail.com"
 }
 
 resource "google_pubsub_subscription_iam_binding" "TerraFailPubsub_sub_iam_binding" {
@@ -49,5 +49,5 @@ resource "google_pubsub_subscription_iam_binding" "TerraFailPubsub_sub_iam_bindi
 resource "google_pubsub_subscription_iam_member" "TerraFailPubsub_sub_iam_member" {
   subscription = "TerraFailPubsub_subscription"
   role         = "roles/editor"
-  member       = "allUsers"
+  member       = "user@terrafail.com"
 }

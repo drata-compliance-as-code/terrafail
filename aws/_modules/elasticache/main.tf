@@ -25,6 +25,7 @@ resource "aws_elasticache_cluster" "TerraFailElasticache_cluster_red" {
   engine_version       = "3.2.10"
   port                 = 6379
   subnet_group_name    = aws_TerraFailTerraFailElasticache_subnet_group.TerraFailTerraFailElasticache_subnet_group.name
+  snapshot_retention_limit = 48
 }
 
 resource "aws_elasticache_replication_group" "TerraFailElasticache_replication_group" {
@@ -39,6 +40,7 @@ resource "aws_elasticache_replication_group" "TerraFailElasticache_replication_g
   automatic_failover_enabled  = true
   at_rest_encryption_enabled  = false
   transit_encryption_enabled  = false
+  snapshot_retention_limit = 0
 }
 
 # ---------------------------------------------------------------------

@@ -187,7 +187,7 @@ resource "aws_iam_role_policy" "TerraFailAPIv2_iam_policy" {
 
         ]
         Effect   = "Allow",
-        Resource = "*"
+        Resource = "Lambda:*"
       },
     ]
   })

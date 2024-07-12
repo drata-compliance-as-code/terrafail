@@ -88,11 +88,11 @@ resource "aws_lb_target_group" "TerraFailAPIv2_target_group" {
   target_type = "instance"
   vpc_id      = aws_vpc.TerraFailAPIv2_vpc.id
   port        = 80
-  protocol    = "HTTP"
+  protocol    = "HTTPS"
 
   health_check {
     enabled  = true
-    protocol = "HTTP"
+    protocol = "HTTPS"
   }
 }
 
@@ -224,7 +224,7 @@ resource "aws_kms_key" "TerraFailAPIv2_key" {
           "kms:GenerateDataKey",
           "kms:DescribeKey"
         ],
-      "Resource": "*",
+      "Resource": "KMS:*",
       "Condition": {
         "StringEquals": {
           "kms:KeySpec": "SYMMETRIC_DEFAULT"

@@ -28,11 +28,11 @@ resource "aws_lb_target_group" "TerraFailLB_target_group" {
   target_type = "instance"
   vpc_id      = aws_vpc.TerraFailLB_vpc.id
   port        = 80
-  protocol    = "HTTP"
+  protocol    = "HTTPS"
 
   health_check {
     enabled  = true
-    protocol = "HTTP"
+    protocol = "HTTPS"
   }
 
   stickiness {
@@ -284,7 +284,7 @@ resource "aws_kms_key" "TerraFailLB_key" {
           "kms:GenerateDataKey",
           "kms:DescribeKey"
         ],
-      "Resource": "*",
+      "Resource": "KMS:*",
       "Condition": {
         "StringEquals": {
           "kms:KeySpec": "SYMMETRIC_DEFAULT"

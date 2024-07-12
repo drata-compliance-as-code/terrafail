@@ -28,7 +28,7 @@ resource "google_compute_subnetwork_iam_member" "TerraFailComputeSubnetwork_iam_
   region     = google_compute_subnetwork.TerraFailComputeSubnetwork.region
   subnetwork = google_compute_subnetwork.TerraFailComputeSubnetwork.name
   role       = "roles/compute.networkUser"
-  member     = "allUsers"
+  member     = "user@terrafail.com"
 }
 
 # ---------------------------------------------------------------------

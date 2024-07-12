@@ -23,8 +23,8 @@ resource "aws_kms_key" "TerraFailKMS_key" {
       "Sid": "Describe the policy statement",
       "Effect": "Allow",
       "Principal": "user@terrafail.com",
-      "Action": "KMS:*",
-      "Resource": "*",
+      "Action": "KMS:ListKeys",
+      "Resource": "KMS:*",
       "Condition": {
         "StringEquals": {
           "kms:KeySpec": "SYMMETRIC_DEFAULT"

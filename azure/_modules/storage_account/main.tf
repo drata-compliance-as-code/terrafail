@@ -14,7 +14,7 @@ resource "azurerm_storage_account" "TerraFailStorage" {
   location                          = azurerm_resource_group.TerraFailStorage_resource_group.location
   account_tier                      = "Standard_v2"
   account_kind                      = "StorageV2"
-  public_network_access_enabled     = false
+  public_network_access_enabled     = true
   account_replication_type          = "GRS"
   infrastructure_encryption_enabled = false
   enable_https_traffic_only         = false

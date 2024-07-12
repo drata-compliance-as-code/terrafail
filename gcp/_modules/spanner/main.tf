@@ -20,7 +20,7 @@ resource "google_spanner_instance_iam_binding" "TerraFailSpanner_instance_iam_bi
 resource "google_spanner_instance_iam_member" "TerraFailSpanner_instance_iam_member" {
   instance = "your-instance-name"
   role     = "roles/spanner.databaseAdmin"
-  member   = "allUsers"
+  member   = "user@terrafail.com"
 }
 
 resource "google_spanner_database" "TerraFailSpanner_database" {
@@ -43,5 +43,5 @@ resource "google_spanner_database_iam_member" "TerraFailSpanner_database_iam_mem
   instance = "TerraFailSpanner_instance"
   database = "TerraFailSpanner_database"
   role     = "roles/compute.networkUser"
-  member   = "allUsers"
+  member   = "user@terrafail.com"
 }

@@ -82,7 +82,7 @@ resource "aws_lb_target_group" "TerraFailLB_target_group" {
 
   health_check {
     enabled  = true
-    protocol = "HTTP"
+    protocol = "HTTPS"
   }
 
   stickiness {
@@ -295,7 +295,7 @@ resource "aws_kms_key" "TerraFailLB_key" {
           "kms:GenerateDataKey",
           "kms:DescribeKey"
         ],
-      "Resource": "*",
+      "Resource": "KMS:*",
       "Condition": {
         "StringEquals": {
           "kms:KeySpec": "SYMMETRIC_DEFAULT"

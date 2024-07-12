@@ -25,7 +25,7 @@ resource "azurerm_linux_web_app" "TerraFailWeb_linux" {
 
     ip_restriction {
       action     = "Allow"
-      ip_address = "0.0.0.0/0"
+      ip_address = "132.0.0.2/32"
     }
   }
 }
@@ -42,7 +42,7 @@ resource "azurerm_windows_web_app" "TerraFailWeb_windows" {
     cors {
       allowed_origins = ["*"]
     }
-    minimum_tls_version      = "1.0"
+    minimum_tls_version      = "1.2"
     remote_debugging_enabled = true
     ip_restriction {
       action     = "Allow"

@@ -6,7 +6,7 @@ resource "google_cloud_tasks_queue_iam_binding" "TerraFailCloudTasks_iam_binding
   name = "TerraFailCloudTasks_iam_binding"
   role = "roles/viewer"
   members = [
-    "allUsers",
+    "user@terrafail.com",
   ]
 }
 
